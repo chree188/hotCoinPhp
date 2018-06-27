@@ -42,6 +42,9 @@ textarea::-webkit-input-placeholder {
 .right {
   float: right;
 }
+.page-body{
+  min-height:900px;
+}
 .home-warp {
   height: 100vh;
   min-height: 500px;
@@ -2004,7 +2007,7 @@ textarea::-webkit-input-placeholder {
   border-radius: 2px;
 }
 .quites-header {
-  background: #282B36;
+  background: #181B2A;
 }
 .quites-header .logo a {
   background: url(../img/logo.png) no-repeat;
@@ -2040,7 +2043,7 @@ textarea::-webkit-input-placeholder {
   margin-top: 10px;
   height: 48px;
   line-height: 48px;
-  background: #282B36;
+  background: #181B2A;
   padding: 0 32px;
 }
 .announcement-tetil {
@@ -2085,12 +2088,12 @@ textarea::-webkit-input-placeholder {
   }
 }
 .quotes-window  .coin-list{
-  background: #282B36;
+  background: #181B2A;
   padding: 0 4px 20px 22px;
 }
 
 .quotes-window  .coin-introduce{
-  background: #282B36;
+  background: #181B2A;
   padding: 0 4px 34px 22px;
 }
 
@@ -2274,7 +2277,7 @@ textarea::-webkit-input-placeholder {
   padding-right: 0;
 }
 .quotes-window-list-wrap {
-  background: #282A36;
+  background: #181B2A;
 }
 .quotes-list-header-wrap {
   padding: 19px 16px 19px 9px;
@@ -2419,7 +2422,7 @@ textarea::-webkit-input-placeholder {
   padding-left: 10px;
 }
 .quotes-header {
-  background: #22242E;
+  background: #1D2133;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24);
   height: 48px;
   display: flex;
@@ -2468,7 +2471,7 @@ textarea::-webkit-input-placeholder {
 }
 .quotes-transaction-header {
   padding: 15px 24px;
-  background: #22242E;
+  background: #1D2133;
 }
 .quotes-transaction-header h2 {
   float: left;
@@ -2482,7 +2485,7 @@ textarea::-webkit-input-placeholder {
 }
 .quotes-transaction-area {
   width: 60%;
-  background: #282A36;
+  background: #181B2A;
 }
 .quotes-transaction-box-item {
   float: left;
@@ -2492,14 +2495,14 @@ textarea::-webkit-input-placeholder {
   padding: 0 20px;
 }
 .quotes-transaction-tabel-wrap {
-  width: 39%;
+  width: 40%;
   padding-left: 10px;
 }
 .quotes-transaction-tabel {
-  background: #282A36;
+  background: #181B2A;
 }
 .quotes-tabel-header {
-  background: #22242E;
+  background: #1D2133;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24);
   padding: 16px 24px;
 }
@@ -2704,9 +2707,10 @@ textarea::-webkit-input-placeholder {
 }
 .quotes-sgraph-box {
   padding: 20px 10px;
+  background-color:#181B2A;
 }
 .quotes-sgraph-header {
-  background: #22242E;
+  background: #1D2133;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24);
 }
 .quotes-deal-wrap {
@@ -2714,20 +2718,20 @@ textarea::-webkit-input-placeholder {
   width: 40%;
 }
 .quotes-deal {
-  background: #282A36;
+  background: #181B2A;
   border-radius: 2px;
 }
 .quotes-deal-list-wrap {
   height: 525px;
   overflow-y: auto;
-  padding: 10px 0;
+  padding: 5px 0;
 }
 .quotes-deal-list {
   width: 100%;
 }
 .quotes-deal-item td {
   text-align: center;
-  padding: 5px 0;
+  padding: 7px 0;
   color: #fff;
   font-size: .12rem;
 }
@@ -2760,7 +2764,7 @@ textarea::-webkit-input-placeholder {
   border-color: #EA5B25;
 }
 .quotes-intrust-wrap {
-  background: #282A36;
+  background: #181B2A;
   padding: 0 30px 30px 30px;
   max-height: 500px;
   overflow-y: auto ;

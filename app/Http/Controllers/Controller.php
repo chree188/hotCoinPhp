@@ -9,6 +9,10 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Redis;
 
+//header('Access-Controller-Allow-Origin:*');
+//
+//header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
+
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -16,7 +20,7 @@ class Controller extends BaseController
 
 //    public $host = '127.0.0.1:8080';
 //    public $host = '192.168.0.193:8090';
-        public $host = '192.168.0.122:8090';
+    public $host = '192.168.0.122:8090';
 //    public $host = 'https://www.hotcoin.top';
 
 

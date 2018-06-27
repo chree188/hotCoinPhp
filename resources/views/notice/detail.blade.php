@@ -11,8 +11,8 @@
                          <div class="col-xs-12">
                              <ol class="breadcrumb my-breadcrumb">
                                 <li><a href="{{route('index')}}">{{__('news.index')}}</a></li>
-                                <li><a href="{{route('notice')}}?id=1">{{__('news.dynamic')}}</a></li>
-                                <li>{{__('news.dynamic')}}</li>
+                                <li><a href="{{route('notice')}}?id=1">{{__('news.annoce')}}</a></li>
+                                <li>{{__('news.annoce')}}</li>
                             </ol>
                          </div>
                      </div>

@@ -1,6 +1,6 @@
 @extends('layouts/app')
 @section('content')
-    <div class="container">
+    <div class="container page-body">
             <div class="row financial-wrap">
                 <div class="col-xs-12 financial">
            
@@ -18,7 +18,8 @@
                                         <th>成交数量</th>
                                         <th>成交金额</th>
                                         <th>平均成交价</th>
-                                        <th>状态/操作</th>
+                                        <th>状态</th>
+                                        @if($_GET['status']==0)    <th>操作</th>@endif
                                     </tr>
                                     <tbody class="financial-table-body">
                                     @foreach( $fentrusts as $item)
@@ -33,6 +34,7 @@
                                             <td>{{$item['fsuccessamount']}}</td>
                                             <td>{{$item['flast']}}</td>
                                             <td>{{$item['fstatus_s']}}</td>
+                                            @if($_GET['status']==0)   <td><a href="javascript:void(0)" class="cancelEntrustBtc" data-fid="{{$item['fid']}}">撤单</a></td>@endif
 
                                         </tr>
                                         @endforeach
@@ -53,4 +55,8 @@
                 </div>
             </div>
         </div>
+@endsection
+
+@section('js')
+    <script src="{{ asset('js/markt/entrust_cancel.js') }}" type="text/javascript" charset="utf-8"></script>
 @endsection

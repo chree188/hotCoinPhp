@@ -1,14 +1,14 @@
 @extends('layouts/app')
 @section('content')
     <div class="" style="background:rgba(242,245,250,1); ">
-        <div class="container">
+        <div class="container page-body">
             <div class="row financial-wrap">
                 <div class="col-xs-12 financial">
                     <!-------------------------------- 边栏导航 -------------------------------->
                     @include('layouts.leftbar')
                     <!---------------------------------- 内容详情 ----------------------------->
                     <input type="hidden" id="datetype">
-                    <div class="col-xs-10 financial-data">
+                    <div class="col-xs-10 financial-data" style="min-height:800px">
                         <h1 class="col-xs-12 financial-data-tetil">{{__('finance.account-record')}}</h1>
                         <div class="col-xs-12 financial-data-bills">
                             <!---------------------------------- 日期选择 ----------------------------->

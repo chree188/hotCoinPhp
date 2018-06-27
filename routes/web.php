@@ -71,7 +71,8 @@ Route::group(['middleware' => 'change_lang'], function () {
     Route::get('/validate/reset_phone.html', 'UserController@resetPhone');//手机重设密码界面
     Route::get('/validate/mail_validate.html','UserController@vailMail'); //邮箱验证
     //交易中心
-    Route::get('/trademarket.html', 'TradeController@index')->name('trade');
+//    Route::get('/trademarketnew.html', 'TradeController@index')->name('tradenew');
+    Route::get('/trademarket.html', 'TradeviewController@index')->name('trade');
     Route::get('/trade/cny_entrust.html', 'TradeController@entrust')->name('entrust');
     Route::get('/order.html', 'TradeController@order')->name('order');
 
@@ -151,6 +152,12 @@ Route::group(['middleware' => 'change_lang'], function () {
     Route::get('/real/market.html','TradeController@market'); //交易中心实时交易
     Route::post('/kline/fulldepth.html','TradeController@fulldepth'); //交易中心深度图
     Route::post('/kline/fullperiod.html','TradeController@fullperiod'); //交易中心k线图
+
+
+    Route::get('/config','TradeController@traderview')->name('config');
+    Route::get('/tradeviewdata','TradeviewController@tradeviewData')->name('tradeviewdata');
+    Route::get('/incrementdata','TradeviewController@incrementData')->name('incrementdata');
+
     Route::post('/trade/cny_buy.html','TradeController@cnyBuy'); //交易中心买币
     Route::post('/trade/cny_sell.html','TradeController@cnySell'); //交易中心买币
     Route::post('/trade/cny_cancel.html','TradeController@cnyCancel'); //撤单

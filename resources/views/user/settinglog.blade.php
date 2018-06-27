@@ -1,7 +1,7 @@
 @extends('layouts/app'))
 @section('content')
     <div class="" style="background:rgba(242,245,250,1); ">
-        <div class="container">
+        <div class="container page-body">
             <div class="row financial-wrap">
                 <div class="col-xs-12 financial">
                     <!-------------------------------- 边栏导航 -------------------------------->

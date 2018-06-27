@@ -1,6 +1,6 @@
 @extends('layouts/app')
 @section('content')
-        <div class="container">
+        <div class="container page-body">
             <div class="row order">
                 <div class="col-xs-12">
                     <ol class="breadcrumb order-breadcrumb">

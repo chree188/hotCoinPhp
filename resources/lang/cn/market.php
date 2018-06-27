@@ -13,7 +13,7 @@
 return array(
         'annoce'=>'公告',
         'login'=>'登录',
-        'or'=>'获',
+        'or'=>'或',
         'reg'=>'注册',
         'begin'=>'开始交易',
         'asset'=>'净资产折合',

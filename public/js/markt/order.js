@@ -76,13 +76,16 @@ function showData(data){
         '</dd>'
 
     //动态添加买
+    var sumcountbuy = bids[0][1];
     for(var i=1;i<len1 && i<50;i++){
+        sumcountbuy += bids[i][1];
         bidsStr +='<dd class="quotes-transaction-tabel-item order-list-item">' +
             '<div class="inner">' +
             '<span class="color-buy">'+util.getLan('trade.tips.18')+(i+1)+'</span>' +
             '<span>'+bids[i][0].toFixed(4)+'</span>' +
             ' <span>'+bids[i][1].toFixed(4)+'</span>' +
-            '<span>'+(bids[i][1]+bids[i-1][1]).toFixed(4)+'</span>' +
+            // '<span>'+(bids[i][1]+bids[i-1][1]).toFixed(4)+'</span>' +
+            '<span>'+sumcountbuy.toFixed(4)+'</span>' +
             '<b class="color-sell-bg" style="width: 0%;"></b>' +
             '</div>' +
             '</dd>';
@@ -108,29 +111,20 @@ function showData(data){
         '</div>' +
         '</dd>'
 
-
+    var sumcountsell = asks[0][1];
     for(var i=1;i<len2 && i<50;i++){
+        sumcountsell += asks[i][1];
         asksStr +='<dd class="quotes-transaction-tabel-item order-list-item">' +
             '<div class="inner">' +
             '<span class="color-sell">'+util.getLan('trade.tips.19')+' '+(i+1)+'</span>' +
-            '<span>'+parseInt(asks[i][0]).toFixed(4)+'</span>' +
+            '<span>'+asks[i][0].toFixed(4)+'</span>' +
             ' <span>'+asks[i][1].toFixed(4)+'</span>' +
-            '<span>'+(asks[i][1]+bids[i-1][1]).toFixed(4)+'</span>' +
+            // '<span>'+(asks[i][1]+bids[i-1][1]).toFixed(4)+'</span>' +
+            '<span>'+sumcountsell.toFixed(4)+'</span>' +
             '<b class="color-sell-bg" style="width: 0%;"></b>' +
             '</div>' +
             '</dd>';
     }
-    $.each(asks,function(index,value){
-        asksStr +='<dd class="quotes-transaction-tabel-item order-list-item">' +
-            '<div class="inner">' +
-            '<span class="color-sell">'+util.getLan('trade.tips.19')+' '+(i+1)+'</span>' +
-            '<span>'+value[0].toFixed(4)+'</span>' +
-            ' <span>'+value[1].toFixed(4)+'</span>' +
-            '<span>'+(value[1]+bids[i-1][1]).toFixed(4)+'</span>' +
-            '<b class="color-sell-bg" style="width: 0%;"></b>' +
-            '</div>' +
-            '</dd>';
-    });
 
     $('#sell-data').html(asksHeader+asksStr);
 }

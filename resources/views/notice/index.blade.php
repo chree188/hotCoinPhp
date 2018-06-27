@@ -11,7 +11,7 @@
                     <div class="col-xs-12 news-data-box">
                         <div class="col-xs-6 news-data-tetil" style="padding-left:50px;">
                             <img src="{{asset('img/imgNew/new_notice.png')}}}" style="display:inline-block;width:20px;height:20px;">
-                            <h2 style="display:inline-block;margin-left:10px;">{{__('news.dynamic')}}</h2>
+                            <h2 style="display:inline-block;margin-left:10px;">{{__('news.annoce')}}</h2>
                         </div>
 
                         <div class="col-xs-6 news-data-tetil" style="text-align:right;">

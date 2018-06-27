@@ -837,7 +837,6 @@ function sendHeartMessage(ping){
  * @param data
  */
 function handleResponseData(data){
-
     setupData(compatHuoBiKLine(data));
     setTimeout(function () {
         chartAnimation = false;

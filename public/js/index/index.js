@@ -183,7 +183,7 @@ var login = {
                     '<div class="area-table-num danger clearfix" style="display: flex;justify-content: center">' +
                     '<div class="left">' +
                     '<a href="/trademarket.html?symbol='+data.treadId+'&type='+data.type+'&sb='+data.sellShortName+'_'+data.buyShortName+'">'+
-                    '<h3 class="coin-price">'+util.numFormat(data.price, data.cnyDigit)+'</h3>' +
+                    '<h3 class="coin-price" style="color:#72c02c">'+util.numFormat(data.price, data.cnyDigit)+'</h3>' +
                     '<p class="coin-price-cny">0.00000000</p>' +
                     '</a></div>' +
                     // '<i class="iconfont  left coin-trend"></i>' +
@@ -194,8 +194,8 @@ var login = {
                     '<td class="coin-vol" unit="'+(data.sellShortName).toUpperCase()+'">0.00</td>' +
                     // '<td style="color:'+color+'" class="coin-chg">'+data.rose+'%</td>' +
                     //'<td><p class="coin-trend-per" style="background-color:'+color+'"><i class="iconfont right coin-trend icon-sheng-white" ></i><span class="coin-chg" >'+data.rose+'%</span></p></td>' +
-                    '<td><p class="coin-trend-per" style="background-color:'+color+'"><i class="iconfont right '+classinfo+'" ></i><span class="coin-chg" >'+data.rose+'%</span></p></td>' +
-                '<td>' +
+                    '<td><p class="coin-trend-per" style="background-color:'+color+'"><i class="iconfont right coin-trend '+classinfo+'" ></i><span class="coin-chg" >'+data.rose+'%</span></p></td>' +
+                    '<td>' +
                     '<div class="area-table-img coin-trend-render" style="width:200px;height:44px;margin:0 auto">' +
                     '</div>' +
                     '</td>' +
@@ -426,9 +426,9 @@ function handleKlineData(data){
 function handleTickData(data){
     var level;
     if((data.tick.close) == 0){
-         level = 0;
+        level = 0;
     } else {
-         level= Math.floor((data.tick.close-data.tick.open)/data.tick.open*10000);
+        level= Math.floor((data.tick.close-data.tick.open)/data.tick.open*10000);
     }
 
 
@@ -443,13 +443,20 @@ function handleTickData(data){
     if (dataCoin == 'ethusdt') {
         ETH_USDT = data.tick.close;
     }
-
-    if(level>0){
+    $("."+dataCoin+" .coin-trend").removeClass('icon-jiang-white');
+    $("."+dataCoin+" .coin-trend").removeClass('icon-sheng-white');
+    if(level>=0){
         // $("."+dataCoin+" .coin-chg").attr("style","color:#72c02c");
         $("."+dataCoin+" .coin-chg").html("+"+level/100+"%");
+        $("."+dataCoin+" .coin-trend").addClass('icon-sheng-white');
+        $("."+dataCoin+" .coin-trend").parent('p').css('background-color','#0CA703');
+        $("."+dataCoin+" .coin-price").attr("style","color:#72c02c");
     }else{
         $("."+dataCoin+" .coin-chg").html(level/100+"%");
+        $("."+dataCoin+" .coin-trend").addClass('icon-jiang-white');
         // $("."+dataCoin+" .coin-chg").attr("style","color:#e74c3c");
+        $("."+dataCoin+" .coin-trend").parent('p').css('background-color','#EA5B25');
+        $("."+dataCoin+" .coin-price").attr("style","color:#e74c3c");
     }
 
     // var preData = parseFloat($("."+dataCoin).attr('pre-data'));
@@ -523,14 +530,14 @@ function fetchRealTimePrice() {
             for(var i=0;i<data.data.length;i++){
                 var dataCoin = data.data[i].sellSymbol.toLowerCase()+''+data.data[i].buySymbol.toLowerCase();
                 var tickData = {ch:"market."+dataCoin+".detail",tick:{
-                    amount:data.data[i].total,
-                    count:data.data[i].total,
-                    open:data.data[i].p_open,
-                    close:data.data[i].p_new,
-                    high:data.data[i].sell,
-                    low:data.data[i].buy,
-                    vol:0,
-                }};
+                        amount:data.data[i].total,
+                        count:data.data[i].total,
+                        open:data.data[i].p_open,
+                        close:data.data[i].p_new,
+                        high:data.data[i].sell,
+                        low:data.data[i].buy,
+                        vol:0,
+                    }};
 
                 handleTickData(tickData);
                 //保存GSET对其他币种的价格

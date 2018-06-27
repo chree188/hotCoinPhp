@@ -53,6 +53,22 @@ class TradeController extends Controller
         return View('trade.index',$data);
     }
 
+    public function indexnew(Request $request) {
+        $param = $request->only(['symbol','type','sb']);
+        foreach ($param as $key=>$value) {
+            if(empty($value)){
+                unset($param[$key]);
+            }
+        }
+        $url = $this->host . $this->indexUrl;
+        if(!empty($url)){
+            $url .= '?' . http_build_query($param);
+        }
+        $response = $this->parseResponse($this->httpGet($url));
+        $data = $response['data'];
+        return View('trade.indexnew',$data);
+    }
+
 
     /**
      * 委托单更多页面
@@ -101,11 +117,88 @@ class TradeController extends Controller
      */
     public function fullperiod(Request $request){
         $param = $request->only(['symbol','step']);
-
         $url = $this->host . $this->fullPeriodUrl;
-
         return $this->parseApi($this->httpPost($url,$param));
     }
+
+    public function traderview(Request $request){
+        $param = $request->only(['symbol','step']);
+        $param["symbol"] = "8";
+        $param["step"]  ="900";
+        $url = $this->host . $this->fullPeriodUrl;
+        return $this->parseApi($this->httpPost($url,$param));
+    }
+
+    public function traderview1(Request $request){
+
+        $param = $request->only(['symbol','step']);
+        $url = $this->host . $this->fullPeriodUrl;
+        $arrs =  json_decode($this->httpPost($url,$param));
+        $arr = [];
+        foreach($arrs as $key=>$value){
+            $arr["data"][$key]["time"] = $value[0];
+            $arr["data"][$key]["open"] = $value[1]+rand(-10000,10000);
+            $arr["data"][$key]["high"] = $value[2]+rand(-10000,10000);
+            $arr["data"][$key]["low"] = $value[3]+rand(-10000,10000);
+            $arr["data"][$key]["close"] = $value[4]+rand(-10000,10000);
+            $arr["data"][$key]["volume"] = $value[5]+rand(1,5);
+//            var_dump($value);die;
+        }
+
+        //       $arr = [];
+//        $time = 1529280000000;
+//        for($i=0;$i<300;$i++){
+//            $arr["data"][$i]["time"] = $time;
+//            $arr["data"][$i]["high"] = 54598.50000000+rand(10000,20000);
+//            $arr["data"][$i]["low"] = 54598.50000000+rand(10000,20000);
+//            $arr["data"][$i]["open"] = 54598.50000000+rand(10000,20000);
+//            $arr["data"][$i]["close"] = 54598.50000000+rand(10000,20000);
+////            $arr["data"][$i]["volume"] = rand(0.0001,0.0009);
+////            $arr["data"][$i]["volume"] = rand(0.0001,0.0009);
+//            $arr["data"][$i]["volume"] = rand(1,999);
+//            $time=$time+900000;
+//        }
+
+        $arr["state"] = 10200;
+        $arr["massage"] = "成功";
+//        $arr["data"] = [
+//            ["close"=>"1.70165000",'hight'=>"1.70165000",'low'=>"1.70165000","open"=>"1.70165000","time"=>time()*1000,"volume"=>"0.00000000"],
+//        ];
+        return json_encode($arr);
+    }
+
+
+    public function detaildata(Request $request){
+        $param = $request->only(['symbol','step']);
+        $url = $this->host . "/kline/lastperiod.html";
+        $arrs =  json_decode($this->httpPost($url,$param),true);
+//        $time = 1529280000000+301*900000;
+//            $arr["data"]["time"] = $time;
+//            $arr["data"]["high"] = 54598.50000000+rand(10000,20000);
+//            $arr["data"]["low"] = 54598.50000000+rand(10000,20000);
+//            $arr["data"]["open"] = 54598.50000000+rand(10000,20000);
+//            $arr["data"]["close"] = 54598.50000000+rand(10000,20000);
+//            $arr["data"]["volume"] = rand(1,999);
+        if($arrs){
+            $arr["data"]["time"] = $arrs["data"][0][0];
+            $arr["data"]["open"] = $arrs["data"][0][1]+rand(-10000,10000);
+            $arr["data"]["high"] = $arrs["data"][0][2]+rand(-10000,10000);
+            $arr["data"]["low"] = $arrs["data"][0][3]+rand(-10000,10000);
+            $arr["data"]["close"] = $arrs["data"][0][4]+rand(-10000,10000);
+            $arr["data"]["volume"] = $arrs["data"][0][5]+rand(1,5);
+            $arr["state"] = 10200;
+            $arr["massage"] = "成功";
+        }else{
+            $arr["state"] = 10300;
+            $arr["massage"] = "失败";
+        }
+
+//        $arr["data"] = [
+//            ["close"=>"1.70165000",'hight'=>"1.70165000",'low'=>"1.70165000","open"=>"1.70165000","time"=>time()*1000,"volume"=>"0.00000000"],
+//        ];
+        return json_encode($arr);
+    }
+
 
     /**
      * 买币

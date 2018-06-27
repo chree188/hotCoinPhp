@@ -1,0 +1,22 @@
+.apply-common-tooltip {
+	background: none !important;
+	border: none !important;
+}
+.apply-common-tooltip svg{
+	fill: #566492;
+}
+.button{
+	background: none !important;
+	border: none !important;
+	color: #9194a4 !important;
+}
+
+.chart-container{
+	background: none !important;
+	border: none !important;
+}
+
+.selected{
+	border:1px solid #9194a4 !important;
+}
+
