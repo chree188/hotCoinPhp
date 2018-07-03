@@ -110,9 +110,6 @@
                 </div>
                 <div class="navbar-loging">
                     @if (empty(USERNAME))
-                        <!--<a href="{{ route('login') }}" class="navbar-loging-btn">{{ __('head.login') }}</a>
-                        |
-                        <a href="{{ route('register') }}" class="navbar-loging-btn">{{ __('head.register') }}</a>-->
 
                             <div class="hot-coin-is-login">
                                 <a href="{{ route('login') }}" class="">{{ __('head.login') }}</a>
@@ -194,13 +191,70 @@
         <div class="container-fluid">
             <div class="row" style="padding: 0 8px;">
 <!--------------------------------- 公告 ---------------------->
-                <div class="col-xs-12 announcement">
-                    <span class="announcement-tetil">
+ <!--               <div class="col-xs-12 announcement">
+                    <span class="announcement-tetil ">
                         <i class="iconfont icon-gonggao"></i>
                         {{__('market.annoce')}}:
                     </span>
                     <span class="announcement-text"> <a style="color: #FFFFFF;" href="{{route('detail')}}?id={{$article[0]['fid']}}">{{$article[0]['ftitle']}}</a></span>
+                    <div class="swiper-container swiper-container-vertical js-swiper-container-enroll col-xs-3 announcement-text" style="display: inline-block;">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide swiper-slide-active banner-swiper-item" style="height:50px;" >
+                                    <a href="{{route('detail')}}?id={{$article[0]['fid']}}" class="enroll-item" >
+                                        {{$article[0]['ftitle']}}
+                                    </a>
+                            </div>
+                            <div class="swiper-slide swiper-slide-active banner-swiper-item" style="height:50px;" >
+                                <a href="{{route('detail')}}?id={{$article[1]['fid']}}" class="enroll-item" >
+                                    {{$article[1]['ftitle']}}
+                                </a>
+                            </div>
+                            <div class="swiper-slide swiper-slide-active banner-swiper-item" style="height:50px;" >
+                                <a href="{{route('detail')}}?id={{$article[2]['fid']}}" class="enroll-item" >
+                                    {{$article[2]['ftitle']}}
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
                     <button class="iconfont icon-guanbi announcement-btn"></button>
+                </div>-->
+
+
+                <div class="col-xs-12 announcement1" style="background-color:#181B2A;margin-top:5px;padding-top:5px ">
+                    <div class="container-banner" style="min-width: 1000px;margin-left: 30px;">
+                        <div class="row">
+                            <div class="col-xs-12 banner-text-box" style="height:50px;overflow: hidden;">
+
+                               <i class="right iconfont icon-gonggao"  style="color: #EA5B25" ></i>
+                                <div class="swiper-container swiper-container-vertical js-swiper-container-enroll col-xs-5" style="display: inline-block;">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide swiper-slide-active banner-swiper-item" style="height:50px;" >
+                                            <a href="{{route('detail')}}?id={{$article[0]['fid']}}" class="enroll-item" >
+                                                {{$article[0]['ftitle']}}
+                                            </a>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-active banner-swiper-item" style="height:50px;" >
+                                            <a href="{{route('detail')}}?id={{$article[1]['fid']}}" class="enroll-item" >
+                                                {{$article[1]['ftitle']}}
+                                            </a>
+                                        </div>
+                                        <div class="swiper-slide swiper-slide-active banner-swiper-item" style="height:50px;" >
+                                                <a href="{{route('detail')}}?id={{$article[2]['fid']}}" class="enroll-item" >
+                                                    {{$article[2]['ftitle']}}
+                                                </a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div  class="col-xs-2" style="display: inline-block; height:40px;cursor:pointer;padding-top:3px">
+                                    <a href="{{route('notice')}}?id=2" style="font-size: 15px;display:block;margin:11px auto;color:#EA5B25;">【{{__('head.more')}}】</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="iconfont icon-guanbi announcement-btn1 " style="position: absolute;top: 20px;right: 10px;background-color:#181B2A;border:1px solid #181B2A"></button>
                 </div>
 
 
@@ -544,6 +598,7 @@
                                                 </div>
                                                 <div class="sell-item" style="padding: 0px; color: white;">
                                                     {{--circles-slider--}}
+                                                    <input style="display:none">
                                                     <div class="slider sell-item-slider" id="sellslider" ></div>
                                                 </div>
                                                 <div class="sell-item">
@@ -1166,7 +1221,7 @@
         <script src="{{ asset('datafeeds/udf/datafeed.js') }}" type="text/javascript" charset="utf-8"></script>
 
         {{--<script src="{{ asset('/js/plugin/jquery.jslider.js') }}" type="text/javascript" charset="utf-8"></script>--}}
-
+        <script src="{{asset('js/plugin/swiper/swiper.min.js')}}" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript">
         	       $(".quotes-search-btn").on({
         	           click:function(){
@@ -1219,6 +1274,18 @@
                 trade.onPortion(_left, tag);
                 $(this).siblings(".sell-item-tetil").children("span").html(_left + "%")
             }
+
+            //公告轮播
+            var swiper_enroll = new Swiper('.js-swiper-container-enroll', {
+                direction: 'vertical',
+                loop: true,
+                autoplay: {
+                    delay:2000,
+                },
+                autoplayDisableOnInteraction: false,
+            });
         </script>
+
+
 	</body>
 </html>

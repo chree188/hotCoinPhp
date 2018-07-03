@@ -249,7 +249,8 @@ var FindPhoneMsg = {
                     window.setTimeout("email.updateNumber(" + num + ",'" + button_id + "',2)", num * 1000);
                 }
             } else {
-                util.layerTips(tipElement_id, data.msg);
+                // util.layerTips(tipElement_id, data.msg);
+                util.layerAlert("",data.msg)
             }
         };
         util.network({

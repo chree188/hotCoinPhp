@@ -56,4 +56,9 @@
             </div>
         </div>
     </div>
+    <script>
+        $('.active').find('a').css('background-color','#EA5B25')
+        $('.active').find('a').css('color','#fff')
+
+    </script>
 @endsection

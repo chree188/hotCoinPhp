@@ -57,7 +57,6 @@ class FinanceController extends Controller
         $response = $this->httpGet($url);
         $response = $this->parseResponse($response);
         $data = $response['data'];
-//        dd($data);
         return view('finance.coinDeposit',$data);
 
     }

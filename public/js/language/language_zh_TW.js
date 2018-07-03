@@ -126,6 +126,9 @@ var language = {
     "user.tips.35": "註冊成功！",
     "user.tips.36": "請輸入谷歌驗證碼",
     "user.tips.37": "推薦人id格式錯誤！",
+    "user.tips.38": "证件号码不能为空!",
+    "user.tips.39": "邮箱/手机验证码不能为空!",
+    "user.tips.40": "修改成功，请重新登录!",
     "copy.succeed":"複製成功！",
     "head.tips.1" : "联系客服",
 }

@@ -174,7 +174,7 @@ var login = {
                     '<img src="'+data.image+'" alt="" class="img_currency" />' +
                     '</dt>' +
                     '<dd class="area-table-name-text">' +
-                    '<h3><a href="/trademarket.html?symbol='+data.treadId+'&type='+data.type+'&sb='+data.sellShortName+'_'+data.buyShortName+'">'+(data.sellShortName).toUpperCase()+'<span style="font-size: .12rem;">/'+(data.buyShortName).toUpperCase()+'</span></a></h3>' +
+                    '<h3><a href="/trademarket.html?symbol='+data.treadId+'&type='+data.type+'&sb='+data.sellShortName+'_'+data.buyShortName+'">'+(data.sellShortName).toUpperCase()+'<span style="font-size: .12rem;color:#717171">/'+(data.buyShortName).toUpperCase()+'</span></a></h3>' +
                     // '<p>'+(data.sellName).toUpperCase()+'</p>' +
                     '</dd>' +
                     '</dl>' +

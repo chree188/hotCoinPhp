@@ -15,6 +15,7 @@ return array(
     'first-place4'=>'谷歌验证码',
     'first-place5'=>'登录密码',
     'first-place6'=>'再输一次',
+    'first-place7'=>'邮箱/手机验证码',
 
     'first-idcard'=>'身份證',
     'first-getCode'=>'获取验证码',

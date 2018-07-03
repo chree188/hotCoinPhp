@@ -247,6 +247,12 @@ $(".announcement-btn").on({
     }
 })
 
+$(".announcement-btn1").on({
+    click:function(){
+        $(this).parent(".announcement1").hide();
+    }
+})
+
 
 $(".quotes-window-navbar button").on({
     click:function(){

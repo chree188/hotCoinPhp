@@ -88,7 +88,8 @@ var reset = {
     checkPhoneCode:function (btnele) {
         var area =  $("#form-site").data('select');
         var phone = $("#reset-email").val();
-        var code = $("#reset-imgcode").val();
+        // var code = $("#reset-imgcode").val();
+        var code = $("#reset-msgcode").val();
         var idcardno = $("#reset-idcardno").val();
         var url = "/validate/reset_password_check.html";
         var param = {
@@ -97,6 +98,14 @@ var reset = {
             code:code,
             idcardno:idcardno
         };
+        if (!idcardno){
+            util.layerAlert("", util.getLan("user.tips.38"));
+            return false;
+        }
+        if (!code){
+            util.layerAlert("", util.getLan("user.tips.39"));
+            return false;
+        }
         var callback = function (data) {
             if (data.code == 200) {
                 window.location.href = '/validate/reset_phone.html';
@@ -142,6 +151,8 @@ var reset = {
                 $("#successstep").show();
                 $("#resetprocess2").removeClass("active");
                 $("#resetprocess3").addClass("active");
+                // util.layerAlert("", "修改成功，请重新登录");
+                util.layerAlert("", util.getLan("user.tips.40"));
             } else {
                 util.layerAlert("", data.msg);
                 if (data.code == -3) {
@@ -165,7 +176,6 @@ $("#btn-imgcode").on("click", function () {
 });
 var isPhone =true;
 $('#reset-email').bind('input propertychange', function(){
-    console.log(this.value);
     if((this.value).indexOf('@')>=0){
         $('.reset-phone').hide();
         isPhone = false;

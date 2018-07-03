@@ -33,7 +33,6 @@
                         </div>
 
                         <!---------------------------------------- 分页 ------------------------------------>
-
                         <div class="col-xs-12 pag">
                             <ul class="pag-nav">
                                 @if(isset($pagin))
@@ -46,4 +45,22 @@
                 </div>
             </div>
 </div>
+    <script>
+                //获取url中的参数
+                function getUrlParam(name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+                    var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+                    if (r != null) return unescape(r[2]); return '1'; //返回参数值
+                }
+                var number = parseInt(getUrlParam("currentPage"));
+                $('.pag-nav li').each(function(index,item){
+                    if($(item).find('a').html()==number){
+                        $(item).find('a').css("background-color","#EA5B25");
+                        $(item).find('a').css("color","#fff");
+                    }
+                })
+
+
+    </script>
+
 @endsection

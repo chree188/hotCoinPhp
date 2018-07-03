@@ -142,8 +142,9 @@ html {
 body {
     color: #333;
     font-size: .14rem;
-    font-family: -apple-system-font, microsoft yahei Light, Helvetica Neue, Helvetica, sans-serif;
+/*    font-family: -apple-system-font, microsoft yahei Light, Helvetica Neue, Helvetica, sans-serif; */
     /*line-height: 1.42857143;*/
+   font-family: -apple-system-font,WenQuanYi Micro Hei, Helvetica Neue, Helvetica, sans-serif;
    background: #fff;
    min-height: 100%;
    line-height: 1;

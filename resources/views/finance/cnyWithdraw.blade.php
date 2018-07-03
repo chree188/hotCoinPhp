@@ -45,14 +45,14 @@
                                 @else
                                     <a href="{{route('cnyWithdraw')}}?symbol={{$cnyItem['id']}}"  class="left financial-data-navbar">
                                         <span style="height:28.8px;"><img src="{{$cnyItem['applogo']}}" style="padding-left: 25px;height:28.8px;"></span>
-                                        <span>{{$cnyItem['shortname']}} </span>
+                                        <span class="show-border-right" style="padding-right: 20px;" >{{$cnyItem['shortname']}} </span>
                                     </a>
                                 @endif
                             @endforeach
                             @forelse($coinList as $coinItem)
                                 <a href="{{route('coinWithdraw')}}?symbol={{$coinItem['id']}}" class="left financial-data-navbar">
                                     <span style="height:28.8px;"><img src="{{$coinItem['applogo']}}" style="padding-left: 25px;height:28.8px;"></span>
-                                    <span>{{$coinItem['shortname']}}</span>
+                                    <span class="show-border-right" style="padding-right: 20px;" >{{$coinItem['shortname']}}</span>
                                 </a>
                             @empty
                             @endforelse

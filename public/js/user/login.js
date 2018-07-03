@@ -41,13 +41,13 @@ var login = {
             };
             var callback = function (data) {
                 var forwardUrl = util.getUrlParam('forwardUrl');
-                document.cookie = 'token='+data.data;
-                console.log(data);
+                // var exp = new Date();
+                // exp.setTime(exp.getTime() + 2*60*60*1000);
+                // document.cookie = 'token='+data.data +";expires="+exp.toGMTString();
                 if (data.code != 200) {
                     util.layerTips("login-password", data.msg);
                     $("#login-password").val("");
                 } else {
-                    console.log(data);
                     if (forwardUrl == null) {
                         window.location.href = "/main.html";
                     } else {

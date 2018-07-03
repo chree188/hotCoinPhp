@@ -165,7 +165,7 @@
                                         @forelse($page['data'] as $item)
                                             <tr class="financial-table-item">
                                                 <td>{{date('Y-m-d H:i:s',intval(substr($item['fupdatetime'],0,10)))}}</td>
-                                                <td>{{$item['frechargeaddress']}}</td>
+                                                <td>{{$item['fwithdrawaddress']}}</td>
                                                 <td>{{sprintf('%.3f',$item['famount'])}}</td>
                                                 <td>{{sprintf('%.3f',$item['ffees'])}}</td>
                                                 <td>{{$item['fstatus_s']}}</td>

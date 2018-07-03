@@ -424,7 +424,7 @@
                 <div class="hot-coin-form-item reset-phone" style="position:relative;display: none;">
                     <span class="iconfont icon-shoujiyanzheng hot-coin-icon-span" ></span>
                     <label for="">
-                        <input type="text" id="reset-msgcode" value="" />
+                        <input type="text" id="reset-msgcode" placeholder="{{__('vail.first-place7')}}" value="" />
                     </label>
                     <a type="button" id="reset-sendmessage"   style="display:inline-block;position:absolute;top:28px;right:16px;text-decoration: underline"
                        data-msg-type="109"  data-tipsid="register-phone-areacode" class="form-item-btn  btn-sendphonecode">{{__('vail.first-getCode')}}</a>

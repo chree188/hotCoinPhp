@@ -391,7 +391,7 @@
                 height:100,
                 foreground: "#0b3bfd",
                 background: "#FFF",
-                text: "https://hotcoin-static.oss-cn-hangzhou.aliyuncs.com/v1/static/apk/hotcoin-release-1.0.7.apk",
+                text: "https://hotcoin-static.oss-cn-hangzhou.aliyuncs.com/v1/static/apk/hotcoin-release-1.0.8.apk",
             });
 
         });

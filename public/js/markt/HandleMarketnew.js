@@ -192,11 +192,16 @@ function calculateFromDateLong(){
     }
 }
 
+window.onresize = function(){
+    myChart2.resize();
+};
 
 function showData(xData,buyData,sellData){
     if (myChart2 == null) {
         myChart2 = echarts.init(document.getElementById('depth-chart'));
     }
+
+
     // 指定图表的配置项和数据
     var option = {
         title: {
@@ -265,7 +270,7 @@ function showData(xData,buyData,sellData){
                 type:'line',
                 stack: '总量',
                 symbol:"none",
-                lineStyle: {color:"#00000000",opacity:1},
+                lineStyle: {color:"#1D2133",opacity:1},
                 areaStyle: {color:"rgb(27,39,21)",opacity:1},
                 data:buyData,
                 markPoint:{
@@ -278,7 +283,7 @@ function showData(xData,buyData,sellData){
                 type:'line',
                 stack: '总量',
                 symbol:"none",
-                lineStyle: {color:"#00000000",opacity:1},
+                lineStyle: {color:"#1D2133",opacity:1},
                 areaStyle: {color:"rgb(43,25,38)",opacity:1},
                 data:sellData
             }
@@ -535,7 +540,7 @@ function handleDetail(data){
     $('#tip-price').html(data.tick.close);
     $('#tip-cny').html(calculateCNY(data.tick.close,cArr[2]).toFixed(2)+' CNY');
 
-    if (level>0) {
+    if (level>=0) {
         span.setAttribute("style","color:#72c02c");
         span.innerHTML = "+"+level+"%";
     }else{
@@ -791,3 +796,13 @@ $(function(){
     }
     return;
 })
+
+getHeightLight();
+function getHeightLight(){
+    $(".coin-list tbody tr").each(function(index,item){
+        if($(item).attr("symbol")==$("#symbol").val()){
+            $(item).css("background-color",'#1e2235')
+            // $(item).css("background-color",'#EA5B25')
+        }
+    })
+}

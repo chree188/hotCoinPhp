@@ -15,6 +15,7 @@ return array(
     'first-place4'=>'Google Verification',
     'first-place5'=>'login password',
     'first-place6'=>'Lose again',
+    'first-place7'=>'Email/Phone verification code',
 
     'first-idcard'=>'ID card',
     'first-getCode'=>'send code',

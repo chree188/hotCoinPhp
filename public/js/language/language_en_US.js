@@ -127,6 +127,9 @@ var language = {
     "user.tips.35": " Registration successful! ",
     "user.tips.36": " Please enter the google code!",
     "user.tips.37": "Recommender's id is wrong!",
+    "user.tips.38": "ID number cannot be empty!",
+    "user.tips.39": "Email/Phone validation code cannot be empty!",
+    "user.tips.40": "The modification is successful, please login in again!",
     "copy.succeed": "Success!",
     "head.tips.1" : "Connact",
 }

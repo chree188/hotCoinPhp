@@ -48,15 +48,6 @@
 </div>
 @endsection
 @section('js')
-    <script src="{{ asset('js/custom.js') }}" type="text/javascript" charset="utf-8"></script>
-    <script src="{{ asset('js/plugin/layer/layer.js') }}" type="text/javascript" charset="utf-8"></script>
-    <script src="{{ asset('js/comm/util.js') }}" type="text/javascript" charset="utf-8"></script>
-    <script src="{{ asset('js/comm/comm.js') }}" type="text/javascript" charset="utf-8"></script>
-    @if (!isset($_COOKIE['oex_lan']) || $_COOKIE['oex_lan'] =='zh_TW')
-        <script src="{{ asset('js/language/language_zh_TW.js') }}" type="text/javascript" charset="utf-8"></script>
-    @else
-        <script src="{{ asset('js/language/language_en_US.js') }}" type="text/javascript" charset="utf-8"></script>
-    @endif
     <script src="{{ asset('js/user/login.js') }}" type="text/javascript" charset="utf-8"></script>
 @endsection
 

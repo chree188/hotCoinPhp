@@ -58,8 +58,9 @@ TradingView.onready(function() {
 		user_id: 'public_id',
         numeric_formatting:{decimal_sign:'.'},
 		overrides: {
-			"paneProperties.background": "#181b2a", //蜡烛样式
-			"mainSeriesProperties.candleStyle.upColor": "#64ae74",
+            "paneProperties.background": "#181b2a",
+            "paneProperties.crossHairProperties.color": "#181b2a",
+    		"mainSeriesProperties.candleStyle.upColor": "#64ae74",
 			"mainSeriesProperties.candleStyle.downColor": "#df5f61",
 			//烛心
 			"mainSeriesProperties.candleStyle.drawWick": true,
@@ -79,6 +80,7 @@ TradingView.onready(function() {
 			"scalesProperties.textColor": "#525a77",
 			"paneProperties.legendProperties.showLegend": false,
 			"paneProperties.topMargin": 20,
+
 		},
 
 	});

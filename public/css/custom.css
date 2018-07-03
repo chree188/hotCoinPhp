@@ -369,8 +369,9 @@ textarea::-webkit-input-placeholder {
   text-align:center
 }
 .banner-item-text {
-  font-size: .12rem;
-  color: #aaa;
+  color: #717171;
+  font-family: MicrosoftYaHei;
+  font-size: 14px;
   width: 84%;
   margin: 7px auto;
   line-height: 1.5;
@@ -431,8 +432,8 @@ textarea::-webkit-input-placeholder {
   border-bottom: 1px solid #D3DADA;
   height:50px;
   line-height:50px;
-  color: #aaa;
-  font-size: .18rem;
+  color: #888A95;
+  font-size: 16px;
   font-weight: 300;
 }
 .area-table .hint{
@@ -442,15 +443,15 @@ textarea::-webkit-input-placeholder {
   text-align: center;
   height: 26px;
   border-bottom: 1px solid #D3DADA;
-  color: #717171;
-  font-size: .14rem;
+  color: #1A1A1A;
+  font-size: 14px;
   font-weight: 300;
   padding: 5px 0;
   vertical-align: middle;
 }
 
 .area-table td a{
-  color: #717171;
+  color: #1A1A1A;
 }
 
 .area-table .hint a {
@@ -515,8 +516,10 @@ textarea::-webkit-input-placeholder {
   font-weight: 500;
 }
 .area-table-num p {
-  font-size: .12rem;
-  color: #aaa;
+  font-family: Arial;
+  font-weight:normal;
+  font-size: 14px;
+  color: #333333;
   margin-top: 4px;
 }
 .area-table-num i {
@@ -2067,7 +2070,7 @@ textarea::-webkit-input-placeholder {
   font-size: .16rem;
 }
 .quotes {
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 0;
 }
 
@@ -2633,7 +2636,7 @@ textarea::-webkit-input-placeholder {
   border-top: 1px solid #474A59;
 }
 .quotes-transaction-footer {
-  margin-top: 12px;
+  margin-top: 8px;
   height:26px;
   padding-right: 8px ;
 }
@@ -3202,7 +3205,7 @@ textarea::-webkit-input-placeholder {
   font-size: 16px;
   font-weight: normal;
   color: #444;
-  border-bottom: 1px solid #D3DADA;
+  border-bottom: 1px solid #262B42;
   margin-bottom: 12px;
 }
 .sell-tetil h2{
@@ -3244,7 +3247,7 @@ textarea::-webkit-input-placeholder {
   font-size: .12rem;
   font-weight: 500;
   padding: 7px 16px;
-  background: #22242E;
+  background: #1D2133;
   color: #fff;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
@@ -3257,8 +3260,8 @@ textarea::-webkit-input-placeholder {
   line-height: 40px;
   padding: 0 16px;
   color:#fff;
-  background-color: #22242E;
-  border: 1px solid #fff;
+  background-color: #181B2A;
+  border: 1px solid #262B42;
   border-radius: 2px;
   width: 100%;
 }
@@ -3268,7 +3271,8 @@ textarea::-webkit-input-placeholder {
 
 .ui-info{
   height:0.5em;
-  background-color:#474A59 !important;
+  background-color:#262B42 !important;
+  border: 1px solid #262B42 !important ;
 }
 .ui-info-handle{
   width:1em !important;

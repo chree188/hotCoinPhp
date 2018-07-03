@@ -123,7 +123,7 @@ class UserController extends Controller
 //                setcookie('token',json_decode($response)->data);
             }
         }
-        setcookie('token',json_decode($response)->data,time()+7000,'/',null,null,true);
+        setcookie('token',json_decode($response)->data,time()+7200,'/',null,null,true);
         return $response;
     }
 
