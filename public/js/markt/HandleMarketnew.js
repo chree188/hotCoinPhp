@@ -227,9 +227,9 @@ function showData(xData,buyData,sellData){
             }
         },
         grid: {
-            left: '3%',
+            left: '5%',
             right: '4%',
-            bottom: '3%',
+            bottom: '5%',
             containLabel: true
         },
         xAxis : [
@@ -247,7 +247,6 @@ function showData(xData,buyData,sellData){
                     show:false,
                 },
                 splitNumber: 20,
-
             }
         ],
         yAxis : [
@@ -714,9 +713,14 @@ function fetchRealTimeDepth() {
             }
 
             for (var i = 0; i < dl.length && i <7; i++) {
-                if(!asks[total-1-i] || !asks[i]) continue;
+                // if(!asks[total-1-i] || !asks[i]) continue;
+                if(!asks[i]) continue;
+
+
                 var d = dl[total-i-1];
-                $(d).find('b').css('width',( parseFloat(asks[total-1-i][1]).toFixed(4))/ asksTotal *100 +'%');
+
+                // $(d).find('b').css('width',( parseFloat(asks[total-1-i][1]).toFixed(4))/ asksTotal *100 +'%');
+
                 if( i==0 ){
                     askpre =  0.0;
                 } else{
@@ -749,7 +753,7 @@ function fetchRealTimeDepth() {
                 } else{
                     bidpre = parseFloat(bids[i-total-1][1]) + parseFloat(bidpre);
                 }
-                $(d).find('b').css('width',( parseFloat(bids[i-total][1])).toFixed(4) / bidsTotal * 100 +'%');
+                // $(d).find('b').css('width',( parseFloat(bids[i-total][1])).toFixed(4) / bidsTotal * 100 +'%');
                 var spans = d.getElementsByTagName('span');
                 // spans[1].innerHTML = (parseFloat( bids[i-total][0]).toFixed(priceFixed[symbol]));
                 // spans[2].innerHTML = (parseFloat( bids[i-total][1])).toFixed(numberFixed[symbol]);

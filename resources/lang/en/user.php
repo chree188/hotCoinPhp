@@ -38,7 +38,7 @@ return array(
     'security-truenameT'=>'Your account has been certified by real name.',
     'security-truenameC'=>'Your real name information is being audited',
     'security-truenameF'=>'You have not passed the authentication, please click the authentication to apply',
-
+    'security-truenameN'=>'The audit is not approved, please fill in the correct identity information and submit it again',
 
     'security-seeTop'=>'Look at the Google verification code.',
     'security-enterCode'=>'verification code',

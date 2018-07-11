@@ -90,18 +90,25 @@ class IndexController extends Controller
             }
         }
 
+
         //读取banner
         $banner = array();
         for($i = 1;$i<=5;$i++){
             $item =  Redis::get('ARGS_bigImage'.$i);
-            $banner[] = json_decode($item)->extObject;
+            $banner[$i]["banner"] = json_decode($item)->extObject;
+            $itemUrl =  Redis::get('ARGS_bigImage'.$i.'url');
+            $banner[$i]["bannerUrl"] = json_decode($itemUrl)->extObject;
         }
 
+//        var_dump(Redis::keys('*'));die;
+        $qrcode["AndroidDownloadUrl"] = json_decode(redis::get("ARGS_AndroidDownloadUrl"))->extObject;
+        $qrcode["IosDownloadUrl"] = json_decode(redis::get("ARGS_IosDownloadUrl"))->extObject;
         $response = $this->httpGet($url);
         $response = $this->parseResponse($response);
         $data = $response['data'];
         $data['notice'] = $notice;
         $data['banner'] = $banner;
+        $data['qrcode'] = $qrcode;
         return view('main',$data);
     }
 

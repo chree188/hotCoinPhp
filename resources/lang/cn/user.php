@@ -38,7 +38,7 @@ return array(
     'security-truenameT'=>'您的账号已通过实名认证',
     'security-truenameC'=>'您的实名信息正在审核中',
     'security-truenameF'=>'您尚未通过身份认证，请点击认证来申请。',
-
+    'security-truenameN'=>'审核不通过，请填写正确的身份信息再提交。',
 
     'security-seeTop'=>'查看谷歌验证码',
     'security-enterCode'=>'输入验证码',

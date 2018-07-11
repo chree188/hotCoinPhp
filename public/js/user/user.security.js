@@ -355,7 +355,7 @@ $(function () {
         }
     })
     //显示真实信息绑定框
-    $("#safe_real_name_btn").on({
+    $("#safe_real_name_btn,.safe_real_name_btn1").on({
         click:function(){
             $("#real_name_model").show();
         }

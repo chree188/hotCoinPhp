@@ -1,7 +1,9 @@
 var trade = {
     check: 1,
-    cnyDigit: $("#cnyDigit").val(),
-    coinDigit: $("#coinDigit").val(),
+    // cnyDigit: $("#cnyDigit").val(),
+    cnyDigit: $('#kline-digit').val(),
+    // coinDigit: $("#coinDigit").val(),
+    coinDigit: $('#kline-digit').val(),
     toFixed: parseInt($("#tradeType").val()) === 1 ? 6 : 8,
     charts: '',
     btcPrice: 0,
@@ -182,6 +184,9 @@ var trade = {
             btn.html(util.getLan("trade.tips.15"));
         }
         var callback = function (data) {
+
+            $('.slider').slider("value","0");
+
             btn.html(btntext);
             $('#'+errorele).css('color','green');
             util.showerrortips(errorele, util.getLan(data.msg));
@@ -802,6 +807,7 @@ $(function () {
         trade.setConvertPrice("tradebuypriceTips",this.value);
     }).on("keypress", function (event) {
         return util.goIngKeypress(this, event, trade.cnyDigit);
+        // return util.goIngKeypress(this, event, $('#kline-digit').val());
     }).on("click", function () {
         this.focus();
         this.select();
@@ -811,6 +817,7 @@ $(function () {
         trade.setConvertPrice("tradesellpriceTips",this.value);
     }).on("keypress", function (event) {
         return util.goIngKeypress(this, event, trade.cnyDigit);
+        // return util.goIngKeypress(this, event, $('#kline-digit').val());
     }).on("click", function () {
         this.focus();
         this.select();

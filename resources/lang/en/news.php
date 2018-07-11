@@ -13,4 +13,5 @@ return array(
     'topic'=>'Hot topic',
     'report'=>'Media coverage',
     'index'=>'Home',
+    'quick_link'=>'Fast link'
 );

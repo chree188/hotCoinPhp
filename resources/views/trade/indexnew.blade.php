@@ -79,6 +79,9 @@
                 background: none !important;
                 border: none !important;
             }
+            .header{
+                border-bottom: 0px;
+            }
 
 
         </style>
@@ -222,7 +225,7 @@
                 </div>-->
 
 
-                <div class="col-xs-12 announcement1" style="background-color:#181B2A;margin-top:5px;padding-top:5px ">
+                <div class="col-xs-12 announcement1" style="background-color:#181B2A;margin-top:10px;padding-top:5px ">
                     <div class="container-banner" style="min-width: 1000px;margin-left: 30px;">
                         <div class="row">
                             <div class="col-xs-12 banner-text-box" style="height:50px;overflow: hidden;">
@@ -311,7 +314,7 @@
                                                 <b class="iconfont icon-di-copy"></b>
                                             </i>
                                         </div>
-                                        <div class="quotes-list-header">
+                                        <div class="quotes-list-header" style="text-align:center">
                                             <span>{{__('market.newPrice')}}</span>
                                             <i>
                                                 <b class="iconfont icon-gao"></b>
@@ -332,7 +335,7 @@
                                     <div class="quotes-tabel-wrap coin-list-item"  @if($index != $tradeType['type']) style="display:none;" @endif>
                                         <table border="" cellspacing="" cellpadding="" class="quotes-tabel coin-list">
                                            <thead>
-                                               <th colspan="3" style="text-align: left;" class="quotes-window-tabel-header">{{__('market.main')}}</th>
+                                               <th colspan="3" style="text-align: left;display:none;" class="quotes-window-tabel-header">{{__('market.main')}}</th>
                                            </thead>
                                                 @foreach($trdeTypeList as $trade)
                                                <tr data-symbol="{{$trade['sellShortName']}}_{{$trade['buyShortName']}}" data-symbol-id="{{$trade['id']}}" type="{{$trade['type']}}" symbol="{{$trade['id']}}" class="{{$trade['sellShortName']}}_{{$trade['buyShortName']}} {{$trade['sellShortName']}}{{$trade['buyShortName']}}" data-status="{{$trade['isShare']}}">
@@ -383,7 +386,7 @@
 
                                 </div>
                             </div>
-                            <div class="coin-introduce" style="margin-top: 20px;color: white;">
+                            <div class="coin-introduce" style="margin-top: 10px;color: white;">
                                 <div class="introduce-window-header white">币种资料</div>
                                 <h2 class="introduce-coin-name white">{{isset($coinInfo['nameZh']) ? $coinInfo['nameZh']:'-'}}</h2>
                                 <p class="introduce-coin-detail dark">
@@ -812,7 +815,7 @@
 
                         <!----------------------- 当前委托 ------------------>
 
-                            <div class="clearfix quotes-transaction" id="ensureButton">
+                            <div class="clearfix quotes-transaction" id="ensureButton" style="margin-top: 6px;">
                                 <div class="clearfix  quotes-header quotes-intrust-header">
                                     <button class="iconfont icon-xia1 left"></button>
                                     <h2 class="left quotes-header-tetil quotes-sgraph-tetil">{{__('market.entrust')}}</h2>
@@ -894,7 +897,7 @@
                                          </table>
                                      </div>
                                  </div>
-                            </div asid >
+                            </div>
 
 
                         <!------------------------ 委托记录 ------------------>
@@ -1105,7 +1108,7 @@
         </script>
         <script src='//kefu.easemob.com/webim/easemob.js'></script>
 
-        <div class="container-fluid terminal-wrap" style="background-color:#282828;margin-top:10px">
+        <div class="container-fluid terminal-wrap" style="background-color:#181B2A;margin-top:10px">
             <div class="container">
                 <div class="row hot-coin-info-intro" style="color:#fff">
                     <div class="col-xs-3">

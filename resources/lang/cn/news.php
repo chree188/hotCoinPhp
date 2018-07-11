@@ -13,4 +13,5 @@ return array(
     'topic'=>'热门话题',
     'report'=>'媒体报道',
     'index'=>'首页',
+    'quick_link'=>'快速链接'
 );

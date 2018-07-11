@@ -54,6 +54,9 @@
             height: 220px;
 
         }
+        .header{
+            border-bottom:0px ;
+        }
 
 
 
@@ -66,8 +69,8 @@
                     <div class="swiper-wrapper">
                         @foreach($banner as $bannerItem)
                             <div class="swiper-slide swiper-slide-active banner-swiper-item">
-                                <a href="">
-                                    <img  class="swiper-lazy" data-src="{{$bannerItem}}" alt="" />
+                                <a href="javascript:void(0)">
+                                    <img  class="swiper-lazy" data-src="{{$bannerItem["banner"]}}" alt="" />
                                     <div class="swiper-lazy-preloader"></div>
                                 </a>
                             </div>
@@ -164,41 +167,6 @@
                                     <th>{{ __('head.threedays') }}</th>
                                     <th>{{ __('head.oper') }}</th>
                                 </tr>
-                                {{--@foreach($tradeTypeList as $tradType)--}}
-                                {{--@if($tradType['buyShortName'] == $SymbolMap[$index])--}}
-                                {{--<tr class="area-table-item">--}}
-                                {{--<td class="area-table-name">--}}
-                                {{--<dl class="clearfix">--}}
-                                {{--<dt class="area-table-name-img left">--}}
-                                {{--<img src="{{$tradType['sellWebLogo']}}" alt="" />--}}
-                                {{--</dt>--}}
-                                {{--<dd class="area-table-name-text">--}}
-                                {{--<h3>{{$tradType['sellShortName']}}</h3>--}}
-                                {{--<p>{{$tradType['sellName']}}</p>--}}
-                                {{--</dd>--}}
-                                {{--</dl>--}}
-                                {{--</td>--}}
-                                {{--<td>--}}
-                                {{--<div class="area-table-num danger clearfix">--}}
-                                {{--<div class="left">--}}
-                                {{--<h3></h3>--}}
-                                {{--<p>￥9375.36</p>--}}
-                                {{--</div>--}}
-                                {{--<i class="iconfont icon-jiang left"></i>--}}
-                                {{--</div>--}}
-                                {{--</td>--}}
-                                {{--<td>$18,325,428</td>--}}
-                                {{--<td>$115,381,984,000</td>--}}
-                                {{--<td class="danger">{{$tradType['priceWave']}}%</td>--}}
-                                {{--<td>--}}
-                                {{--<div class="area-table-img">--}}
-                                {{--<img src="/img/kline.jpg" alt="" />--}}
-                                {{--</div>--}}
-                                {{--</td>--}}
-                                {{--<td class="hint"><a href="/">去交易</a></td>--}}
-                                {{--</tr>--}}
-                                {{--@endif--}}
-                                {{--@endforeach--}}
                             </table>
                         </div>
                     </div>
@@ -249,10 +217,55 @@
         </div>
     </div>
 
+<!--    <div class="">
+        <img src="{{asset('img/imgNew/HotcoinAPP.jpg')}}" style="height:500px;min-width: 1240px">
+    </div> -->
+
+
+    <div class="container-fluid" style="margin-top:20px;padding-top:38px;background-image:url(img/imgNew/HotcoinApp.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <img src="{{asset('img/imgNew/phoneimg.png')}}">
+                </div>
+
+                <div class="col-xs-6" style="color:#fff">
+                    <h1 style="color:#fff;margin-top:77px;font-size:25px;text-align:right">Hotcoin APP 正式上线</h1>
+                    <h2 style="font-size: 16px;margin-top:20px;text-align:right">{{ __('head.multi-detail') }}</h2>
+                    <div style="margin-top:70px;">
+
+                        <div style="float:right;width:130px;height:170px;background: #fff;border-radius:10px 10px 0 0";>
+                            <div style="height:42px;">
+                                <img src="{{asset('img/imgNew/iPhone.jpg')}}" style="width:16px;height:19px;margin-left:10px;display:inline-block;position:relative;top:-2px">
+                                <p style="height:25px;line-height:25px;display:inline-block;color:#333;padding-top:7px;padding-left:5px;font-size:14px;font-family:MicrosoftYaHei;">Iphone 下载</p>
+                            </div>
+
+                                <div id="qrcode_ios" style="margin:0 auto"></div>
+
+                        </div>
+
+                        <div style="float:right;width:130px;height:170px;background: #fff;margin-right:50px;border-radius:10px 10px 0 0">
+                            <div style="height:42px;">
+                                <img src="{{asset('img/imgNew/Andriod.jpg')}}" style="width:16px;height:19px;margin-left:10px;display:inline-block;top:-2px">
+                                <p style="height:25px;line-height:25px;display:inline-block;color:#333;padding-top:7px;padding-left:5px;font-size:14px;font-family:MicrosoftYaHei;">Andriod 下载</p>
+                            </div>
+
+                            <div id="qrcode_android" style="margin:0 auto"></div>
+
+                        </div>
+
+
+                    </div>
+                </div>
 
 
 
-    <div class="container-fluid terminal-wrap" style="background-image:url(img/imgNew/background-detail.jpg)">
+            </div>
+        </div>
+    </div>
+
+
+<!--   <div class="container-fluid terminal-wrap" style="margin-top:20px;background-image:url(img/imgNew/background-detail.jpg)">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 mian-tetil" style="color:#fff">
@@ -269,7 +282,6 @@
                         <div style="margin-top:50px;position:relative;z-index:2" >
                             <div class="show-detail">
                                 <div id="qrcode_ios"></div>
- <!--                              <img id ='qrcodeImg' src="{{asset('img/imgNew/qrcode.png')}}" alt="" />-->
                                 <p>ios {{ __('head.download') }}</p>
                             </div>
                             <div class="show-detail">
@@ -298,7 +310,7 @@
 
             </div>
         </div>
-    </div>
+    </div>-->
 
 
 
@@ -317,22 +329,6 @@
 
 @endsection
 
-
-{{--<script type="text/javascript">--}}
-{{--$(".area-btns-item a").on({--}}
-{{--click:function(){--}}
-{{--$(".area-btns-item a").removeClass("active");--}}
-{{--$(this).addClass("active");--}}
-{{--}--}}
-{{--})--}}
-{{--</script>--}}
-{{--<script src="/js/custom.js" type="text/javascript" charset="utf-8"></script>--}}
-{{--<script src="/js/plugin/layer/layer.js" type="text/javascript" charset="utf-8"></script>--}}
-{{--<script src="/js/plugin/jquery.qrcode.min.js" type="text/javascript" charset="utf-8"></script>--}}
-{{--<script src="/js/comm/util.js" type="text/javascript" charset="utf-8"></script>--}}
-{{--<script src="/js/comm/comm.js" type="text/javascript" charset="utf-8"></script>--}}
-{{--<script src="/js/language/language_en_US.js" type="text/javascript" charset="utf-8"></script>--}}
-{{--<script src="/js/language/language_zh_TW.js" type="text/javascript" charset="utf-8"></script>--}}
 @section('js')
     <script src="{{asset('js/index/index.js')}}" type="text/javascript" charset="utf-8"></script>
     <script src="{{asset('js/index/lazysizes.js')}}" type="text/javascript" charset="utf-8"></script>
@@ -376,22 +372,22 @@
 
             var qrcode= jQuery('#qrcode_ios').qrcode({
                 render:"canvas",
-                width:100,
-                height:100,
-                foreground: "#0b3bfd",
+                width:130,
+                height:130,
+                foreground: "#282828",
                 background: "#FFF",
-                text: "https://fir.im/bqf4?openId=oGB0Cj6v3F5dAh6IILC0A9gWKBgk",
+                text: "{{$qrcode['IosDownloadUrl']}}",
             });
 
             // var canvas = qrcode.find('canvas').get(0);
             // $('#qrcodeImg').attr('src', canvas.toDataURL('image/jpg'));
             jQuery('#qrcode_android').qrcode({
                 render:"canvas",
-                width:100,
-                height:100,
-                foreground: "#0b3bfd",
+                width:130,
+                height:130,
+                foreground: "#282828",
                 background: "#FFF",
-                text: "https://hotcoin-static.oss-cn-hangzhou.aliyuncs.com/v1/static/apk/hotcoin-release-1.0.8.apk",
+                text: "{{$qrcode['AndroidDownloadUrl']}}",
             });
 
         });

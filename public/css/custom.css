@@ -221,6 +221,7 @@ textarea::-webkit-input-placeholder {
   border-color: #EA5B25;
 }
 .header {
+  /*border-bottom: 2px solid #EA5B25;*/
   background: #fff;
   width: 100%;
   min-width: 1200px;
@@ -2070,7 +2071,7 @@ textarea::-webkit-input-placeholder {
   font-size: .16rem;
 }
 .quotes {
-  margin-top: 5px;
+  margin-top: 10px;
   padding: 0;
 }
 
@@ -2335,7 +2336,7 @@ textarea::-webkit-input-placeholder {
   width: 33.33%;
 }
 .quotes-tabel tr {
-  border-bottom: 1px solid #474A59;
+  border-bottom: 1px solid #262B42;
 }
 .quotes-tabel td {
   text-align: center;

@@ -37,9 +37,8 @@
                 </div>
 
                 <div class="hot-coin-form-btn" style="margin-top:30px;margin-bottom:30px">
-                    <a href="javascript:void(0)" id="btn-phone-success">{{__('vail.first-sure')}}</a>
+                    <a href="javascript:void(0)" id="btn-phone-success" style="display: block;">{{__('vail.first-sure')}}</a>
                 </div>
-
             </form>
         </div>
     </div>

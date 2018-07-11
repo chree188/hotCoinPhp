@@ -88,11 +88,13 @@
                                     <div  class="hot-coin-draw-list-left">{{__('finance.withdraw-number')}}:</div>
                                     <div class="hot-coin-draw-list-right" style="">
                                         <label for="" style="display:inline-block">
+                                            <input type="text" name="withdrawAmount" style="display:none">
                                             <input type="text" id="withdrawAmount" value="" autocomplete="off" style="width:240px;height:40px;border:1px solid #e5e5e5" />
                                         </label>
 
                                     </div>
                                 </div>
+
                                 <div class="hot-coin-draw-title" style="margin-top:-30px;margin-bottom: 10px">
                                     <div  class="hot-coin-draw-list-left"></div>
                                     <div class="hot-coin-draw-list-right" style="">
@@ -105,6 +107,7 @@
                                     <div  class="hot-coin-draw-list-left">{{__('finance.account-tradPassword')}}:</div>
                                     <div class="hot-coin-draw-list-right" style="">
                                         <label for="" style="display:inline-block">
+                                            <input type="password" name="tradePwd" value="" style="display:none"/>
                                             <input type="password" id="tradePwd" value="" autocomplete="off" style="width:240px;height:40px;border:1px solid #e5e5e5" />
                                         </label>
 

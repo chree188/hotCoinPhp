@@ -150,9 +150,15 @@
                                     <div class="safe-item-data clearfix fhasrealvalidate-text" style="width: calc(100% - 172px)">
                                         @if($data['fuser']['fhasrealvalidate'])
                                             <p class="hint">{{__('user.security-truenameT')}}</p>
-                                        @elseif(!empty($data['identity']))
+                                        @elseif(($data['identity']==null))
+                                            <p class="danger">{{__('user.security-truenameF')}}</p>
+                                            <button class="safe_real_name_btn1">{{__('user.security-author')}}</button>
+                                        @elseif($data['identity']['fstatus']==0)
                                             <p class="hint">{{__('user.security-truenameC')}}</p>
-                                         @else
+                                        @elseif($data['identity']['fstatus']==2)
+                                            <p class="hint">{{__('user.security-truenameN')}}</p>
+                                            <button class="safe_real_name_btn1">{{__('user.security-author')}}</button>
+                                        @else
                                             <p class="danger">{{__('user.security-truenameF')}}</p>
                                             <button id="safe_real_name_btn">{{__('user.security-author')}}</button>
                                         @endif

@@ -80,7 +80,8 @@ Route::group(['middleware' => 'change_lang'], function () {
     Route::get('/online_help/index.html', 'HelpController@question')->name('online');
     Route::get('/online_help/help_list.html', 'HelpController@questionList')->name('onlineList');
 
-
+    //轮播详情
+    Route::get('/broadcast/index','BroadcastController@index')->name('broadcast');
 
 
 

@@ -62,6 +62,7 @@
                                                <dt class="left">{{__('finance.income-number')}}:</dt>
                                                <dd class="clearfix financial-form-input">
                                                    <label for="" style="height:40px">
+                                                       <input type="text"  name="finCount" value="" style="display:none" />
                                                        <input type="text"  id="finCount" value="" />
                                                    </label>
                                                    <p class="financial-item-hint" id="countTips">{{__('finance.income-expect')}}NaN.0000</p>
@@ -74,6 +75,7 @@
                                                <dt class="left">{{__('finance.income-tradPassword')}}:</dt>
                                                <dd class="clearfix financial-form-input">
                                                    <label for="">
+                                                       <input type="password"  name="tradePwd" value="" style="display:none" />
                                                        <input type="password"  id="tradePwd" value="" />
                                                    </label>
                                                </dd>

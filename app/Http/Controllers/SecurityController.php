@@ -35,6 +35,9 @@ class SecurityController extends Controller
         $response = $this->httpGet($url);
         $response = $this->parseResponse($response);
         $data = $response['data'];
+//        $data["identity"]['fstatus'] = 2;
+//        $data['fuser']['fhasrealvalidate']=false;
+//        var_dump($data);die;
         return view('user.security',array('data'=>$data));
     }
 
