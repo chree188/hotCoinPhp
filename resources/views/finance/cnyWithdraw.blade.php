@@ -143,10 +143,10 @@
                         <div class="col-xs-12 financial-data-text">
                             <h2 class="financial-text-tetil"> <img src="{{asset('img/imgNew/notice.png')}}" style="margin-top:-2px" alt=""> &nbsp;{{__('finance.withdraw-notice')}}</h2>
                             <div class="financial-text-box">
-                                <p>1、{{__('finance.withdraw-cnyNotice1')}}</p>
-                                <p>2、{{__('finance.withdraw-cnyNotice2')}}</p>
-                                <p>3、{{__('finance.withdraw-cnyNotice3')}}</p>
-                                <p>4、{{__('finance.withdraw-cnyNotice4')}}</p>
+                                <p>1、{{__('finance.withdraw-cnyNotice1')}}{{$withdrawSetting['withdrawMin']}}GSET</p>
+                                <p>2、{{__('finance.withdraw-cnyNotice2')}} {{$withdrawSetting['withdrawFee']}}{{__('finance.withdraw-cnyNotice20')}}</p>
+                                <p>3、{{__('finance.withdraw-cnyNotice3')}} </p>
+                                <p>4、{{__('finance.withdraw-cnyNotice4')}}{{$withdrawSetting['withdrawMax']}}</p>
                             </div>
                         </div>
 

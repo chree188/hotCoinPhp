@@ -1,0 +1,10 @@
+host = 'post-cn-4590o3eqj0v.mqtt.aliyuncs.com';// 设置当前用户的接入点域名，接入点获取方法请参考接入准备章节文档，先在控制台创建实例
+port = 80;//WebSocket 协议服务端口，如果是走 HTTPS，设置443端口
+topic = 'HOTCOIN_TOPIC_TEST_GSET_TRADE';//需要操作的 Topic
+useTLS = false;//是否走加密 HTTPS，如果走 HTTPS，设置为 true
+accessKey = 'LTAIzoYYkzbQkNX4';//账号的 AccessKey，在阿里云控制台查看
+secretKey = '8a0C6XRa9vOdVuPjCkPXc8eyjtSSDS';//账号的的 SecretKey，在阿里云控制台查看
+cleansession = true;
+groupId='GID_11';
+path=""
+clientId=groupId+'@@@11';//GroupId@@@DeviceId，由控制台创建的 Group ID 和自己指定的 Device ID 组合构成

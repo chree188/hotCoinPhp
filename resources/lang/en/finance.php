@@ -68,10 +68,11 @@ return array(
     'withdraw-smsCode'=>'SMS code',
     'withdraw-getSms'=>'send SMS',
     'withdraw-topCode'=>'TopCode',
-    'withdraw-cnyNotice1'=>'Minimum withdrawal amount 100 GSET.',
-    'withdraw-cnyNotice2'=>'Will charge a 0.005 fee',
+    'withdraw-cnyNotice1'=>'Minimum withdrawal amount ',
+    'withdraw-cnyNotice2'=>'Will charge a ',
+    'withdraw-cnyNotice20'=>'fee',
     'withdraw-cnyNotice3'=>'Normal 24 Hours into account, specific to the account beneficiary\'s Bank is slightly different, holidays to account the slight delay in time.',
-    'withdraw-cnyNotice4'=>'For your Finance security, each GSET withdrawal amount for 50,000 If you have a high demand, please contact customer service with a Web site.',
+    'withdraw-cnyNotice4'=>'For your Finance security, each GSET withdrawal amount for ',
 
 
     'withdraw-methods'=>'Type',

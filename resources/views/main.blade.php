@@ -222,7 +222,7 @@
     </div> -->
 
 
-    <div class="container-fluid" style="margin-top:20px;padding-top:38px;background-image:url(img/imgNew/HotcoinApp.jpg)">
+    <div class="container-fluid" style="margin-top:20px;padding-top:38px;background-image:url({{asset('img/imgNew/HotcoinAPP.jpg')}})">
         <div class="container">
             <div class="row">
                 <div class="col-xs-6">
@@ -240,8 +240,9 @@
                                 <p style="height:25px;line-height:25px;display:inline-block;color:#333;padding-top:7px;padding-left:5px;font-size:14px;font-family:MicrosoftYaHei;">Iphone 下载</p>
                             </div>
 
-                                <div id="qrcode_ios" style="margin:0 auto"></div>
-
+                            <div style="width:124px;margin:0 auto">
+                                <div id="qrcode_ios" ></div>
+                            </div>
                         </div>
 
                         <div style="float:right;width:130px;height:170px;background: #fff;margin-right:50px;border-radius:10px 10px 0 0">
@@ -250,7 +251,9 @@
                                 <p style="height:25px;line-height:25px;display:inline-block;color:#333;padding-top:7px;padding-left:5px;font-size:14px;font-family:MicrosoftYaHei;">Andriod 下载</p>
                             </div>
 
-                            <div id="qrcode_android" style="margin:0 auto"></div>
+                            <div style="width:124px;margin:0 auto">
+                                <div id="qrcode_android" ></div>
+                            </div>
 
                         </div>
 
@@ -330,7 +333,11 @@
 @endsection
 
 @section('js')
-    <script src="{{asset('js/index/index.js')}}" type="text/javascript" charset="utf-8"></script>
+<!--    <script src="{{asset('js/index/index.js')}}" type="text/javascript" charset="utf-8"></script>-->
+    <script src="{{asset('js/mqttws31.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/config.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/crypto-js/crypto-js.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/index/main_mqtt.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/index/lazysizes.js')}}" type="text/javascript" charset="utf-8"></script>
     <script src="{{asset('js/plugin/jquery.cookie.js')}}" type="text/javascript" charset="utf-8"></script>
     <script src="{{asset('js/plugin/echarts.min.js')}}" type="text/javascript" charset="utf-8"></script>
@@ -372,8 +379,8 @@
 
             var qrcode= jQuery('#qrcode_ios').qrcode({
                 render:"canvas",
-                width:130,
-                height:130,
+                width:124,
+                height:124,
                 foreground: "#282828",
                 background: "#FFF",
                 text: "{{$qrcode['IosDownloadUrl']}}",
@@ -383,8 +390,8 @@
             // $('#qrcodeImg').attr('src', canvas.toDataURL('image/jpg'));
             jQuery('#qrcode_android').qrcode({
                 render:"canvas",
-                width:130,
-                height:130,
+                width:124,
+                height:124,
                 foreground: "#282828",
                 background: "#FFF",
                 text: "{{$qrcode['AndroidDownloadUrl']}}",

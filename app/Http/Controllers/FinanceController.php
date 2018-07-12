@@ -96,7 +96,6 @@ class FinanceController extends Controller
         $response = $this->httpGet($url);
         $response = $this->parseResponse($response);
         $data = $response['data'];
-    
         return view('finance.coinWithdraw',$data);
 
     }
