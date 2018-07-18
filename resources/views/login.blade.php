@@ -1,4 +1,4 @@
-@extends('layouts/app')
+@extends('layouts/applogin')
 @section('content')
 	    <!--[if lt IE 9]>对不起，浏览器版本太低~！<![endif]-->
 

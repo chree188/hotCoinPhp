@@ -90,7 +90,6 @@ class IndexController extends Controller
             }
         }
 
-
         //读取banner
         $banner = array();
         for($i = 1;$i<=5;$i++){

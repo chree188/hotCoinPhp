@@ -1,6 +1,88 @@
+
+var mqtt;
+var reconnectTimeout = 2000;
+var username =accessKey;
+var password=CryptoJS.HmacSHA1(groupId,secretKey).toString(CryptoJS.enc.Base64);
+// var topicDepthPrefix= 'HOTCOIN_WEB_MKTINFO/';
+// var topicRealTimePrefix= 'HOTCOIN_WEB_REAL_TIME_TRADE/';
+// var topicDepth= 'HOTCOIN_TOPIC_WEB_MKTINFO/8/';
+var symbol_exchange = $("#symbol").val();
+var topicDepth =topicDepthPrefix+symbol_exchange+'/';
+var topicRealTime = topicRealTimePrefix+symbol_exchange+'/';
+
+function MQTTconnect() {
+    mqtt = new Paho.MQTT.Client(
+        host,//MQTT 域名
+        port,//WebSocket 端口，如果使用 HTTPS 加密则配置为443,否则配置80
+        path,
+        clientId//客户端 ClientId
+    );
+    var options = {
+        timeout: 3,
+        onSuccess: onConnect,
+        onFailure: function (message) {
+            setTimeout(MQTTconnect, reconnectTimeout);
+        }
+    };
+
+    mqtt.onConnectionLost = onConnectionLost;
+    mqtt.onMessageArrived = onMessageArrived;
+
+    if (username != null) {
+        options.userName = username;
+        options.password = password;
+        options.useSSL=useTLS;//如果使用 HTTPS 加密则配置为 true
+    }
+    mqtt.connect(options);
+}
+
+function onConnect() {
+    // Connection succeeded; subscribe to our topic
+    mqtt.subscribe(topic, {qos: 0});
+    // console.log(topicDepth);
+    mqtt.subscribe(topicDepth, {qos: 0});
+
+    mqtt.subscribe(topicRealTime, {qos: 0});
+    // message = new Paho.MQTT.Message("Hello mqtt!!");//set body
+    // message.destinationName =topic;// set topic
+    // mqtt.send(message);
+}
+
+
+function onConnectionLost(response) {
+    console.log(response);
+    setTimeout(MQTTconnect, reconnectTimeout);
+};
+
+function onMessageArrived(message) {
+
+    var topic_res = message.destinationName;
+    var payload = message.payloadString;
+    console.log("recv msg : "+topic_res+  JSON.parse(payload));
+    // console.log(topic_res);
+    if(topic_res==topic){
+        try{
+            fetchRealTimePrice(payload);
+        } catch(err){
+            console.log(err);
+        }
+    }else if(topic_res==topicDepth){
+        try{
+            fetchRealTimeDepth(payload);
+        } catch(err){
+            console.log(err);
+        }
+    } else if(topic_res==topicRealTime){
+        try{
+            fetchRealTimeTrade(payload);
+        } catch(err){
+            console.log(err);
+        }
+    }
+};
+
 var upColor = '#00da3c';
 var downColor = '#ec0000';
-
 
 var myChart2 = null;
 
@@ -62,12 +144,31 @@ function initTab(){
     var urlItems = document.getElementsByClassName('coin-list')[0].getElementsByTagName('tr');
     for (var i = 0; i < tabItems.length; i++) {
         var tab = tabItems[i];
+
         tab.index = i;
+
         tab.addEventListener('click',function(){
             for (var j = 0; j < tabItems.length; j++) {
                 tabItems[j].removeAttribute('class');
                 contentItem[j].setAttribute('style','display:none');
             }
+            mqtt.unsubscribe(topic);
+            var tab_val = $(this).html();
+            switch(tab_val)
+            {
+                case "GSET":
+                    topic = gsettopic;
+                    break;
+                case "BTC":
+                    topic = btctopic;
+                    break;
+                case "ETH":
+                    topic = ethtopic;
+                    break;
+                default:
+                    topic = gsettopic;
+            }
+            mqtt.subscribe(topic, {qos: 0});
             this.setAttribute('class','active');
             contentItem[this.index].removeAttribute('style');
         });
@@ -130,67 +231,67 @@ function formatDate(date,pattern){
 
 
 //请求或则订阅的数据
-function getSendData() {
-    _from = parseInt(calculateFromDateLong());
-    _to = parseInt(new Date().getTime() / 1000);
-    var req = {"req": "market." + _symbol + ".kline." + _period, "id": _symbol, "from": _from, "to": _to};
-    return JSON.stringify(req);
-}
+// function getSendData() {
+//     _from = parseInt(calculateFromDateLong());
+//     _to = parseInt(new Date().getTime() / 1000);
+//     var req = {"req": "market." + _symbol + ".kline." + _period, "id": _symbol, "from": _from, "to": _to};
+//     return JSON.stringify(req);
+// }
 
 /**
  * 最多300条
  * @returns {number}
  */
-function calculateFromDateLong(){
-    var date = new Date();
-    //取5小时以前
-    if (_period == PERIOD_1MIN) {
-        periodValue = 60;
-        return date.getTime()/1000 - 5*60*60;
-    }
-
-    //取24小时以前
-    if (_period == PERIOD_5MIN) {
-        periodValue = 60*5;
-        return date.getTime()/1000 -5*300*60;
-    }
-
-    //80小时以前
-    if (_period == PERIOD_15MIN) {
-        periodValue = 60*15;
-        return date.getTime()/1000 - 15*300*60;
-    }
-
-    //5天的数据
-    if (_period == PERIOD_30MIN) {
-        periodValue = 60*30;
-        return date.getTime()/1000 - 30*300*60;
-    }
-
-    //7天的数据
-    if (_period == PERIOD_60MIN) {
-        periodValue = 60*60;
-        return date.getTime()/1000 - 60*300*60;
-    }
-
-    //2个月之前的数据
-    if (_period == PERIOD_1DAY) {
-        periodValue = 60*60*24;
-        return date.getTime()/1000 - 24*60*300*60;
-    }
-
-    //2个办月之前的数据
-    if (_period == PERIOD_1WEEK) {
-        periodValue = 60*60*24*7;
-        return date.getTime()/1000 -  7*24*60*300*60;
-    }
-
-    //三个月的数据
-    if (_period == PERIOD_1MON) {
-        periodValue = 60*60*24*7*4;
-        return date.getTime()/1000 - 4*24*60*300*60;
-    }
-}
+// function calculateFromDateLong(){
+//     var date = new Date();
+//     //取5小时以前
+//     if (_period == PERIOD_1MIN) {
+//         periodValue = 60;
+//         return date.getTime()/1000 - 5*60*60;
+//     }
+//
+//     //取24小时以前
+//     if (_period == PERIOD_5MIN) {
+//         periodValue = 60*5;
+//         return date.getTime()/1000 -5*300*60;
+//     }
+//
+//     //80小时以前
+//     if (_period == PERIOD_15MIN) {
+//         periodValue = 60*15;
+//         return date.getTime()/1000 - 15*300*60;
+//     }
+//
+//     //5天的数据
+//     if (_period == PERIOD_30MIN) {
+//         periodValue = 60*30;
+//         return date.getTime()/1000 - 30*300*60;
+//     }
+//
+//     //7天的数据
+//     if (_period == PERIOD_60MIN) {
+//         periodValue = 60*60;
+//         return date.getTime()/1000 - 60*300*60;
+//     }
+//
+//     //2个月之前的数据
+//     if (_period == PERIOD_1DAY) {
+//         periodValue = 60*60*24;
+//         return date.getTime()/1000 - 24*60*300*60;
+//     }
+//
+//     //2个办月之前的数据
+//     if (_period == PERIOD_1WEEK) {
+//         periodValue = 60*60*24*7;
+//         return date.getTime()/1000 -  7*24*60*300*60;
+//     }
+//
+//     //三个月的数据
+//     if (_period == PERIOD_1MON) {
+//         periodValue = 60*60*24*7*4;
+//         return date.getTime()/1000 - 4*24*60*300*60;
+//     }
+// }
 
 window.onresize = function(){
     myChart2.resize();
@@ -292,56 +393,56 @@ function showData(xData,buyData,sellData){
     myChart2.setOption(option);
 }
 
-function handleData(msg){
-
-    var data = JSON.parse(msg);
-
-
-    if (data.ping) {
-        sendHeartMessage(data.ping);
-        return;
-    }
-    if(data.status=='error'){
-        console.log(data);
-    }
-    //请求k线
-    if ( data.status=='ok' && data.rep && data.rep.indexOf('kline')>0 ) {
-        handleResponseData(data);
-        return
-    }
-
-    //请求实时交易
-    if (data.status == 'ok' && data.ch && data.ch.indexOf("trade")>0) {
-        handleTradeDetail(data.data);
-        return
-    }
-
-    //订阅实时交易
-    if (data.ch && data.ch.indexOf('trade')>0 && data.tick.data) {
-        handleTradeDetail(data.tick.data,true);
-        return;
-    }
-
-    //订阅详情
-    if (data.ch && data.ch.indexOf("detail")>0 && data.tick) {
-        handleDetail(data);
-        return;
-    }
-
-    //订阅最新价
-    if (data.tick) {
-
-        handleTickData(data.tick);
-        //深度图
-        if( data.ch && data.ch.indexOf('depth')>0){
-            handleDepthTick(data.tick);
-            return;
-        }
-        return;
-    }
-
-
-}
+// function handleData(msg){
+//
+//     var data = JSON.parse(msg);
+//
+//
+//     if (data.ping) {
+//         sendHeartMessage(data.ping);
+//         return;
+//     }
+//     if(data.status=='error'){
+//         console.log(data);
+//     }
+//     //请求k线
+//     if ( data.status=='ok' && data.rep && data.rep.indexOf('kline')>0 ) {
+//         handleResponseData(data);
+//         return
+//     }
+//
+//     //请求实时交易
+//     if (data.status == 'ok' && data.ch && data.ch.indexOf("trade")>0) {
+//         handleTradeDetail(data.data);
+//         return
+//     }
+//
+//     //订阅实时交易
+//     if (data.ch && data.ch.indexOf('trade')>0 && data.tick.data) {
+//         handleTradeDetail(data.tick.data,true);
+//         return;
+//     }
+//
+//     //订阅详情
+//     if (data.ch && data.ch.indexOf("detail")>0 && data.tick) {
+//         handleDetail(data);
+//         return;
+//     }
+//
+//     //订阅最新价
+//     if (data.tick) {
+//
+//         handleTickData(data.tick);
+//         //深度图
+//         if( data.ch && data.ch.indexOf('depth')>0){
+//             handleDepthTick(data.tick);
+//             return;
+//         }
+//         return;
+//     }
+//
+//
+// }
 
 /**
  * 深度图
@@ -350,7 +451,6 @@ function handleData(msg){
 function handleDepthTick(tick){
     var bids = tick.bids;
     var asks = tick.asks;
-
     var xData   = [];
     var buyData = [];
     var sellData = [];
@@ -498,6 +598,9 @@ function handleTickData(tick){
 //设置两个交易框
 function handleDetail(data){
     var cArr = data['ch'].match(/\.([a-z0-9]+?)(gset|btc|eth|usdt)\./i);
+    if(!cArr){
+        return false;
+    }
     var dataCoin = cArr[1] +'_'+ cArr[2];//交易对
     var level= Math.floor((data.tick.close-data.tick.open)/data.tick.close*10000);
     if(document.getElementsByClassName(dataCoin).length == 0){
@@ -513,7 +616,7 @@ function handleDetail(data){
         level = parseFloat(level).toFixed(2);
     }
 
-    price.innerHTML = data.tick.close;
+    price.innerHTML = parseFloat(data.tick.close);
     if (level>=0) {
         rate.setAttribute("style","color:#72c02c");
         rate.innerHTML = "+"+level+"%";
@@ -537,7 +640,7 @@ function handleDetail(data){
     $('#low').html(util.getLan('trade.tips.21') + ' ' +data.tick.low);
     $('#vol').html('24H'+util.getLan('trade.tips.22')+ ' '+data.tick.amount.toFixed(4)+' '+sell.toUpperCase());
     $('#tip-price').html(data.tick.close);
-    $('#tip-cny').html(calculateCNY(data.tick.close,cArr[2]).toFixed(2)+' CNY');
+    $('#tip-cny').html(parseFloat(calculateCNY(data.tick.close,cArr[2])).toFixed(2)+' CNY');
 
     if (level>=0) {
         span.setAttribute("style","color:#72c02c");
@@ -546,10 +649,9 @@ function handleDetail(data){
         span.setAttribute("style","color:#e74c3c");
         span.innerHTML = level+"%";
     }
-    // var headerText = document.getElementsByClassName('mark-depth')[0].getElementsByClassName('header-text')[0];
     if (cArr[2] == sellBuy[1] && cArr[1] == sellBuy[0]) {
         $('#header-text').html(util.getLan('trade.tips.17')+ ' '+data.tick.close+(sellBuy[1]).toUpperCase()+' <span></span>');
-        $('#header-text span').html('≈ '+calculateCNY(data.tick.close,cArr[2]).toFixed(2)+' CNY');
+        $('#header-text span').html('≈ '+parseFloat(calculateCNY(data.tick.close,cArr[2])).toFixed(2)+' CNY');
     }
 }
 
@@ -575,7 +677,56 @@ var exchangeRate = {};
  * 平台
  * 左侧的实时价格
  */
-function fetchRealTimePrice() {
+function fetchRealTimePrice(data) {
+    var symbols = [];
+    $(".coin-list-item tr").each(function(index,item){
+        if($(item).data().status == true){
+            symbols.push($(item).attr('symbol'));
+        }
+    });
+    var jsonData = JSON.parse(data);
+    // var dataCoin = "";
+    $.each(jsonData,function(index,value){
+            // dataCoin = value.sellSymbol.toLowerCase()+'_'+value.buySymbol.toLowerCase();
+            // var price  = $('.'+dataCoin).eq(0).find('.trade-price').eq(0);
+            // var rate  =  $('.'+dataCoin).eq(0).find('.trade-rate').eq(0);
+            //
+            // var level= Math.floor((value.p_new-value.p_open)/value.p_new*10000);
+            //     price.innerHTML = parseFloat(util.numFormat(value.p_new,8));
+            //     level = level / 100;
+            //     if(isNaN(level) || !level){
+            //         level = 0.00;
+            //     }
+            //     if (level>=0) {
+            //         rate.attr("style","color:#72c02c");
+            //         rate.html = "+"+level+"%";
+            //     }else{
+            //         rate.attr("style","color:#e74c3c");
+            //         rate.html = "+"+level+"%";
+            //     }
+                // //保存GSET对其他币种的价格
+                exchangeRate[value.sellSymbol.toLowerCase()+'_'+value.buySymbol.toLowerCase()] = value.p_new;
+
+                    handleDetail({
+                        "ch": "market." + value.sellSymbol.toLowerCase() + value.buySymbol.toLowerCase() + ".detail",
+                        "tick": {
+                            "amount": value.total,
+                            "close": value.p_new,
+                            "open": value.p_open,
+                            "low": value.buy,
+                            "high": value.sell,
+                            "version": "1",
+                            "vol": value.total
+                        }
+                    });
+
+
+    });
+
+}
+
+
+function fetchRealTimePriceFirst(data) {
     var symbols = [];
     $(".coin-list-item tr").each(function(index,item){
         if($(item).data().status == true){
@@ -612,7 +763,13 @@ function fetchRealTimePrice() {
 
                 handleDetail({"ch":"market."+data.data[i].sellSymbol.toLowerCase()+data.data[i].buySymbol.toLowerCase()+".detail",
                     "tick":{
-                        "amount":data.data[i].total,"close":data.data[i].p_new,"open":data.data[i].p_open,"low":data.data[i].buy,"high":data.data[i].sell,"version":"1","vol":data.data[i].total
+                        "amount":data.data[i].total,
+                        "close":data.data[i].p_new,
+                        "open":data.data[i].p_open,
+                        "low":data.data[i].buy,
+                        "high":data.data[i].sell,
+                        "version":"1",
+                        "vol":data.data[i].total
                     }});
 
 
@@ -620,17 +777,12 @@ function fetchRealTimePrice() {
         }
     };
     util.network({url: url, param: param, success: callback});
-
-    window.setTimeout(function () {
-        fetchRealTimePrice();
-    }, 2000);
 }
-
 /**
  * 平台
  * 获取实时成交
  */
-function fetchRealTimeTrade(){
+function fetchRealTimeTradeFirst(){
     var url = "/real/market.html";
     var symbol = $("#symbol").val();
     var param = {
@@ -670,107 +822,106 @@ function fetchRealTimeTrade(){
             dataBox.innerHTML = str;
         }
     };
-
     util.network({url: url, param: param, success: callback});
-    window.setTimeout(function () {
-        fetchRealTimeTrade();
-    }, 2000);
+}
+
+
+function fetchRealTimeTrade(data){
+    var jsonData = JSON.parse(data);
+    var trades = jsonData;
+    var dataBox = document.getElementById('realTimeTrade');
+    var priceSymbol = dataBox.getElementsByClassName('real-trade-price')[0].innerHTML;
+    var amountSymbol = dataBox.getElementsByClassName('real-trade-mount')[0].innerHTML;
+    var str = '';
+    str +='<tr class="quotes-deal-item">'
+        +   '<td>'+util.getLan('trade.tips.23')+'</td>'
+        +    '<td>'+util.getLan('trade.tips.24')+'</td>'
+        +   '<td class="real-trade-price">'+priceSymbol+'</td>'
+        +   '<td class="real-trade-mount">'+amountSymbol+'</td></tr>';
+
+    for(var i=0;i<trades.length;i++) {
+        str += '<tr class="quotes-deal-item">';
+        str += '<td>' + trades[i][2] + '</td>';
+        if (trades[i][3] == 1) {
+            str += '<td class="danger">卖出</td>';
+        } else {
+            str += '<td class="success">买入</td>';
+        }
+
+        str += '<td>' + trades[i][0] + '</td>';
+        str += '<td>' + trades[i][1] + '</td>';
+        str += '</tr>';
+    }
+        dataBox.innerHTML = str;
 }
 
 /**
  * 平台
  * 深度
  */
-function fetchRealTimeDepth() {
-    var url = "/kline/fulldepth.html";
-    var symbol = $("#symbol").val();
-    var param = {
-        symbol:symbol
-    };
-    var callback = function (data) {
-        if (data.code == 200) {
-            var dl = document.getElementsByClassName('cell');
-            //卖
-            var asks = data.data.depth.asks;
-            //买
-            var bids = data.data.depth.bids;
+function fetchRealTimeDepth(data) {
+    var jsonData = JSON.parse(data);
+    var dl = document.getElementsByClassName('cell');
+    //卖
+    var asks = jsonData.depth.sellDepth;
+    //买
+    var bids = jsonData.depth.buyDepth;
 
-            var ticker = {"asks":asks,"bids":bids};
+    var ticker = {"asks":asks,"bids":bids};
 
-            //显示深度图
-            handleDepthTick(ticker);
-            var symbol = sellBuy[1].toUpperCase();
-            var total = 7;
-            var asksTotal = 0.0;
-            var bidsTotal = 0.0;
-            var askpre =0.0;
-            var bidpre =0.0;
+    //显示深度图
+    handleDepthTick(ticker);
+    var symbol = sellBuy[1].toUpperCase();
+    var total = 7;
+    var asksTotal = 0.0;
+    var bidsTotal = 0.0;
+    var askpre =0.0;
+    var bidpre =0.0;
 
-            //卖的总量
-            for (var i = 0; i < dl.length && i<7; i++) {
-                if (!asks[i]) continue;
-                asksTotal = (parseFloat(asksTotal) + parseFloat(asks[i][1])).toFixed(numberFixed[symbol]);
-            }
+    //卖的总量
+    for (var i = 0; i < dl.length && i<7; i++) {
+        if (!asks[i]) continue;
+            asksTotal = (parseFloat(asksTotal) + parseFloat(asks[i][1])).toFixed(numberFixed[symbol]);
+    }
 
-            for (var i = 0; i < dl.length && i <7; i++) {
-                // if(!asks[total-1-i] || !asks[i]) continue;
-                if(!asks[i]) continue;
-
-
-                var d = dl[total-i-1];
-
-                // $(d).find('b').css('width',( parseFloat(asks[total-1-i][1]).toFixed(4))/ asksTotal *100 +'%');
-
-                if( i==0 ){
-                    askpre =  0.0;
-                } else{
-                    askpre = parseFloat(asks[i-1][1] ) + parseFloat(askpre);
-                }
-
-                var spans = d.getElementsByTagName('span');
-                // spans[1].innerHTML = (parseFloat(asks[i][0]).toFixed(priceFixed[symbol]));
-                // spans[2].innerHTML = (parseFloat( asks[i][1])).toFixed(numberFixed[symbol]);
-                spans[1].innerHTML = (parseFloat(asks[i][0]).toString());
-                spans[2].innerHTML = (parseFloat( asks[i][1])).toString();
-                spans[3].innerHTML = (parseFloat( asks[i][1]) + parseFloat(askpre)).toFixed(numberFixed[symbol]);
-                var width =  parseInt((parseFloat( asks[i][1]) + parseFloat(askpre)).toFixed(numberFixed[symbol])/asksTotal *100)+"%";
-                var colorSell =  d.getElementsByClassName('color-sell-bg')
-                $(colorSell).css("width",width);
-            }
-
-
-            //bids_data.reverse();
-
-            for (var i = total; i < bids.length + total && i<14 ; i++) {
-                bidsTotal = ( parseFloat(bidsTotal) + parseFloat(bids[i-total][1]) ).toFixed(numberFixed[symbol]);
-            }
-
-
-            for (var i = total; i < bids.length + total && i<14; i++) {
-                var d = dl[i];
-                if(i==total){
-                    bidpre = 0.0;
-                } else{
-                    bidpre = parseFloat(bids[i-total-1][1]) + parseFloat(bidpre);
-                }
-                // $(d).find('b').css('width',( parseFloat(bids[i-total][1])).toFixed(4) / bidsTotal * 100 +'%');
-                var spans = d.getElementsByTagName('span');
-                // spans[1].innerHTML = (parseFloat( bids[i-total][0]).toFixed(priceFixed[symbol]));
-                // spans[2].innerHTML = (parseFloat( bids[i-total][1])).toFixed(numberFixed[symbol]);
-                spans[1].innerHTML = (parseFloat( bids[i-total][0])).toString();
-                spans[2].innerHTML = (parseFloat( bids[i-total][1])).toString();
-                spans[3].innerHTML = (parseFloat( bids[i-total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol]);
-                var width =  parseInt((parseFloat( bids[i-total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol])/bidsTotal *100)+"%";
-                var colorBuy =  d.getElementsByClassName('color-buy-bg');
-                $(colorBuy).css("width",width);
-            }
+    for (var i = 0; i < dl.length && i <7; i++) {
+        if(!asks[i]) continue;
+        var d = dl[total-i-1];
+        if( i==0 ){
+            askpre =  0.0;
+        } else{
+            askpre = parseFloat(asks[i-1][1] ) + parseFloat(askpre);
         }
-    };
-    util.network({url: url, param: param, success: callback});
 
-    window.setTimeout(function () {
-        fetchRealTimeDepth();
-    }, 2000);
+        var spans = d.getElementsByTagName('span');
+        spans[1].innerHTML = (parseFloat(asks[i][0]).toString());
+        spans[2].innerHTML = (parseFloat( asks[i][1])).toString();
+        spans[3].innerHTML = (parseFloat( asks[i][1]) + parseFloat(askpre)).toFixed(numberFixed[symbol]);
+        var width =  parseInt((parseFloat( asks[i][1]) + parseFloat(askpre)).toFixed(numberFixed[symbol])/asksTotal *100)+"%";
+        var colorSell =  d.getElementsByClassName('color-sell-bg')
+        $(colorSell).css("width",width);
+        }
+     //bids_data.reverse();
+    for (var i = total; i < bids.length + total && i<14 ; i++) {
+        bidsTotal = ( parseFloat(bidsTotal) + parseFloat(bids[i-total][1]) ).toFixed(numberFixed[symbol]);
+    }
+
+
+    for (var i = total; i < bids.length + total && i<14; i++) {
+        var d = dl[i];
+        if(i==total){
+            bidpre = 0.0;
+        } else{
+            bidpre = parseFloat(bids[i-total-1][1]) + parseFloat(bidpre);
+        }
+        var spans = d.getElementsByTagName('span');
+        spans[1].innerHTML = (parseFloat( bids[i-total][0])).toString();
+        spans[2].innerHTML = (parseFloat( bids[i-total][1])).toString();
+        spans[3].innerHTML = (parseFloat( bids[i-total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol]);
+        var width =  parseInt((parseFloat( bids[i-total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol])/bidsTotal *100)+"%";
+        var colorBuy =  d.getElementsByClassName('color-buy-bg');
+        $(colorBuy).css("width",width);
+    }
 }
 
 
@@ -793,10 +944,10 @@ function inputListener() {
 
 $(function(){
     inputListener();
-    fetchRealTimePrice();
     if (isPlatformTrade) {
-        fetchRealTimeDepth();
-        fetchRealTimeTrade();
+        fetchRealTimeTradeFirst();
+        fetchRealTimePriceFirst();
+        MQTTconnect();
     }
     return;
 })
@@ -806,7 +957,6 @@ function getHeightLight(){
     $(".coin-list tbody tr").each(function(index,item){
         if($(item).attr("symbol")==$("#symbol").val()){
             $(item).css("background-color",'#1e2235')
-            // $(item).css("background-color",'#EA5B25')
         }
     })
 }

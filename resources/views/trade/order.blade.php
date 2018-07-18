@@ -40,5 +40,8 @@
  @endsection
 @section('js')
     <script src="{{asset('js/plugin/pako.min.js')}}" type="text/javascript" charset="utf-8"></script>
-    <script src="{{asset('js/markt/order.js')}}"></script>
+    <script src="{{asset('js/mqttws31.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/config.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/crypto-js/crypto-js.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/markt/orderMqtt.js')}}"></script>
 @endsection

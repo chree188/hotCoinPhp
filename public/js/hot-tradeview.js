@@ -62,6 +62,7 @@ TradingView.onready(function() {
             "paneProperties.crossHairProperties.color": "#181b2a",
     		"mainSeriesProperties.candleStyle.upColor": "#64ae74",
 			"mainSeriesProperties.candleStyle.downColor": "#df5f61",
+            "mainSeriesProperties.showCountdown": !1,
 			//烛心
 			"mainSeriesProperties.candleStyle.drawWick": true,
 			//烛心颜色
@@ -80,7 +81,8 @@ TradingView.onready(function() {
 			"scalesProperties.textColor": "#525a77",
 			"paneProperties.legendProperties.showLegend": false,
 			"paneProperties.topMargin": 20,
-
+			//volume
+            "volumePaneSize": "small",
 		},
 
 	});

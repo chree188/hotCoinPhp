@@ -432,7 +432,7 @@ function handleTickData(data){
     }
 
 
-    var cArr = data['ch'].match(/\.([a-z]+?)(btc|eth|usdt|gset)\./i);
+    var cArr = data['ch'].match(/\.([a-z0-9]+?)(btc|eth|usdt|gset)\./i);
     var dataCoin = cArr[1] + cArr[2];
     //btc对应的usdt价格
     if (dataCoin == 'btcusdt') {

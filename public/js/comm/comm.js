@@ -53,6 +53,7 @@ $(function() {
              url : "/getwallet.html",
              method : "get",
              param : {},
+             async:false,
              success : function(data) {
                  if (data.code == 200) {
                      if ($("#assetsDetail").length > 0) {

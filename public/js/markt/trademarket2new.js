@@ -363,66 +363,66 @@ var trade = {
                 data = result.data;
             }
             //寰幆涓嶇煡閬撳仛浠€涔堢殑
-            $.each(data.buys, function (key, value) {
-                if (key >= buysellcount) {
-                    return;
-                }
-                var buyele = $("#buy" + key);
-                if (buyele.length == 0) {
-                    $("#buybox").append('<li id="buy' + key
-                        + '"  class="list-group-item clearfix buysellmap" data-type="1" data-money="'
-                        + util.numFormat(priceOffset(Number(value.price), 0), trade.cnyDigit)
-                        + '" data-num="' + util.numFormat(amountOffset(Number(value.amount), 0),
-                            trade.coinDigit) + '">'
-                        + '<span class="col-xs-2 redtips padding-clear">' + util.getLan("trade.tips.3",
-                            key + 1)
-                        + '</span>' + '<span class="col-xs-5 text-right padding-clear">'
-                        + util.numFormat(priceOffset(Number(value.price), 0), trade.cnyDigit)
-                        + '</span>' + '<span class="col-xs-5 redtips text-right padding-clear">'
-                        + util.numFormat(amountOffset(Number(value.amount), 0), trade.coinDigit)
-                        + '</span></li>');
-                } else {
-                    buyele.data().money = util.numFormat(priceOffset(Number(value.price), 0), trade.cnyDigit);
-                    buyele.data().num = util.numFormat(amountOffset(Number(value.amount), 0), trade.coinDigit);
-                    buyele.children()[1].innerHTML =
-                        util.numFormat(priceOffset(Number(value.price), 0), trade.cnyDigit);
-                    buyele.children()[2].innerHTML =
-                        util.numFormat(amountOffset(Number(value.amount), 0), trade.coinDigit);
-                }
-            });
-            for (var i = data.buys.length; i < buysellcount; i++) {
-                $("#buy" + i).remove();
-            }
-            $.each(data.sells, function (key, value) {
-                if (key >= buysellcount) {
-                    return;
-                }
-                var sellele = $("#sell" + key);
-                if (sellele.length == 0) {
-                    $("#sellbox").prepend('<li id="sell' + key
-                        + '"  class="list-group-item clearfix buysellmap" data-type="0" data-money="'
-                        + util.numFormat(priceOffset(Number(value.price), 1), trade.cnyDigit)
-                        + '" data-num="' + util.numFormat(amountOffset(Number(value.amount), 1),
-                            trade.coinDigit) + '">'
-                        + '<span class="col-xs-2 greentips padding-clear">' + util.getLan(
-                            "trade.tips.4", key + 1) + '</span>'
-                        + '<span class="col-xs-5 text-right padding-clear">' + util.numFormat(
-                            priceOffset(Number(value.price), 1), trade.cnyDigit) + '</span>'
-                        + '<span class="col-xs-5 greentips text-right padding-clear">'
-                        + util.numFormat(amountOffset(Number(value.amount), 1), trade.coinDigit)
-                        + '</span></li>');
-                } else {
-                    sellele.data().money = util.numFormat(priceOffset(Number(value.price), 1), trade.cnyDigit);
-                    sellele.data().num = util.numFormat(amountOffset(Number(value.amount), 1), trade.coinDigit);
-                    sellele.children()[1].innerHTML =
-                        util.numFormat(priceOffset(Number(value.price), 1), trade.cnyDigit);
-                    sellele.children()[2].innerHTML =
-                        util.numFormat(amountOffset(Number(value.amount), 1), trade.coinDigit);
-                }
-            });
-            for (var i = data.sells.length; i < buysellcount; i++) {
-                $("#sell" + i).remove();
-            }
+            // $.each(data.buys, function (key, value) {
+            //     if (key >= buysellcount) {
+            //         return;
+            //     }
+            //     var buyele = $("#buy" + key);
+            //     if (buyele.length == 0) {
+            //         $("#buybox").append('<li id="buy' + key
+            //             + '"  class="list-group-item clearfix buysellmap" data-type="1" data-money="'
+            //             + util.numFormat(priceOffset(Number(value.price), 0), trade.cnyDigit)
+            //             + '" data-num="' + util.numFormat(amountOffset(Number(value.amount), 0),
+            //                 trade.coinDigit) + '">'
+            //             + '<span class="col-xs-2 redtips padding-clear">' + util.getLan("trade.tips.3",
+            //                 key + 1)
+            //             + '</span>' + '<span class="col-xs-5 text-right padding-clear">'
+            //             + util.numFormat(priceOffset(Number(value.price), 0), trade.cnyDigit)
+            //             + '</span>' + '<span class="col-xs-5 redtips text-right padding-clear">'
+            //             + util.numFormat(amountOffset(Number(value.amount), 0), trade.coinDigit)
+            //             + '</span></li>');
+            //     } else {
+            //         buyele.data().money = util.numFormat(priceOffset(Number(value.price), 0), trade.cnyDigit);
+            //         buyele.data().num = util.numFormat(amountOffset(Number(value.amount), 0), trade.coinDigit);
+            //         buyele.children()[1].innerHTML =
+            //             util.numFormat(priceOffset(Number(value.price), 0), trade.cnyDigit);
+            //         buyele.children()[2].innerHTML =
+            //             util.numFormat(amountOffset(Number(value.amount), 0), trade.coinDigit);
+            //     }
+            // });
+            // for (var i = data.buys.length; i < buysellcount; i++) {
+            //     $("#buy" + i).remove();
+            // }
+            // $.each(data.sells, function (key, value) {
+            //     if (key >= buysellcount) {
+            //         return;
+            //     }
+            //     var sellele = $("#sell" + key);
+            //     if (sellele.length == 0) {
+            //         $("#sellbox").prepend('<li id="sell' + key
+            //             + '"  class="list-group-item clearfix buysellmap" data-type="0" data-money="'
+            //             + util.numFormat(priceOffset(Number(value.price), 1), trade.cnyDigit)
+            //             + '" data-num="' + util.numFormat(amountOffset(Number(value.amount), 1),
+            //                 trade.coinDigit) + '">'
+            //             + '<span class="col-xs-2 greentips padding-clear">' + util.getLan(
+            //                 "trade.tips.4", key + 1) + '</span>'
+            //             + '<span class="col-xs-5 text-right padding-clear">' + util.numFormat(
+            //                 priceOffset(Number(value.price), 1), trade.cnyDigit) + '</span>'
+            //             + '<span class="col-xs-5 greentips text-right padding-clear">'
+            //             + util.numFormat(amountOffset(Number(value.amount), 1), trade.coinDigit)
+            //             + '</span></li>');
+            //     } else {
+            //         sellele.data().money = util.numFormat(priceOffset(Number(value.price), 1), trade.cnyDigit);
+            //         sellele.data().num = util.numFormat(amountOffset(Number(value.amount), 1), trade.coinDigit);
+            //         sellele.children()[1].innerHTML =
+            //             util.numFormat(priceOffset(Number(value.price), 1), trade.cnyDigit);
+            //         sellele.children()[2].innerHTML =
+            //             util.numFormat(amountOffset(Number(value.amount), 1), trade.coinDigit);
+            //     }
+            // });
+            // for (var i = data.sells.length; i < buysellcount; i++) {
+            //     $("#sell" + i).remove();
+            // }
 
             if (trade.fristprice) {
                 if (data.buys.length <= 0) {
@@ -438,7 +438,10 @@ var trade = {
                     $("#tradebuyprice").val(util.numFormat(Number(data.p_new), trade.cnyDigit));
                     $("#best-buy").html(util.numFormat(Number(data.p_new), trade.cnyDigit));
                     var val =  $("#tradebuyprice").val();
-                    var cny =  parseFloat(calculateCNY(val,sellBuy[1])).toFixed(2);
+                    if(sellBuy){
+                        var cny =  parseFloat(calculateCNY(val,sellBuy[1])).toFixed(2);
+                    }
+
                     $("#tradebuyprice-cny").html("≈ "+cny+" CNY");
                     trade.setConvertPrice("tradebuypriceTips",data.p_new);
                 } else {
@@ -447,52 +450,60 @@ var trade = {
                     trade.setConvertPrice("tradebuypriceTips",data.sells[0].price);
                 }
                 var val =  $("#tradebuyprice").val();
-                var cny =  parseFloat(calculateCNY(val,sellBuy[1])).toFixed(2);
+                if(sellBuy){
+                    var cny =  parseFloat(calculateCNY(val,sellBuy[1])).toFixed(2);
+                }
+
                 $("#tradebuyprice-cny").html("≈  "+cny+" CNY");
 
                 var val2 =  $("#tradesellprice").val();
-                var cny2 =  parseFloat(calculateCNY(val2,sellBuy[1])).toFixed(2);
+                if(sellBuy){
+                    var cny2 =  parseFloat(calculateCNY(val2,sellBuy[1])).toFixed(2);
+                }
+
                 $("#tradesellprice-cny").html("≈  "+cny2+" CNY");
 
                 trade.fristprice = false;
             }
-            $(".buysellmap").on("click", function () {
-                var data = $(this).data();
-                var type = data.type;
-                var money = data.money;
-                var num = data.num;
-                var tradeAmount = "";
-                if (type == 0) {
-                    tradeAmount = $("#tradebuyamount").val();
-                } else {
-                    tradeAmount = $("#tradesellamount").val();
-                }
-                if (tradeAmount == "") {
-                    tradeAmount = 0;
-                }
-                trade.antoTurnover(money, 0, tradeAmount, type);
-            });
+            // $(".buysellmap").on("click", function () {
+            //     var data = $(this).data();
+            //     var type = data.type;
+            //     var money = data.money;
+            //     var num = data.num;
+            //     var tradeAmount = "";
+            //     if (type == 0) {
+            //         tradeAmount = $("#tradebuyamount").val();
+            //     } else {
+            //         tradeAmount = $("#tradesellamount").val();
+            //     }
+            //     if (tradeAmount == "") {
+            //         tradeAmount = 0;
+            //     }
+            //     trade.antoTurnover(money, 0, tradeAmount, type);
+            // });
 
-            var p_new = util.numFormat(Number(data.p_new), trade.cnyDigit);
-            $("#lastprice").html(data.symbol + p_new);
-            $("#labLastPrice").html(p_new);
-            $("#buyFirst").html(util.numFormat(Number(data.buy), util.DEF_CNY_SCALE));
-            $("#sellFirst").html(util.numFormat(Number(data.sell), util.DEF_CNY_SCALE));
-            $("#volume").html(util.numFormat(Number(data.total), util.DEF_CNY_SCALE));
-            if (p_new > trade.lastprice) {
-                $("#lastprice").parent().removeClass("greentips").addClass("redtips");
-                $("#lastpriceicon").removeClass("green").addClass("red");
-                $("#labLastPrice").parent().removeClass("greentips").addClass("redtips");
-                $("#labDirection").removeClass("down").addClass("up");
-            } else if (p_new < trade.lastprice) {
-                $("#lastprice").parent().removeClass("redtips").addClass("greentips");
-                $("#lastpriceicon").removeClass("red").addClass("green");
-                $("#labLastPrice").parent().removeClass("redtips").addClass("greentips");
-                $("#labDirection").removeClass("up").addClass("down");
-            }
-            trade.lastprice = p_new;
+            // var p_new = util.numFormat(Number(data.p_new), trade.cnyDigit);
+            // $("#lastprice").html(data.symbol + p_new);
+            // $("#labLastPrice").html(p_new);
+            // $("#buyFirst").html(util.numFormat(Number(data.buy), util.DEF_CNY_SCALE));
+            // $("#sellFirst").html(util.numFormat(Number(data.sell), util.DEF_CNY_SCALE));
+            // $("#volume").html(util.numFormat(Number(data.total), util.DEF_CNY_SCALE));
+            // if (p_new > trade.lastprice) {
+            //     $("#lastprice").parent().removeClass("greentips").addClass("redtips");
+            //     $("#lastpriceicon").removeClass("green").addClass("red");
+            //     $("#labLastPrice").parent().removeClass("greentips").addClass("redtips");
+            //     $("#labDirection").removeClass("down").addClass("up");
+            // } else if (p_new < trade.lastprice) {
+            //     $("#lastprice").parent().removeClass("redtips").addClass("greentips");
+            //     $("#lastpriceicon").removeClass("red").addClass("green");
+            //     $("#labLastPrice").parent().removeClass("redtips").addClass("greentips");
+            //     $("#labDirection").removeClass("up").addClass("down");
+            // }
+            // trade.lastprice = p_new;
         };
-        util.network({url: url, method: "get", success: marketCallback});
+        if (trade.fristprice) {
+            util.network({url: url, method: "get", success: marketCallback});
+        }
         if ($("#login").val() =='true') {
             url = "/real/userassets.html";
             var splitNum = function (num, digit) {

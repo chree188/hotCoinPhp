@@ -82,7 +82,7 @@
                             <div class="financial-text-box">
                                 <p>1、{{__('finance.deposit-notice1')}}</p>
                                 <p>2、{{__('finance.deposit-notice2')}}{{$coinType['shortname']}}{{__('finance.deposit-notice2-1')}}{{$coinType['shortname']}}{{__('finance.deposit-notice2-2')}}{{$coinType['shortname']}}{{__('finance.deposit-notice2-3')}}</p>
-                                <p>3、{{__('finance.deposit-notice3')}}0.001{{$coinType['shortname']}} {{__('finance.deposit-notice3-1')}}{{$coinType['shortname']}}{{__('finance.deposit-notice3-2')}}</p>
+                                <p>3、{{__('finance.deposit-notice3')}}0.01{{$coinType['shortname']}} {{__('finance.deposit-notice3-1')}}{{$coinType['shortname']}}{{__('finance.deposit-notice3-2')}}</p>
                             </div>
                         </div>
 

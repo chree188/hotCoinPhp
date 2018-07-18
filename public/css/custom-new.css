@@ -40,7 +40,7 @@
 }
 
 .hot-coin-digital-intro p a{
-  color:#7E86A0;
+  color:#808080;
   cursor:pointer;
 }
 .hot-coin-digital-intro p a:hover{
@@ -408,4 +408,59 @@ hot-coin-draw-list-select{
   position:absolute;
   margin-top: 25px;
   margin-left: 13px;
+}
+
+
+.hc-title1{
+  color:#fff;
+  margin-top:77px;
+  font-size:25px;
+  text-align:right
+}
+.hc-title2{
+  font-size: 16px;
+  margin-top:20px;
+  text-align:right
+}
+.hc-iphone-div{
+  float:right;
+  width:130px;
+  height:170px;
+  background: #fff;
+  border-radius:10px 10px 0 0
+}
+
+.hc-iphone-div p,.hc-andriod-div p{
+  height:25px;
+  line-height:25px;
+  display:inline-block;
+  color:#333;
+  padding-top:7px;
+  padding-left:5px;
+  font-size:14px;
+  font-family:MicrosoftYaHei;
+
+}
+
+.hc-iphone-div img ,.hc-andriod-div img{
+  width:16px;
+  height:19px;
+  margin-left:10px;
+  display:inline-block;
+  position:relative;top:-2px
+}
+
+
+.hc-andriod-div{
+  float:right;
+  width:130px;
+  height:170px;
+  background: #fff;
+  margin-right:50px;
+  border-radius:10px 10px 0 0
+}
+
+.qrcode_info{
+  width:124px;
+  margin:0 auto
 }

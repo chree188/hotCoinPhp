@@ -82,6 +82,14 @@
             .header{
                 border-bottom: 0px;
             }
+            .hot-coin-digital-intro p a{
+                color:#7E86A0;
+                cursor:pointer;
+            }
+            .hot-coin-copyright{
+                margin-top:30px;
+                color:#7E86A0;
+            }
 
 
         </style>
@@ -194,36 +202,6 @@
         <div class="container-fluid">
             <div class="row" style="padding: 0 8px;">
 <!--------------------------------- 公告 ---------------------->
- <!--               <div class="col-xs-12 announcement">
-                    <span class="announcement-tetil ">
-                        <i class="iconfont icon-gonggao"></i>
-                        {{__('market.annoce')}}:
-                    </span>
-                    <span class="announcement-text"> <a style="color: #FFFFFF;" href="{{route('detail')}}?id={{$article[0]['fid']}}">{{$article[0]['ftitle']}}</a></span>
-                    <div class="swiper-container swiper-container-vertical js-swiper-container-enroll col-xs-3 announcement-text" style="display: inline-block;">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide swiper-slide-active banner-swiper-item" style="height:50px;" >
-                                    <a href="{{route('detail')}}?id={{$article[0]['fid']}}" class="enroll-item" >
-                                        {{$article[0]['ftitle']}}
-                                    </a>
-                            </div>
-                            <div class="swiper-slide swiper-slide-active banner-swiper-item" style="height:50px;" >
-                                <a href="{{route('detail')}}?id={{$article[1]['fid']}}" class="enroll-item" >
-                                    {{$article[1]['ftitle']}}
-                                </a>
-                            </div>
-                            <div class="swiper-slide swiper-slide-active banner-swiper-item" style="height:50px;" >
-                                <a href="{{route('detail')}}?id={{$article[2]['fid']}}" class="enroll-item" >
-                                    {{$article[2]['ftitle']}}
-                                </a>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <button class="iconfont icon-guanbi announcement-btn"></button>
-                </div>-->
-
 
                 <div class="col-xs-12 announcement1" style="background-color:#181B2A;margin-top:10px;padding-top:5px ">
                     <div class="container-banner" style="min-width: 1000px;margin-left: 30px;">
@@ -1114,11 +1092,11 @@
                     <div class="col-xs-3">
                         <div style="margin-top:10px;"><img src="{{asset('img/imgNew/LOGO@2x.png')}}"></div>
                         <div  class="hot-coin-imgl-list">
-                            <img src="{{asset('img/imgNew/FB@2x.png')}}">
-                            <img src="{{asset('img/imgNew/TW@2x.png')}}">
-                            <img src="{{asset('img/imgNew/TW 拷贝@2x.png')}}">
-                            <img src="{{asset('img/imgNew/TW 拷贝 2@2x.png')}}">
-                            <img src="{{asset('img/imgNew/TW 拷贝 3@2x.png')}}">
+                            <img src="{{asset('img/imgNew/MFB.png')}}">
+                            <img src="{{asset('img/imgNew/MTW.png')}}">
+                            <img src="{{asset('img/imgNew/MWB.png')}}">
+                            <img src="{{asset('img/imgNew/MWX.png')}}">
+                            <img src="{{asset('img/imgNew/MFX.png')}}">
                         </div>
                         <div class="hot-coin-copyright">©2017-2018 hotcoin.top</div>
                     </div>
@@ -1151,8 +1129,8 @@
                             <span>: ----------</span>
                         </div>
                         <div class="hot-coin-connect-phone hot-coin-connect-service">
-                            <a href="{{route('online')}}" style="display:block;width:100%">
-                                <img src="{{asset('img/imgNew/online_service1.png')}}" style="position:relative;top:-2px;left:-5px;width:22px;height:22px">
+                            <a href="{{route('online')}}" style="display:block;width:100%;background:#33384E;border-radius:5px">
+                                <img src="{{asset('img/imgNew/MPH.png')}}" style="position:relative;top:-2px;left:-5px;width:22px;height:22px">
                                 <span style="height:23px;line-height:23px;color:#fff">{{ __('head.online-service') }}</span>
                             </a>
 
@@ -1217,7 +1195,10 @@
         @else
             <script src="{{ asset('js/language/language_en_US.js') }}" type="text/javascript" charset="utf-8"></script>
         @endif
-        <script src="{{ asset('js/markt/HandleMarketnew.js') }}" type="text/javascript" charset="utf-8"></script>
+        <script src="{{asset('js/mqttws31.js')}}" type="text/javascript"></script>
+        <script src="{{asset('js/config.js')}}" type="text/javascript"></script>
+        <script src="{{asset('js/crypto-js/crypto-js.js')}}" type="text/javascript"></script>
+        <script src="{{ asset('js/markt/HandleMarketnewMqtt.js') }}" type="text/javascript" charset="utf-8"></script>
         <script src="{{ asset('js/markt/trademarket2new.js') }}" type="text/javascript" charset="utf-8"></script>
         <script src="{{ asset('charting_library/charting_library.min.js') }}" type="text/javascript" charset="utf-8"></script>
         <script src="{{ asset('js/hot-tradeview.js') }}" type="text/javascript" charset="utf-8"></script>

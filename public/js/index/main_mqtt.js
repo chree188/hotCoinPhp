@@ -3,13 +3,13 @@ var mqtt;
 var reconnectTimeout = 2000;
 var username =accessKey;
 var password=CryptoJS.HmacSHA1(groupId,secretKey).toString(CryptoJS.enc.Base64);
-
+console.log(accessKey);
 function MQTTconnect() {
     mqtt = new Paho.MQTT.Client(
         host,//MQTT 域名
         port,//WebSocket 端口，如果使用 HTTPS 加密则配置为443,否则配置80
         path,
-        clientId,//客户端 ClientId
+        clientId //客户端 ClientId
     );
     var options = {
         timeout: 3,
@@ -33,6 +33,7 @@ function MQTTconnect() {
 function onConnect() {
     // Connection succeeded; subscribe to our topic
     mqtt.subscribe(topic, {qos: 0});
+    // mqtt.subscribe('HOTCOIN_WEB_KLINE_TEST/8_5', {qos: 0});
     // message = new Paho.MQTT.Message("Hello mqtt!!");//set body
     // message.destinationName =topic;// set topic
     // mqtt.send(message);
@@ -47,10 +48,12 @@ function onMessageArrived(message) {
 
     var topic = message.destinationName;
     var payload = message.payloadString;
-    console.log("recv msg : "+topic);
+    console.log("recv msg : "+topic+JSON.parse(payload));
     fetchRealTimePrice(payload);
+
 };
 
+MQTTconnect();
 
 
 var login = {
@@ -239,21 +242,21 @@ var login = {
             $that.addClass("active");
             $(".market-con").hide();
             $("#" + dataClass).show();
-            mqtt.unsubscribe(topic);
 
+            mqtt.unsubscribe(topic);
             switch(dataClass)
             {
                 case 1:
-                    topic = "HOTCOIN_TOPIC_TEST_GSET_TRADE"
+                    topic = gsettopic;
                     break;
                 case 2:
-                    topic = "HOTCOIN_TOPIC_TEST_BTC_TRADE"
+                    topic = btctopic;
                     break;
                 case 3:
-                    topic = "HOTCOIN_TOPIC_TEST_ETH_TRADE"
+                    topic = ethtopic;
                     break;
                 default:
-                    topic = "HOTCOIN_TOPIC_TEST_GSET_TRADE"
+                    topic = gsettopic;
             }
             mqtt.subscribe(topic, {qos: 0});
         })
@@ -333,8 +336,10 @@ function handleTickData(data){
         level= Math.floor((data.tick.close-data.tick.open)/data.tick.open*10000);
     }
 
-
-    var cArr = data['ch'].match(/\.([a-z]+?)(btc|eth|usdt|gset)\./i);
+    var cArr = data['ch'].match(/\.([a-z0-9]+?)(btc|eth|usdt|gset)\./i);
+    if(!cArr){
+        return;
+    }
     var dataCoin = cArr[1] + cArr[2];
     //btc对应的usdt价格
     if (dataCoin == 'btcusdt') {
@@ -358,12 +363,11 @@ function handleTickData(data){
         $("."+dataCoin+" .coin-trend").parent('p').css('background-color','#EA5B25');
         $("."+dataCoin+" .coin-price").attr("style","color:#e74c3c");
     }
-    $("."+dataCoin).attr('pre-data',data.tick.close);
-
-    $("."+dataCoin+" .coin-price").html(data.tick.close); //成交额 即 sum(每一笔成交价 * 该笔的成交量)
+    $("."+dataCoin).attr('pre-data',parseFloat(data.tick.close));
+    $("."+dataCoin+" .coin-price").html(parseFloat(data.tick.close)); //成交额 即 sum(每一笔成交价 * 该笔的成交量)
     $("."+dataCoin+" .coin-price-cny").html('￥'+parseFloat(calcCNY(cArr[2],data.tick.close)).toFixed(2)); //成交额 即 sum(每一笔成交价 * 该笔的成交量)
-    $("."+dataCoin+" .coin-buy").html(data.tick.high); //最高价
-    $("."+dataCoin+" .coin-sell").html(data.tick.low); //最低价
+    $("."+dataCoin+" .coin-buy").html(parseFloat(data.tick.high)); //最高价
+    $("."+dataCoin+" .coin-sell").html(parseFloat(data.tick.low)); //最低价
     var unit = $("."+dataCoin+" .coin-vol").attr('unit');
     $("."+dataCoin+" .coin-vol").html(data.tick.amount.toFixed(2)+' '+unit); //成交量
 }
@@ -464,7 +468,7 @@ $(function () {
     login.switchMarket();
     login.aotoMarket();
     getKlineData();
-    MQTTconnect();
+    // MQTTconnect();
 
 
 });

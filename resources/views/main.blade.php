@@ -230,28 +230,28 @@
                 </div>
 
                 <div class="col-xs-6" style="color:#fff">
-                    <h1 style="color:#fff;margin-top:77px;font-size:25px;text-align:right">Hotcoin APP 正式上线</h1>
-                    <h2 style="font-size: 16px;margin-top:20px;text-align:right">{{ __('head.multi-detail') }}</h2>
+                    <h1 class="hc-title1" >Hotcoin APP 正式上线</h1>
+                    <h2 class="hc-title2">{{ __('head.multi-detail') }}</h2>
                     <div style="margin-top:70px;">
 
-                        <div style="float:right;width:130px;height:170px;background: #fff;border-radius:10px 10px 0 0";>
+                        <div class="hc-iphone-div">
                             <div style="height:42px;">
-                                <img src="{{asset('img/imgNew/iPhone.jpg')}}" style="width:16px;height:19px;margin-left:10px;display:inline-block;position:relative;top:-2px">
-                                <p style="height:25px;line-height:25px;display:inline-block;color:#333;padding-top:7px;padding-left:5px;font-size:14px;font-family:MicrosoftYaHei;">Iphone 下载</p>
+                                <img src="{{asset('img/imgNew/iPhone.jpg')}}" >
+                                <p>Iphone 下载</p>
                             </div>
 
-                            <div style="width:124px;margin:0 auto">
+                            <div class="qrcode_info">
                                 <div id="qrcode_ios" ></div>
                             </div>
                         </div>
 
-                        <div style="float:right;width:130px;height:170px;background: #fff;margin-right:50px;border-radius:10px 10px 0 0">
+                        <div class="hc-andriod-div" >
                             <div style="height:42px;">
-                                <img src="{{asset('img/imgNew/Andriod.jpg')}}" style="width:16px;height:19px;margin-left:10px;display:inline-block;top:-2px">
-                                <p style="height:25px;line-height:25px;display:inline-block;color:#333;padding-top:7px;padding-left:5px;font-size:14px;font-family:MicrosoftYaHei;">Andriod 下载</p>
+                                <img src="{{asset('img/imgNew/Andriod.jpg')}}" >
+                                <p >Andriod 下载</p>
                             </div>
 
-                            <div style="width:124px;margin:0 auto">
+                            <div class="qrcode_info">
                                 <div id="qrcode_android" ></div>
                             </div>
 
