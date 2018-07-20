@@ -79,10 +79,20 @@
                         <div class="col-xs-12 financial-data-text">
 
                             <h2 class="financial-text-tetil"> <img src="{{asset('img/imgNew/notice.png')}}" style="margin-top:-2px" alt="">&nbsp;&nbsp;{{__('finance.deposit-notice')}}</h2>
+
+
                             <div class="financial-text-box">
-                                <p>1、{{__('finance.deposit-notice1')}}</p>
-                                <p>2、{{__('finance.deposit-notice2')}}{{$coinType['shortname']}}{{__('finance.deposit-notice2-1')}}{{$coinType['shortname']}}{{__('finance.deposit-notice2-2')}}{{$coinType['shortname']}}{{__('finance.deposit-notice2-3')}}</p>
-                                <p>3、{{__('finance.deposit-notice3')}}0.01{{$coinType['shortname']}} {{__('finance.deposit-notice3-1')}}{{$coinType['shortname']}}{{__('finance.deposit-notice3-2')}}</p>
+                                @if($coinType['shortname']==="USDT")
+                                    <p>1、{{__('finance.deposit-usdt-1')}}</p>
+                                    <p>2、{{__('finance.deposit-usdt-2')}}</p>
+                                    <p>3、{{__('finance.deposit-usdt-3')}}</p>
+                                    <p>4、{{__('finance.deposit-usdt-4')}}</p>
+                                    <p>5、{{__('finance.deposit-usdt-5')}}</p>
+                                @else
+                                    <p>1、{{__('finance.deposit-notice1')}}</p>
+                                    <p>2、{{__('finance.deposit-notice2')}}{{$coinType['shortname']}}{{__('finance.deposit-notice2-1')}}{{$coinType['shortname']}}{{__('finance.deposit-notice2-2')}}{{$coinType['shortname']}}{{__('finance.deposit-notice2-3')}}</p>
+                                    <p>3、{{__('finance.deposit-notice3')}}0.01{{$coinType['shortname']}} {{__('finance.deposit-notice3-1')}}{{$coinType['shortname']}}{{__('finance.deposit-notice3-2')}}</p>
+                                @endif
                             </div>
                         </div>
 

@@ -94,12 +94,12 @@
                             <div class="col-xs-12 banner-text-box" style="height:50px;overflow: hidden;">
 
                                 <i class="right iconfont icon-gonggao-white"  ></i>
-                                <div class="swiper-container swiper-container-vertical js-swiper-container-enroll col-xs-3" style="display: inline-block;">
+                                <div class="swiper-container swiper-container-vertical js-swiper-container-enroll col-xs-10" style="display: inline-block;">
                                     <div class="swiper-wrapper">
                                         @foreach($notice as $value)
                                             <div class="swiper-slide swiper-slide-active banner-swiper-item" style="height:50px;" >
                                                 <a href="{{route('detail')}}?id={{$value['fid']}}" class="enroll-item" >
-                                                    {{$value['ftitle']}}
+                                                    {{$value['ftitle']}} <span class="scroll_show_more" style="font-size: 15px;color:#EA5B25;">【{{__('head.more')}}】</span>
                                                 </a>
                                             </div>
                                         @endforeach
@@ -107,9 +107,9 @@
                                     </div>
 
                                 </div>
-                                <div  class="col-xs-2" style="display: inline-block; height:40px;cursor:pointer">
+                                <!--<div  class="col-xs-2" style="display: inline-block; height:40px;cursor:pointer">
                                     <a href="{{route('notice')}}?id=2" style="font-size: 15px;display:block;margin:11px auto;color:#EA5B25;">【{{__('head.more')}}】</a>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                             <table class="area-table" id="marketType{{$index}}">
                                 <tr style="background: rgba(237,240,245,1);height: 52px;">
                                     <th>{{ __('head.currency') }} </th>
-                                    <th>{{ __('head.last') }}</th>
+                                    <th>{{ __('head.last') }}(<span style="font-size:13px">{{$SymbolMap[$index]}}</span>)</th>
                                     <th>24H{{ __('head.high1')}}(<span style="font-size:13px">{{$SymbolMap[$index]}}</span>)</th>
                                     <th>24H{{ __('head.low1')}}(<span style="font-size:13px">{{$SymbolMap[$index]}}</span>)</th>
                                     <th>{{ __('head.volume') }}</th>
@@ -230,14 +230,20 @@
                 </div>
 
                 <div class="col-xs-6" style="color:#fff">
-                    <h1 class="hc-title1" >Hotcoin APP 正式上线</h1>
-                    <h2 class="hc-title2">{{ __('head.multi-detail') }}</h2>
+                    <h1 class="hc-title1" >Hotcoin APP {{ __('head.off_launched') }}</h1>
+                    <h2 class="hc-title2">
+                        ● {{ __('head.trade_sc')}}&nbsp;&nbsp;&nbsp;
+                        ● {{ __('head.security_en')}}&nbsp;&nbsp;&nbsp;
+                        ● {{ __('head.system_sdf')}}&nbsp;&nbsp;&nbsp;
+                        ●  {{ __('head.save_wt') }}
+                    </h2>
+
                     <div style="margin-top:70px;">
 
                         <div class="hc-iphone-div">
                             <div style="height:42px;">
                                 <img src="{{asset('img/imgNew/iPhone.jpg')}}" >
-                                <p>Iphone 下载</p>
+                                <p>Iphone {{ __('head.downloads') }}</p>
                             </div>
 
                             <div class="qrcode_info">
@@ -248,7 +254,7 @@
                         <div class="hc-andriod-div" >
                             <div style="height:42px;">
                                 <img src="{{asset('img/imgNew/Andriod.jpg')}}" >
-                                <p >Andriod 下载</p>
+                                <p >Andriod {{ __('head.downloads') }}</p>
                             </div>
 
                             <div class="qrcode_info">
@@ -398,6 +404,10 @@
             });
 
         });
+        $('.scroll_show_more').click(function(){
+            window.location.href="{{route('notice')}}?id=2";
+            event.preventDefault();
+        })
 
     </script>
 @endsection

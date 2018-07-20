@@ -206,31 +206,28 @@
                 <div class="col-xs-12 announcement1" style="background-color:#181B2A;margin-top:10px;padding-top:5px ">
                     <div class="container-banner" style="min-width: 1000px;margin-left: 30px;">
                         <div class="row">
-                            <div class="col-xs-12 banner-text-box" style="height:50px;overflow: hidden;">
+                            <div class="col-xs-12 banner-text-box" style="height:50px;padding-left:30px;overflow: hidden;">
 
                                <i class="right iconfont icon-gonggao"  style="color: #EA5B25" ></i>
                                 <div class="swiper-container swiper-container-vertical js-swiper-container-enroll col-xs-5" style="display: inline-block;">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide swiper-slide-active banner-swiper-item" style="height:50px;" >
                                             <a href="{{route('detail')}}?id={{$article[0]['fid']}}" class="enroll-item" >
-                                                {{$article[0]['ftitle']}}
+                                                {{$article[0]['ftitle']}}<span class="scroll_show_more" style="font-size: 15px;color:#EA5B25;"> 【{{__('head.more')}}】</span>
                                             </a>
                                         </div>
                                         <div class="swiper-slide swiper-slide-active banner-swiper-item" style="height:50px;" >
                                             <a href="{{route('detail')}}?id={{$article[1]['fid']}}" class="enroll-item" >
-                                                {{$article[1]['ftitle']}}
+                                                {{$article[1]['ftitle']}}<span class="scroll_show_more" style="font-size:15px;color:#EA5B25;"> 【{{__('head.more')}}】</span>
                                             </a>
                                         </div>
                                         <div class="swiper-slide swiper-slide-active banner-swiper-item" style="height:50px;" >
                                                 <a href="{{route('detail')}}?id={{$article[2]['fid']}}" class="enroll-item" >
-                                                    {{$article[2]['ftitle']}}
+                                                    {{$article[2]['ftitle']}}<span class="scroll_show_more" style="font-size: 15px;color:#EA5B25;"> 【{{__('head.more')}}】</span>
                                                 </a>
                                         </div>
                                     </div>
 
-                                </div>
-                                <div  class="col-xs-2" style="display: inline-block; height:40px;cursor:pointer;padding-top:3px">
-                                    <a href="{{route('notice')}}?id=2" style="font-size: 15px;display:block;margin:11px auto;color:#EA5B25;">【{{__('head.more')}}】</a>
                                 </div>
                             </div>
                         </div>
@@ -1268,6 +1265,10 @@
                 },
                 autoplayDisableOnInteraction: false,
             });
+            $('.scroll_show_more').click(function(){
+                window.location.href="{{route('notice')}}?id=2";
+                event.preventDefault();
+            })
         </script>
 
 

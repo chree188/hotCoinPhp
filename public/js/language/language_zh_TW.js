@@ -96,6 +96,7 @@ var language = {
     "trade.tips.26": "数量",
     "trade.tips.27": "累计",
     "trade.tips.28": "查看更多",
+    "trade.tips.29": "此单未成交",
     "question.tips.1": "請輸入問題描述（不得少於10字）!",
     "user.tips.0": "用户名格式不对",
     "user.tips.1": "郵箱不能為空",

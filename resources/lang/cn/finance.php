@@ -37,6 +37,12 @@ return array(
     'deposit-notice3'=>'最小充值金額是：',
     'deposit-notice3-1'=>'您的',
     'deposit-notice3-2'=>'地址不會改變，可以重複充值，如有更改，我們會通過網站公告或郵件通知您。',
+    'deposit-usdt-1'=>'请勿向上述地址充值任何非USDT资产，否则资产将不可找回。',
+    'deposit-usdt-2'=>'USDT充币仅支持simple send的方法，使用其他方法（send all）的充币暂时无法上账，请您谅解。',
+    'deposit-usdt-3'=>'您充值至上述地址后，需要整个网络节点的确认，6次网络确认后到账，6次网络确认后可提币。',
+    'deposit-usdt-4'=>'最小充值金额：100 USDT ，小于最小金额的充值将不会上账且无法退回。',
+    'deposit-usdt-5'=>'您的充值地址不会经常改变，可以重复充值；如有更改，我们会尽量通过网站公告或邮件通知您。',
+    'deposit-usdt-6'=>'请务必确认电脑及浏览器安全，防止信息被篡改或泄露。',
     //提现页面
     'withdraw-use'=>'可用',
     'withdraw-address'=>'提现地址',

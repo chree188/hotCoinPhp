@@ -37,6 +37,12 @@ return array(
     'deposit-notice3'=>'he minimum recharge amount is:',
     'deposit-notice3-1'=>'Your',
     'deposit-notice3-2'=>' Address is not changed, you can repeat the recharge, if there are any changes, we will notify you by email or bulletin.',
+    'deposit-usdt-1'=>'Please don’t deposit any other digital assets except USDT to the above address',
+    'deposit-usdt-2'=>'USDT deposit only supports simple send, and deposits by other methods （send all）can not be credited temporarily. We apologize for the inconvenience.',
+    'deposit-usdt-3'=>'Depositing to the above address requires confirmations of the entire network. You can pay some fees to the network to speed up your transaction. It takes 10-60mins to arrive',
+    'deposit-usdt-4'=>'Minimum deposit amount: 100 USDT. Any deposits less than the minimum will not be credited or refunded.',
+    'deposit-usdt-5'=>'Your deposit address won’t change frequently. Any changes, we will inform you by announcement or email.',
+    'deposit-usdt-6'=>' Please make sure that your computer and browser are secure and your information is protected from being tampered or leaked.',
     //提现页面
     'withdraw-use'=>'',
     'withdraw-address'=>'Current address',

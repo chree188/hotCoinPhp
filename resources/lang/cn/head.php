@@ -61,7 +61,7 @@ return [
     'last'=>'最新价',
     'volume'=>'24H成交量',
     'change_today'=>'今日漲跌',
-    'threedays'=>'三天趋势',
+    'threedays'=>'24H趋势',
     'more'=>'查看更多',
 
 
@@ -74,17 +74,20 @@ return [
     'low'=>'最低价',
     'low1'=>'最低',
     'oper'=>'操作',
-    'multi-platform'=>'多平台终端接入',
-    'multi-detail'=>'覆盖iOS、Android、Windows、Mac多个平台，支持全业务功能',
 
     'download'=>'下载',
+    'downloads'=>'下载',
     'click'=>'点击',
     'bit'=>'位',
     'finance'=>'财务中心',
     'service'=>'联系客服',
     'online-service'=>'在线客服',
     'hotcoin'=>'热币网',
-    'usercenter'=>'用户中心'
-
+    'usercenter'=>'用户中心',
+    'off_launched' => '正式上线',
+    'trade_sc' => '交易严格把控',
+    'security_en' => '账户安全加密',
+    'system_sdf' => '系统提交数据更快',
+    'save_wt' => '省心省时',
 
 ];

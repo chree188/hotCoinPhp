@@ -7,6 +7,8 @@ var trade = {
 		var callback = function(data) {
 			if (data.code == 200) {
 				window.location.reload(true);
+			}else{
+                util.layerAlert("",util.getLan("trade.tips.29"));
 			}
 		};
 		util.network({

@@ -3,7 +3,6 @@ var mqtt;
 var reconnectTimeout = 2000;
 var username =accessKey;
 var password=CryptoJS.HmacSHA1(groupId,secretKey).toString(CryptoJS.enc.Base64);
-console.log(accessKey);
 function MQTTconnect() {
     mqtt = new Paho.MQTT.Client(
         host,//MQTT 域名
@@ -48,7 +47,7 @@ function onMessageArrived(message) {
 
     var topic = message.destinationName;
     var payload = message.payloadString;
-    console.log("recv msg : "+topic+JSON.parse(payload));
+    // console.log("recv msg : "+topic+JSON.parse(payload));
     fetchRealTimePrice(payload);
 
 };
@@ -231,8 +230,20 @@ var login = {
             if(!isConnection){
                 getKlineData();
             }
+            console.log(132);
         };
-        util.network({url: url, param: {}, success: callback});
+        // util.network({url: url, param: {},async:false, success: callback});
+        $.ajax({
+            type:"post",
+            url: url,
+            data: {},
+            async:false,
+            dataType:"json",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: callback,
+        });
     },
     switchMarket: function () {
         $(".trade-tab").on("click", function () {
@@ -430,7 +441,7 @@ function fetchPlatformKLine(symbol,_id) {
     var url = "/kline/fullperiod.html";
     var param = {
         symbol:symbol,
-        step:900
+        step:86400
     };
     var callback = function (data) {
         if(data.length==0){
@@ -455,6 +466,42 @@ function getKlineData() {
     }
 }
 
+function fetchRealTimePriceFirst() {
+    var symbols = [];
+    $(".child-market").each(function(index,item){
+        if($(item).data().status == 1){
+            symbols.push($(item).data().symbol);
+        }
+    });
+    var url = "/real/markets.html";
+    var symbol = symbols.join(',');
+    var param = {
+        symbol:symbol
+    };
+    var callback = function (data) {
+        if (data.code == 200) {
+            for(var i=0;i<data.data.length;i++){
+                var dataCoin = data.data[i].sellSymbol.toLowerCase()+''+data.data[i].buySymbol.toLowerCase();
+                var tickData = {ch:"market."+dataCoin+".detail",tick:{
+                        amount:data.data[i].total,
+                        count:data.data[i].total,
+                        open:data.data[i].p_open,
+                        close:data.data[i].p_new,
+                        high:data.data[i].sell,
+                        low:data.data[i].buy,
+                        vol:0,
+                    }};
+
+                handleTickData(tickData);
+                //保存GSET对其他币种的价格
+                exchangeRate[data.data[i].sellSymbol.toLowerCase()+'_'+data.data[i].buySymbol.toLowerCase()] = data.data[i].p_new;
+
+            }
+        }
+    };
+    util.network({url: url, param: param, success: callback});
+}
+
 $(function () {
     $("#indexLoginPwd").on("focus", function () {
         util.callbackEnter(login.login);
@@ -467,6 +514,7 @@ $(function () {
     });
     login.switchMarket();
     login.aotoMarket();
+    fetchRealTimePriceFirst();
     getKlineData();
     // MQTTconnect();
 

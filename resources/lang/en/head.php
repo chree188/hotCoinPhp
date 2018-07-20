@@ -60,7 +60,7 @@ return [
     'last'=>'Last',
     'volume'=>'24h Volume',
     'change_today'=>'Change today',
-    'threedays'=>'Three days trend',
+    'threedays'=>'24H trend',
     'more'=>'More',
 
     'announcement'=>'announcement',
@@ -72,9 +72,9 @@ return [
     'low'=>'Low',
     'low1'=>'Low',
     'oper'=>'operation',
-    'multi-platform'=>'Multi platform terminal access',
-    'multi-detail'=>'Covering multiple platforms including iOS, Android, Windows and Mac to support full business functions',
-    'download'=>' downlaods',
+    'download'=>'downloads',
+    //切换英文太长，会造成样式混乱
+    'downloads'=>'dl',
     'click'=>'click',
 
     'bit'=>'bit',
@@ -82,6 +82,11 @@ return [
     'service'=>'Concact Service',
     'online-service'=>'Online Service',
     'hotcoin'=>'hotcoin',
-    'usercenter'=>'User Center'
+    'usercenter'=>'User Center',
+    'off_launched' => 'Officially launched',
+    'trade_sc' => 'Trade is strictly controlled',
+    'security_en' => 'Security encryption of account',
+    'system_sdf' => 'System submits data faster',
+    'save_wt' => 'Save worry And Save time',
 
 ];

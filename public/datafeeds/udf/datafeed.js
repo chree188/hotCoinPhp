@@ -243,7 +243,7 @@ var time1 = "";
 
 Datafeeds.UDFCompatibleDatafeed.prototype.subscribeBars = function(symbolInfo, resolution, onRealtimeCallback, listenerGUID, onResetCacheNeededCallback) {
 
-	clearInterval(time1);	
+	clearInterval(time1);
 	time1 = setInterval(req,2000);
 
 	// setTimeout(req,5000);

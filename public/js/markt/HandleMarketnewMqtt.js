@@ -3,9 +3,7 @@ var mqtt;
 var reconnectTimeout = 2000;
 var username =accessKey;
 var password=CryptoJS.HmacSHA1(groupId,secretKey).toString(CryptoJS.enc.Base64);
-// var topicDepthPrefix= 'HOTCOIN_WEB_MKTINFO/';
-// var topicRealTimePrefix= 'HOTCOIN_WEB_REAL_TIME_TRADE/';
-// var topicDepth= 'HOTCOIN_TOPIC_WEB_MKTINFO/8/';
+
 var symbol_exchange = $("#symbol").val();
 var topicDepth =topicDepthPrefix+symbol_exchange+'/';
 var topicRealTime = topicRealTimePrefix+symbol_exchange+'/';
@@ -46,6 +44,7 @@ function onConnect() {
     // message = new Paho.MQTT.Message("Hello mqtt!!");//set body
     // message.destinationName =topic;// set topic
     // mqtt.send(message);
+
 }
 
 
@@ -58,7 +57,7 @@ function onMessageArrived(message) {
 
     var topic_res = message.destinationName;
     var payload = message.payloadString;
-    console.log("recv msg : "+topic_res+  JSON.parse(payload));
+    // console.log("recv msg : "+topic_res+  JSON.parse(payload));
     // console.log(topic_res);
     if(topic_res==topic){
         try{
@@ -228,70 +227,6 @@ function formatDate(date,pattern){
     return year+"-"+month+"-"+day+" "+hour+":"+minute+":"+seconds;
 }
 
-
-
-//请求或则订阅的数据
-// function getSendData() {
-//     _from = parseInt(calculateFromDateLong());
-//     _to = parseInt(new Date().getTime() / 1000);
-//     var req = {"req": "market." + _symbol + ".kline." + _period, "id": _symbol, "from": _from, "to": _to};
-//     return JSON.stringify(req);
-// }
-
-/**
- * 最多300条
- * @returns {number}
- */
-// function calculateFromDateLong(){
-//     var date = new Date();
-//     //取5小时以前
-//     if (_period == PERIOD_1MIN) {
-//         periodValue = 60;
-//         return date.getTime()/1000 - 5*60*60;
-//     }
-//
-//     //取24小时以前
-//     if (_period == PERIOD_5MIN) {
-//         periodValue = 60*5;
-//         return date.getTime()/1000 -5*300*60;
-//     }
-//
-//     //80小时以前
-//     if (_period == PERIOD_15MIN) {
-//         periodValue = 60*15;
-//         return date.getTime()/1000 - 15*300*60;
-//     }
-//
-//     //5天的数据
-//     if (_period == PERIOD_30MIN) {
-//         periodValue = 60*30;
-//         return date.getTime()/1000 - 30*300*60;
-//     }
-//
-//     //7天的数据
-//     if (_period == PERIOD_60MIN) {
-//         periodValue = 60*60;
-//         return date.getTime()/1000 - 60*300*60;
-//     }
-//
-//     //2个月之前的数据
-//     if (_period == PERIOD_1DAY) {
-//         periodValue = 60*60*24;
-//         return date.getTime()/1000 - 24*60*300*60;
-//     }
-//
-//     //2个办月之前的数据
-//     if (_period == PERIOD_1WEEK) {
-//         periodValue = 60*60*24*7;
-//         return date.getTime()/1000 -  7*24*60*300*60;
-//     }
-//
-//     //三个月的数据
-//     if (_period == PERIOD_1MON) {
-//         periodValue = 60*60*24*7*4;
-//         return date.getTime()/1000 - 4*24*60*300*60;
-//     }
-// }
 
 window.onresize = function(){
     myChart2.resize();
@@ -639,7 +574,7 @@ function handleDetail(data){
     $('#high').html(util.getLan('trade.tips.20')+' '+ data.tick.high);
     $('#low').html(util.getLan('trade.tips.21') + ' ' +data.tick.low);
     $('#vol').html('24H'+util.getLan('trade.tips.22')+ ' '+data.tick.amount.toFixed(4)+' '+sell.toUpperCase());
-    $('#tip-price').html(data.tick.close);
+    $('#tip-price').html(parseFloat(data.tick.close));
     $('#tip-cny').html(parseFloat(calculateCNY(data.tick.close,cArr[2])).toFixed(2)+' CNY');
 
     if (level>=0) {
@@ -650,7 +585,7 @@ function handleDetail(data){
         span.innerHTML = level+"%";
     }
     if (cArr[2] == sellBuy[1] && cArr[1] == sellBuy[0]) {
-        $('#header-text').html(util.getLan('trade.tips.17')+ ' '+data.tick.close+(sellBuy[1]).toUpperCase()+' <span></span>');
+        $('#header-text').html(util.getLan('trade.tips.17')+ ' '+parseFloat(data.tick.close)+(sellBuy[1]).toUpperCase()+' <span></span>');
         $('#header-text span').html('≈ '+parseFloat(calculateCNY(data.tick.close,cArr[2])).toFixed(2)+' CNY');
     }
 }
@@ -925,6 +860,95 @@ function fetchRealTimeDepth(data) {
 }
 
 
+function fetchRealTimeDepthFirst() {
+    var url = "/kline/fulldepth.html";
+    var symbol = $("#symbol").val();
+    var param = {
+        symbol:symbol
+    };
+    var callback = function (data) {
+        if (data.code == 200) {
+            var dl = document.getElementsByClassName('cell');
+            //卖
+            var asks = data.data.depth.asks;
+            //买
+            var bids = data.data.depth.bids;
+
+            var ticker = {"asks":asks,"bids":bids};
+
+            //显示深度图
+            handleDepthTick(ticker);
+            var symbol = sellBuy[1].toUpperCase();
+            var total = 7;
+            var asksTotal = 0.0;
+            var bidsTotal = 0.0;
+            var askpre =0.0;
+            var bidpre =0.0;
+
+            //卖的总量
+            for (var i = 0; i < dl.length && i<7; i++) {
+                if (!asks[i]) continue;
+                asksTotal = (parseFloat(asksTotal) + parseFloat(asks[i][1])).toFixed(numberFixed[symbol]);
+            }
+
+            for (var i = 0; i < dl.length && i <7; i++) {
+                // if(!asks[total-1-i] || !asks[i]) continue;
+                if(!asks[i]) continue;
+
+
+                var d = dl[total-i-1];
+
+                // $(d).find('b').css('width',( parseFloat(asks[total-1-i][1]).toFixed(4))/ asksTotal *100 +'%');
+
+                if( i==0 ){
+                    askpre =  0.0;
+                } else{
+                    askpre = parseFloat(asks[i-1][1] ) + parseFloat(askpre);
+                }
+
+                var spans = d.getElementsByTagName('span');
+                // spans[1].innerHTML = (parseFloat(asks[i][0]).toFixed(priceFixed[symbol]));
+                // spans[2].innerHTML = (parseFloat( asks[i][1])).toFixed(numberFixed[symbol]);
+                spans[1].innerHTML = (parseFloat(asks[i][0]).toString());
+                spans[2].innerHTML = (parseFloat( asks[i][1])).toString();
+                spans[3].innerHTML = (parseFloat( asks[i][1]) + parseFloat(askpre)).toFixed(numberFixed[symbol]);
+                var width =  parseInt((parseFloat( asks[i][1]) + parseFloat(askpre)).toFixed(numberFixed[symbol])/asksTotal *100)+"%";
+                var colorSell =  d.getElementsByClassName('color-sell-bg')
+                $(colorSell).css("width",width);
+            }
+
+
+            //bids_data.reverse();
+
+            for (var i = total; i < bids.length + total && i<14 ; i++) {
+                bidsTotal = ( parseFloat(bidsTotal) + parseFloat(bids[i-total][1]) ).toFixed(numberFixed[symbol]);
+            }
+
+
+            for (var i = total; i < bids.length + total && i<14; i++) {
+                var d = dl[i];
+                if(i==total){
+                    bidpre = 0.0;
+                } else{
+                    bidpre = parseFloat(bids[i-total-1][1]) + parseFloat(bidpre);
+                }
+                // $(d).find('b').css('width',( parseFloat(bids[i-total][1])).toFixed(4) / bidsTotal * 100 +'%');
+                var spans = d.getElementsByTagName('span');
+                // spans[1].innerHTML = (parseFloat( bids[i-total][0]).toFixed(priceFixed[symbol]));
+                // spans[2].innerHTML = (parseFloat( bids[i-total][1])).toFixed(numberFixed[symbol]);
+                spans[1].innerHTML = (parseFloat( bids[i-total][0])).toString();
+                spans[2].innerHTML = (parseFloat( bids[i-total][1])).toString();
+                spans[3].innerHTML = (parseFloat( bids[i-total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol]);
+                var width =  parseInt((parseFloat( bids[i-total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol])/bidsTotal *100)+"%";
+                var colorBuy =  d.getElementsByClassName('color-buy-bg');
+                $(colorBuy).css("width",width);
+            }
+        }
+    };
+    util.network({url: url, param: param, success: callback});
+}
+
+
 //设置输入框
 function inputListener() {
     $("#tradebuyprice").on('input',function (ev) {
@@ -947,6 +971,7 @@ $(function(){
     if (isPlatformTrade) {
         fetchRealTimeTradeFirst();
         fetchRealTimePriceFirst();
+        fetchRealTimeDepthFirst();
         MQTTconnect();
     }
     return;

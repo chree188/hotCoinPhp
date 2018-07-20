@@ -97,6 +97,7 @@ var language = {
     "trade.tips.26": " Amount",
     "trade.tips.27": " Sum",
     "trade.tips.28": " more",
+    "trade.tips.29": "This is not a deal",
     "question.tips.1": " Please enter a description of the problem (not less than 10 Words)!",
     "user.tips.0": " The username is not in the right format",
     "user.tips.1": " Email or cell phone can not be empty",

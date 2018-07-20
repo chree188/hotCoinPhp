@@ -1,10 +1,8 @@
 host = 'post-cn-4590o3eqj0v.mqtt.aliyuncs.com';// 设置当前用户的接入点域名，接入点获取方法请参考接入准备章节文档，先在控制台创建实例
-port = 80;//WebSocket 协议服务端口，如果是走 HTTPS，设置443端口
 topic = 'HOTCOIN_WEB_GSET_TRADE';//需要操作的 Topic
-useTLS = false;//是否走加密 HTTPS，如果走 HTTPS，设置为 true
 
 
-if(window.document.location.host =='www.hotcoin.top' || window.document.location.host =='testtest.hotcoin.top:18081' ){
+if(window.document.location.host =='www.hotcoin.top'){
     accessKey= 'LTAI5YIotdwRXoNP';
     secretKey =  'nn6QURHbDVtCLnooPFfU9qetNbq5OP';
     topic = 'HOTCOIN_WEB_GSET_TRADE';
@@ -13,8 +11,20 @@ if(window.document.location.host =='www.hotcoin.top' || window.document.location
     ethtopic =  'HOTCOIN_WEB_ETH_TRADE';
     topicDepthPrefix= 'HOTCOIN_WEB_MKTINFO/';
     topicRealTimePrefix= 'HOTCOIN_WEB_REAL_TIME_TRADE/';
-    klinePrefix = 'HOTCOIN_WEB_KLINE';
-}else{
+    port = 443;//WebSocket 协议服务端口，如果是走 HTTPS，设置443端口
+    useTLS = true;//是否走加密 HTTPS，如果走 HTTPS，设置为 true
+}else if(window.document.location.host =='testtest.hotcoin.top:18081'){
+    accessKey= 'LTAI5YIotdwRXoNP';
+    secretKey =  'nn6QURHbDVtCLnooPFfU9qetNbq5OP';
+    topic = 'HOTCOIN_WEB_GSET_TRADE';
+    gsettopic =  'HOTCOIN_WEB_GSET_TRADE';
+    btctopic =  'HOTCOIN_WEB_BTC_TRADE';
+    ethtopic =  'HOTCOIN_WEB_ETH_TRADE';
+    topicDepthPrefix= 'HOTCOIN_WEB_MKTINFO/';
+    topicRealTimePrefix= 'HOTCOIN_WEB_REAL_TIME_TRADE/';
+    port = 80;//WebSocket 协议服务端口，如果是走 HTTPS，设置443端口
+    useTLS = false;//是否走加密 HTTPS，如果走 HTTPS，设置为 true
+} else{
     accessKey = 'LTAIzoYYkzbQkNX4';
     secretKey = '8a0C6XRa9vOdVuPjCkPXc8eyjtSSDS';
     topic = 'HOTCOIN_WEB_GSET_TRADE_TEST';
@@ -23,7 +33,8 @@ if(window.document.location.host =='www.hotcoin.top' || window.document.location
     ethtopic =  'HOTCOIN_WEB_ETH_TRADE_TEST';
     topicDepthPrefix= 'HOTCOIN_WEB_MKTINFO_TEST/';
     topicRealTimePrefix= 'HOTCOIN_WEB_REAL_TIME_TRADE_TEST/';
-    klinePrefix = 'HOTCOIN_WEB_KLINE_TEST';
+    port = 80;//WebSocket 协议服务端口，如果是走 HTTPS，设置443端口
+    useTLS = false;//是否走加密 HTTPS，如果走 HTTPS，设置为 true
 }
 
 
