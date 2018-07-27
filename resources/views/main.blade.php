@@ -143,11 +143,12 @@
                                 <tr style="background: rgba(237,240,245,1);height: 52px;">
                                     <th>{{ __('head.currency') }} </th>
                                     <th>{{ __('head.last') }}(<span style="font-size:13px">{{$SymbolMap[$index]}}</span>)</th>
+                                    <th>{{ __('head.change_today') }}</th>
                                     <th>24H{{ __('head.high1')}}(<span style="font-size:13px">{{$SymbolMap[$index]}}</span>)</th>
                                     <th>24H{{ __('head.low1')}}(<span style="font-size:13px">{{$SymbolMap[$index]}}</span>)</th>
                                     <th>{{ __('head.volume') }}</th>
-                                    <th>{{ __('head.change_today') }}</th>
-                                    <th>{{ __('head.threedays') }}</th>
+
+    <!--                                <th>{{ __('head.threedays') }}</th> -->
                                     <th>{{ __('head.oper') }}</th>
                                 </tr>
                             </table>
@@ -157,14 +158,15 @@
                     <div class="row area-table-box market-con" id="{{$index}}" style="display: none">
                         <div class="col-xs-12 area-table-wrap">
                             <table class="area-table" id="marketType{{$index}}">
-                                <tr>
+                                <tr style="background: rgba(237,240,245,1);height: 52px;">
                                     <th>{{ __('head.currency') }} </th>
-                                    <th>{{ __('head.last') }}</th>
-                                    <th>{{ __('head.high') }} ({{$SymbolMap[$index]}})</th>
-                                    <th>{{ __('head.low') }} ({{$SymbolMap[$index]}})</th>
-                                    <th>{{ __('head.volume') }} </th>
+                                    <th>{{ __('head.last') }}(<span style="font-size:13px">{{$SymbolMap[$index]}}</span>)</th>
                                     <th>{{ __('head.change_today') }}</th>
-                                    <th>{{ __('head.threedays') }}</th>
+                                    <th>24H{{ __('head.high1') }}(<span style="font-size:13px">{{$SymbolMap[$index]}}</span>) </th>
+                                    <th>24H{{ __('head.low1') }} (<span style="font-size:13px">{{$SymbolMap[$index]}}</span>)</th>
+                                    <th>{{ __('head.volume') }} </th>
+
+    <!--                                <th>{{ __('head.threedays') }}</th> -->
                                     <th>{{ __('head.oper') }}</th>
                                 </tr>
                             </table>

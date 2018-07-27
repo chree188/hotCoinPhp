@@ -571,7 +571,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                            	           <b class="color-sell-bg" style="width: 30%;"></b>
+                                            	           <b class="color-sell-bg" style="width: 0%;"></b>
                                             	       </div>
                                             	   </dd>
                                             	   <dd class="quotes-transaction-tabel-item cell">
@@ -580,7 +580,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                            	           <b class="color-sell-bg" style="width: 40%;"></b>
+                                            	           <b class="color-sell-bg" style="width: 0%;"></b>
                                             	       </div>
                                             	   </dd>
                                             	   <dd class="quotes-transaction-tabel-item cell">
@@ -589,7 +589,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                            	           <b class="color-sell-bg" style="width: 25%;"></b>
+                                            	           <b class="color-sell-bg" style="width: 0%;"></b>
                                             	       </div>
                                             	   </dd>
                                             	   <dd class="quotes-transaction-tabel-item cell">
@@ -598,7 +598,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                            	           <b class="color-sell-bg" style="width: 10%;"></b>
+                                            	           <b class="color-sell-bg" style="width: 0%;"></b>
                                             	       </div>
                                             	   </dd>
                                             	   <dd class="quotes-transaction-tabel-item cell">
@@ -607,7 +607,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                            	           <b class="color-sell-bg" style="width: 5%;"></b>
+                                            	           <b class="color-sell-bg" style="width: 0%;"></b>
                                             	       </div>
                                             	   </dd>
                                             	   <dd class="quotes-transaction-tabel-item cell">
@@ -616,7 +616,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                            	           <b class="color-sell-bg" style="width: 90%;"></b>
+                                            	           <b class="color-sell-bg" style="width: 0%;"></b>
                                             	       </div>
                                             	   </dd>
                                             	   <dd class="quotes-transaction-tabel-item cell">
@@ -625,7 +625,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                            	           <b class="color-sell-bg" style="width: 30%;"></b>
+                                            	           <b class="color-sell-bg" style="width: 0%;"></b>
                                             	       </div>
                                             	   </dd>
                                             </dl>
@@ -640,7 +640,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
+                                                           <b class="color-buy-bg" style="width: 0%;"></b>
                                                        </div>
                                                    </dd>
                                                 	   <dd class="quotes-transaction-tabel-item cell">
@@ -649,7 +649,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
+                                                           <b class="color-buy-bg" style="width: 0%;"></b>
                                                        </div>
                                                    </dd>
                                                 	   <dd class="quotes-transaction-tabel-item cell">
@@ -658,7 +658,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
+                                                           <b class="color-buy-bg" style="width: 0%;"></b>
                                                        </div>
                                                    </dd>
                                                 	   <dd class="quotes-transaction-tabel-item cell">
@@ -667,7 +667,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
+                                                           <b class="color-buy-bg" style="width: 0%;"></b>
                                                        </div>
                                                    </dd>
                                                 	   <dd class="quotes-transaction-tabel-item cell">
@@ -676,7 +676,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
+                                                           <b class="color-buy-bg" style="width: 0%;"></b>
                                                        </div>
                                                    </dd>
                                                 	   <dd class="quotes-transaction-tabel-item cell">
@@ -685,7 +685,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
+                                                           <b class="color-buy-bg" style="width: 0%;"></b>
                                                        </div>
                                                    </dd>
                                                 	   <dd class="quotes-transaction-tabel-item cell">
@@ -694,7 +694,7 @@
                                                            <span></span>
                                                            <span></span>
                                                            <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
+                                                           <b class="color-buy-bg" style="width: 0%;"></b>
                                                        </div>
                                                    </dd>
                                                 </dl>

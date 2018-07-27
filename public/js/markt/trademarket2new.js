@@ -283,6 +283,8 @@ var trade = {
                 modal.find('.js-entrust-title').html(data.title);
                 modal.find('.js-entrust-body').html(data.content);
                 modal.show();
+            }else{
+                util.layerAlert("",util.getLan("trade.tips.29"));
             }
         };
         util.network({url: url, param: param, success: callback});

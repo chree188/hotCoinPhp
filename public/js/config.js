@@ -28,7 +28,7 @@ if(window.document.location.host =='www.hotcoin.top'){
     accessKey = 'LTAIzoYYkzbQkNX4';
     secretKey = '8a0C6XRa9vOdVuPjCkPXc8eyjtSSDS';
     topic = 'HOTCOIN_WEB_GSET_TRADE_TEST';
-    gsettopic =  'HOTCOIN_WEB_GSET_TRAD_TEST';
+    gsettopic =  'HOTCOIN_WEB_GSET_TRADE_TEST';
     btctopic =  'HOTCOIN_WEB_BTC_TRADE_TEST';
     ethtopic =  'HOTCOIN_WEB_ETH_TRADE_TEST';
     topicDepthPrefix= 'HOTCOIN_WEB_MKTINFO_TEST/';
@@ -36,7 +36,6 @@ if(window.document.location.host =='www.hotcoin.top'){
     port = 80;//WebSocket 协议服务端口，如果是走 HTTPS，设置443端口
     useTLS = false;//是否走加密 HTTPS，如果走 HTTPS，设置为 true
 }
-
 
 cleansession = true;
 groupId='GID_11';

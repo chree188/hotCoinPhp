@@ -169,3 +169,6 @@ Route::group(['middleware' => 'change_lang'], function () {
     //在线帮助
     Route::post('/online_help/help_submit.html','HelpController@saveQuestion'); //提交问题反馈
     Route::post('/online_help/help_delete.html','HelpController@delQuestion'); //删除问题反馈
+
+    //
+    Route::get('/error','IndexController@error')->name('error');

@@ -70,7 +70,6 @@ class IndexController extends Controller
 
     public function main(Request $request){
         $param = $request->only(['currentPage']);
-
         $url = $this->host . $this->indexJson;
         if(!empty($param)){
             $param = http_build_query($param);
@@ -144,6 +143,9 @@ class IndexController extends Controller
         return $this->parseApi($this->httpPost($url,$param));
     }
 
+    public function error(Request $request){
+        return view("error");
+    }
 
 
 }

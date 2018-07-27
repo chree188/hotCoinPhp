@@ -31,8 +31,11 @@ function MQTTconnect() {
 
 function onConnect() {
     // Connection succeeded; subscribe to our topic
+    console.log(topic);
     mqtt.subscribe(topic, {qos: 0});
-    // mqtt.subscribe('HOTCOIN_WEB_KLINE_TEST/8_5', {qos: 0});
+    // mqtt.subscribe(gsettopic, {qos: 0});
+    // mqtt.subscribe(btctopic, {qos: 0});
+    // mqtt.subscribe(ethtopic, {qos: 0});
     // message = new Paho.MQTT.Message("Hello mqtt!!");//set body
     // message.destinationName =topic;// set topic
     // mqtt.send(message);
@@ -47,7 +50,7 @@ function onMessageArrived(message) {
 
     var topic = message.destinationName;
     var payload = message.payloadString;
-    // console.log("recv msg : "+topic+JSON.parse(payload));
+    console.log("recv msg : "+topic+JSON.parse(payload));
     fetchRealTimePrice(payload);
 
 };
@@ -144,22 +147,27 @@ var login = {
                     '<div class="area-table-num danger clearfix" style="display: flex;justify-content: center">' +
                     '<div class="left">' +
                     '<a href="/trademarket.html?symbol='+data.treadId+'&type='+data.type+'&sb='+data.sellShortName+'_'+data.buyShortName+'">'+
-                    '<h3 class="coin-price" style="color:#72c02c">'+util.numFormat(data.price, data.cnyDigit)+'</h3>' +
-                    '<p class="coin-price-cny">0.00000000</p>' +
+                    '<span class="coin-price" style="font-size:15px;color:#72c02c" >'+util.numFormat(data.price, data.cnyDigit)+'</span>' +
+                    '<span class="coin-price-cny" style="font-size:14px;color:#999" unit="'+(data.buyShortName).toUpperCase()+'">/￥0.00</span>' +
+                    // '<p class="coin-price-cny" style="font-size:12px;color:#999" unit="'+(data.buyShortName).toUpperCase()+'">0.00</p>' +
                     '</a></div>' +
                     // '<i class="iconfont  left coin-trend"></i>' +
                     '</div>' +
                     '</td>' +
+                    '<td><p class="coin-trend-per" style="background-color:'+color+'"><i class="iconfont right coin-trend '+classinfo+'" ></i><span class="coin-chg" >'+data.rose+'%</span></p></td>' +
                     '<td class="coin-buy">'+data.buysymbol + " " + util.numFormat(data.buy, data.cnyDigit)+'</td>' +
                     '<td class="coin-sell">'+data.buysymbol + " " + util.numFormat(data.sell, data.cnyDigit)+'</td>' +
-                    '<td class="coin-vol" unit="'+(data.sellShortName).toUpperCase()+'">0.00</td>' +
-                    // '<td style="color:'+color+'" class="coin-chg">'+data.rose+'%</td>' +
-                    //'<td><p class="coin-trend-per" style="background-color:'+color+'"><i class="iconfont right coin-trend icon-sheng-white" ></i><span class="coin-chg" >'+data.rose+'%</span></p></td>' +
-                    '<td><p class="coin-trend-per" style="background-color:'+color+'"><i class="iconfont right coin-trend '+classinfo+'" ></i><span class="coin-chg" >'+data.rose+'%</span></p></td>' +
+                    // '<td class="coin-vol" unit="'+(data.sellShortName).toUpperCase()+'">0.00</td>' +
                     '<td>' +
-                    '<div class="area-table-img coin-trend-render" style="width:200px;height:44px;margin:0 auto">' +
-                    '</div>' +
-                    '</td>' +
+                    '<h3 class="coin-vol coin-vol-style" style="font-size:14px; font-weight: 400" unit="'+(data.sellShortName).toUpperCase()+'">0.00</h3>'+
+                    '<p class="total-vol" style="font-size:12px;margin-top:8px;color:#999">0.00</p>'+
+                    '</td>'+
+
+
+                    //'<td>' +
+                    // '<div class="area-table-img coin-trend-render" style="width:200px;height:44px;margin:0 auto">' +
+                    // '</div>' +
+                    //'</td>' +
                     '<td class="hint"><a href="/trademarket.html?symbol='+data.treadId+'&type='+data.type+'&sb='+data.sellShortName+'_'+data.buyShortName+'">'+util.getLan("index.go.trade")+'</a></td>' +
                     '</tr>';
                 marketObject[data.type] =
@@ -187,50 +195,49 @@ var login = {
                 _category.push(i);
             }
 
-            var readers = document.getElementsByClassName('coin-trend-render');
-            for(var i=0;i<readers.length;i++){
-                var myChart = echarts.init(readers[i]);
+            // var readers = document.getElementsByClassName('coin-trend-render');
+            // for(var i=0;i<readers.length;i++){
+            //     var myChart = echarts.init(readers[i]);
+            //
+            //     var option = {
+            //         tooltip: {},
+            //         legend: {
+            //             data:['销量']
+            //         },
+            //         grid:{
+            //             left:'5%',
+            //             top:'50%',
+            //             right:'5%',
+            //             bottom:'5%',
+            //         },
+            //         xAxis: {
+            //             show:false,
+            //             type:'category',
+            //             data: _category,
+            //         },
+            //         yAxis: {
+            //             show:false,
+            //         },
+            //         series: [{
+            //             type: 'line',
+            //             data: _data,
+            //             smooth:true,
+            //             symbol: 'none',
+            //             markLine:{
+            //                 silent:true,
+            //             }
+            //         }],
+            //         animation:false,
+            //     };
+            //
+            //     // 使用刚指定的配置项和数据显示图表。
+            //     myChart.setOption(option);
+            //
+            // }
 
-                var option = {
-                    tooltip: {},
-                    legend: {
-                        data:['销量']
-                    },
-                    grid:{
-                        left:'5%',
-                        top:'50%',
-                        right:'5%',
-                        bottom:'5%',
-                    },
-                    xAxis: {
-                        show:false,
-                        type:'category',
-                        data: _category,
-                    },
-                    yAxis: {
-                        show:false,
-                    },
-                    series: [{
-                        type: 'line',
-                        data: _data,
-                        smooth:true,
-                        symbol: 'none',
-                        markLine:{
-                            silent:true,
-                        }
-                    }],
-                    animation:false,
-                };
-
-                // 使用刚指定的配置项和数据显示图表。
-                myChart.setOption(option);
-
-            }
-
-            if(!isConnection){
-                getKlineData();
-            }
-            console.log(132);
+            // if(!isConnection){
+            //     getKlineData();
+            // }
         };
         // util.network({url: url, param: {},async:false, success: callback});
         $.ajax({
@@ -290,54 +297,54 @@ var ETH_USDT = 0;
 
 
 //K线
-function handleKlineData(data){
-
-    var _data = [];
-    var _category = [];
-    for (var i = 0; i < data.data.length; i++) {
-        var dataCell = data.data[i];
-        _data.push(dataCell.close);
-        _category.push(i);
-    }
-
-    var myChart = echarts.init(document.getElementsByClassName(data.id)[0].getElementsByClassName('coin-trend-render')[0]);
-
-    // 指定图表的配置项和数据
-    var option = {
-        tooltip: {},
-        legend: {
-            data:['销量']
-        },
-        grid:{
-            left:'5%',
-            top:'5%',
-            right:'5%',
-            bottom:'5%',
-        },
-        xAxis: {
-            show:false,
-            type:'category',
-            data: _category,
-        },
-        yAxis: {
-            show:false,
-        },
-        series: [{
-            type: 'line',
-            data: _data,
-            smooth:true,
-            symbol: 'none',
-            markLine:{
-                silent:true,
-            }
-        }],
-        animation:false,
-    };
-
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
-
-}
+// function handleKlineData(data){
+//
+//     var _data = [];
+//     var _category = [];
+//     for (var i = 0; i < data.data.length; i++) {
+//         var dataCell = data.data[i];
+//         _data.push(dataCell.close);
+//         _category.push(i);
+//     }
+//
+//     var myChart = echarts.init(document.getElementsByClassName(data.id)[0].getElementsByClassName('coin-trend-render')[0]);
+//
+//     // 指定图表的配置项和数据
+//     var option = {
+//         tooltip: {},
+//         legend: {
+//             data:['销量']
+//         },
+//         grid:{
+//             left:'5%',
+//             top:'5%',
+//             right:'5%',
+//             bottom:'5%',
+//         },
+//         xAxis: {
+//             show:false,
+//             type:'category',
+//             data: _category,
+//         },
+//         yAxis: {
+//             show:false,
+//         },
+//         series: [{
+//             type: 'line',
+//             data: _data,
+//             smooth:true,
+//             symbol: 'none',
+//             markLine:{
+//                 silent:true,
+//             }
+//         }],
+//         animation:false,
+//     };
+//
+//     // 使用刚指定的配置项和数据显示图表。
+//     myChart.setOption(option);
+//
+// }
 
 function handleTickData(data){
     var level;
@@ -367,20 +374,27 @@ function handleTickData(data){
         $("."+dataCoin+" .coin-chg").html("+"+level/100+"%");
         $("."+dataCoin+" .coin-trend").addClass('icon-sheng-white');
         $("."+dataCoin+" .coin-trend").parent('p').css('background-color','#0CA703');
-        $("."+dataCoin+" .coin-price").attr("style","color:#72c02c");
+        $("."+dataCoin+" .coin-price").attr("style","color:#72c02c;font-size:15px");
     }else{
         $("."+dataCoin+" .coin-chg").html(level/100+"%");
         $("."+dataCoin+" .coin-trend").addClass('icon-jiang-white');
         $("."+dataCoin+" .coin-trend").parent('p').css('background-color','#EA5B25');
-        $("."+dataCoin+" .coin-price").attr("style","color:#e74c3c");
+        $("."+dataCoin+" .coin-price").attr("style","color:#e74c3c;font-size:15px");
     }
     $("."+dataCoin).attr('pre-data',parseFloat(data.tick.close));
     $("."+dataCoin+" .coin-price").html(parseFloat(data.tick.close)); //成交额 即 sum(每一笔成交价 * 该笔的成交量)
-    $("."+dataCoin+" .coin-price-cny").html('￥'+parseFloat(calcCNY(cArr[2],data.tick.close)).toFixed(2)); //成交额 即 sum(每一笔成交价 * 该笔的成交量)
+    $("."+dataCoin+" .coin-price-cny").html('/￥'+parseFloat(calcCNY(cArr[2],data.tick.close)).toFixed(2)); //成交额 即 sum(每一笔成交价 * 该笔的成交量)
     $("."+dataCoin+" .coin-buy").html(parseFloat(data.tick.high)); //最高价
     $("."+dataCoin+" .coin-sell").html(parseFloat(data.tick.low)); //最低价
     var unit = $("."+dataCoin+" .coin-vol").attr('unit');
+    var unit_coin_price_cny = $("."+dataCoin+" .coin-price-cny").attr('unit');
+    if(unit_coin_price_cny=="GSET"){
+        $("."+dataCoin+" .coin-price-cny").css('display','none');
+    }
     $("."+dataCoin+" .coin-vol").html(data.tick.amount.toFixed(2)+' '+unit); //成交量
+    var total_vol = data.tick.close*data.tick.amount;
+    $("."+dataCoin+" .total-vol").html('≈ '+total_vol.toFixed(2)+' '+cArr[2].toUpperCase());
+
 }
 
 
@@ -437,34 +451,34 @@ function fetchRealTimePrice(data) {
 /**
  * 获取平台k线
  */
-function fetchPlatformKLine(symbol,_id) {
-    var url = "/kline/fullperiod.html";
-    var param = {
-        symbol:symbol,
-        step:86400
-    };
-    var callback = function (data) {
-        if(data.length==0){
-            return;
-        }
-        var _data = compatHuoBiKLine(data);
-        handleKlineData({id:_id,data:_data});
-    };
-    util.network({url: url, param: param, success: callback});
-}
+// function fetchPlatformKLine(symbol,_id) {
+//     var url = "/kline/fullperiod.html";
+//     var param = {
+//         symbol:symbol,
+//         step:86400
+//     };
+//     var callback = function (data) {
+//         if(data.length==0){
+//             return;
+//         }
+//         var _data = compatHuoBiKLine(data);
+//         handleKlineData({id:_id,data:_data});
+//     };
+//     util.network({url: url, param: param, success: callback});
+// }
+//
+// function compatHuoBiKLine(data) {
+//     return (data != null && data.length >0)?data.map(function(item){
+//         return {high:item[1],open:item[2],low:item[3],close:item[4]};
+//     }):[];
+// }
 
-function compatHuoBiKLine(data) {
-    return (data != null && data.length >0)?data.map(function(item){
-        return {high:item[1],open:item[2],low:item[3],close:item[4]};
-    }):[];
-}
-
-function getKlineData() {
-    //获取k线图数据  平台
-    for (var i = 0; i < platformSubscribe.length; i++) {
-        fetchPlatformKLine(platformSubscribe[i].symbol, platformSubscribe[i].id);
-    }
-}
+// function getKlineData() {
+//     //获取k线图数据  平台
+//     for (var i = 0; i < platformSubscribe.length; i++) {
+//         fetchPlatformKLine(platformSubscribe[i].symbol, platformSubscribe[i].id);
+//     }
+// }
 
 function fetchRealTimePriceFirst() {
     var symbols = [];
@@ -515,8 +529,8 @@ $(function () {
     login.switchMarket();
     login.aotoMarket();
     fetchRealTimePriceFirst();
-    getKlineData();
+    // getKlineData();
     // MQTTconnect();
-
+    // $('table tr:even').css('background','#f7f7f7')
 
 });

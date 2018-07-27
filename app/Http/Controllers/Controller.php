@@ -28,7 +28,6 @@ class Controller extends BaseController
 
     public function __construct(){
         $this->getUserName();
-
         if(!session('lang')){
             session(['lang'=>'cn']);
         }
@@ -209,9 +208,10 @@ class Controller extends BaseController
      */
     public function parseResponse($response){
         if($response == false){
-            dd('服务维护中.....');
+//            echo "<script>window.location='/error'</script>";
+//            exit;
+            dd('服务升级中.....');
         }
-
         $response = json_decode($response,true);
 //        dd($response);
         if($response['code'] != 200){
@@ -222,6 +222,7 @@ class Controller extends BaseController
             }
             dd($response['msg']);
         }
+
         return $response;
     }
 }

@@ -495,8 +495,8 @@ textarea::-webkit-input-placeholder {
   border-radius: 50%;
 }
 .area-table-name-text {
-  margin-left: 46px;
-  margin-top: 3px;
+  margin-left: 15px;
+  margin-top: -3px;
 }
 .area-table-name-text h3 {
   font-size: .18rem;

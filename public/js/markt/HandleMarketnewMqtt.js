@@ -8,6 +8,7 @@ var symbol_exchange = $("#symbol").val();
 var topicDepth =topicDepthPrefix+symbol_exchange+'/';
 var topicRealTime = topicRealTimePrefix+symbol_exchange+'/';
 
+
 function MQTTconnect() {
     mqtt = new Paho.MQTT.Client(
         host,//MQTT 域名
@@ -36,8 +37,12 @@ function MQTTconnect() {
 
 function onConnect() {
     // Connection succeeded; subscribe to our topic
-    mqtt.subscribe(topic, {qos: 0});
+    // mqtt.subscribe(topic, {qos: 0});
     // console.log(topicDepth);
+    mqtt.subscribe(gsettopic, {qos: 0});
+    mqtt.subscribe(btctopic, {qos: 0});
+    mqtt.subscribe(ethtopic, {qos: 0});
+
     mqtt.subscribe(topicDepth, {qos: 0});
 
     mqtt.subscribe(topicRealTime, {qos: 0});
@@ -59,7 +64,7 @@ function onMessageArrived(message) {
     var payload = message.payloadString;
     // console.log("recv msg : "+topic_res+  JSON.parse(payload));
     // console.log(topic_res);
-    if(topic_res==topic){
+    if(topic_res==gsettopic||topic_res==btctopic || topic_res==ethtopic){
         try{
             fetchRealTimePrice(payload);
         } catch(err){
@@ -151,23 +156,23 @@ function initTab(){
                 tabItems[j].removeAttribute('class');
                 contentItem[j].setAttribute('style','display:none');
             }
-            mqtt.unsubscribe(topic);
-            var tab_val = $(this).html();
-            switch(tab_val)
-            {
-                case "GSET":
-                    topic = gsettopic;
-                    break;
-                case "BTC":
-                    topic = btctopic;
-                    break;
-                case "ETH":
-                    topic = ethtopic;
-                    break;
-                default:
-                    topic = gsettopic;
-            }
-            mqtt.subscribe(topic, {qos: 0});
+            // mqtt.unsubscribe(topic);
+            // var tab_val = $(this).html();
+            // switch(tab_val)
+            // {
+            //     case "GSET":
+            //         topic = gsettopic;
+            //         break;
+            //     case "BTC":
+            //         topic = btctopic;
+            //         break;
+            //     case "ETH":
+            //         topic = ethtopic;
+            //         break;
+            //     default:
+            //         topic = gsettopic;
+            // }
+            // mqtt.subscribe(topic, {qos: 0});
             this.setAttribute('class','active');
             contentItem[this.index].removeAttribute('style');
         });
@@ -500,11 +505,17 @@ function handleTickData(tick){
         }
 
         var spans = d.getElementsByTagName('span');
-        spans[1].innerHTML = (parseFloat(asks[i][0]).toFixed(priceFixed[symbol]));
-        spans[2].innerHTML = (parseFloat( asks[i][1])).toFixed(numberFixed[symbol]);
-        // spans[1].innerHTML = (parseFloat(asks[i][0]).toString());
-        // spans[2].innerHTML = (parseFloat( asks[i][1])).toString();
-        spans[3].innerHTML = (parseFloat( asks[i][1]) + parseFloat(askpre)).toFixed(numberFixed[symbol]);
+
+        if(asks[i]){
+            spans[1].innerHTML = (parseFloat(asks[i][0]).toFixed(priceFixed[symbol]));
+            spans[2].innerHTML = (parseFloat( asks[i][1])).toFixed(numberFixed[symbol]);
+            spans[3].innerHTML = (parseFloat( asks[i][1]) + parseFloat(askpre)).toFixed(numberFixed[symbol]);
+        }else{
+            spans[1].innerHTML = " ";
+            spans[2].innerHTML = " ";
+            spans[3].innerHTML = " ";
+        }
+
     }
 
     //bids_data.reverse();
@@ -522,11 +533,20 @@ function handleTickData(tick){
         }
         $(d).find('b').css('width',( parseFloat(bids[i-total][1])).toFixed(4) / bidsTotal * 100 +'%');
         var spans = d.getElementsByTagName('span');
-        spans[1].innerHTML = (parseFloat( bids[i-total][0]).toFixed(priceFixed[symbol]));
-        spans[2].innerHTML = (parseFloat( bids[i-total][1])).toFixed(numberFixed[symbol]);
-        //  spans[1].innerHTML = (parseFloat( bids[i-total][0]).toString(priceFixed[symbol]));
-        //  spans[2].innerHTML = (parseFloat( bids[i-total][1])).toString(numberFixed[symbol]);
-        spans[3].innerHTML = (parseFloat( bids[i-total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol]);
+        if(bids[i-total]){
+            spans[1].innerHTML = (parseFloat( bids[i-total][0]).toFixed(priceFixed[symbol]));
+            spans[2].innerHTML = (parseFloat( bids[i-total][1])).toFixed(numberFixed[symbol]);
+            //  spans[1].innerHTML = (parseFloat( bids[i-total][0]).toString(priceFixed[symbol]));
+            //  spans[2].innerHTML = (parseFloat( bids[i-total][1])).toString(numberFixed[symbol]);
+            spans[3].innerHTML = (parseFloat( bids[i-total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol]);
+        }else{
+            spans[1].innerHTML = "";
+            spans[2].innerHTML = "";
+            //  spans[1].innerHTML = (parseFloat( bids[i-total][0]).toString(priceFixed[symbol]));
+            //  spans[2].innerHTML = (parseFloat( bids[i-total][1])).toString(numberFixed[symbol]);
+            spans[3].innerHTML = "";
+        }
+
     }
 }
 
@@ -537,7 +557,7 @@ function handleDetail(data){
         return false;
     }
     var dataCoin = cArr[1] +'_'+ cArr[2];//交易对
-    var level= Math.floor((data.tick.close-data.tick.open)/data.tick.close*10000);
+    var level= Math.floor((data.tick.close-data.tick.open)/data.tick.open*10000);
     if(document.getElementsByClassName(dataCoin).length == 0){
         return;
     }
@@ -819,43 +839,82 @@ function fetchRealTimeDepth(data) {
             asksTotal = (parseFloat(asksTotal) + parseFloat(asks[i][1])).toFixed(numberFixed[symbol]);
     }
 
-    for (var i = 0; i < dl.length && i <7; i++) {
-        if(!asks[i]) continue;
-        var d = dl[total-i-1];
-        if( i==0 ){
-            askpre =  0.0;
-        } else{
-            askpre = parseFloat(asks[i-1][1] ) + parseFloat(askpre);
-        }
+    for (var i = 0; i <7; i++) {
+        var d = dl[total - i - 1];
 
         var spans = d.getElementsByTagName('span');
-        spans[1].innerHTML = (parseFloat(asks[i][0]).toString());
-        spans[2].innerHTML = (parseFloat( asks[i][1])).toString();
-        spans[3].innerHTML = (parseFloat( asks[i][1]) + parseFloat(askpre)).toFixed(numberFixed[symbol]);
-        var width =  parseInt((parseFloat( asks[i][1]) + parseFloat(askpre)).toFixed(numberFixed[symbol])/asksTotal *100)+"%";
-        var colorSell =  d.getElementsByClassName('color-sell-bg')
-        $(colorSell).css("width",width);
+        var colorSell = d.getElementsByClassName('color-sell-bg');
+        if (!asks[i]){
+            spans[1].innerHTML = " ";
+            spans[2].innerHTML = " ";
+            spans[3].innerHTML = " ";
+
+            $(colorSell).css("width", "0%");
+            continue;
         }
+
+        if (i == 0) {
+            askpre = 0.0;
+        } else {
+            askpre = parseFloat(asks[i - 1][1]) + parseFloat(askpre);
+        }
+
+
+        spans[1].innerHTML = (parseFloat(asks[i][0]).toString());
+        spans[2].innerHTML = (parseFloat(asks[i][1])).toString();
+        spans[3].innerHTML = (parseFloat(asks[i][1]) + parseFloat(askpre)).toFixed(numberFixed[symbol]);
+        var width = parseInt((parseFloat(asks[i][1]) + parseFloat(askpre)).toFixed(numberFixed[symbol]) / asksTotal * 100) + "%";
+        $(colorSell).css("width", width);
+
+    }
      //bids_data.reverse();
     for (var i = total; i < bids.length + total && i<14 ; i++) {
         bidsTotal = ( parseFloat(bidsTotal) + parseFloat(bids[i-total][1]) ).toFixed(numberFixed[symbol]);
     }
 
 
-    for (var i = total; i < bids.length + total && i<14; i++) {
+    // for (var i = total; i < bids.length + total && i<14; i++) {
+    //     var d = dl[i];
+    //     if(i==total){
+    //         bidpre = 0.0;
+    //     } else{
+    //         bidpre = parseFloat(bids[i-total-1][1]) + parseFloat(bidpre);
+    //     }
+    //     var spans = d.getElementsByTagName('span');
+    //
+    //     spans[1].innerHTML = (parseFloat(bids[i - total][0])).toString();
+    //     spans[2].innerHTML = (parseFloat(bids[i - total][1])).toString();
+    //     spans[3].innerHTML = (parseFloat(bids[i - total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol]);
+    //     var width = parseInt((parseFloat(bids[i - total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol]) / bidsTotal * 100) + "%";
+    //     var colorBuy = d.getElementsByClassName('color-buy-bg');
+    //     $(colorBuy).css("width", width);
+    // }
+
+    // for (var i = total; i < dl.length + total; i++) {
+    for (var i = total; i < dl.length; i++) {
         var d = dl[i];
+        var spans = d.getElementsByTagName('span');
+        var colorBuy = d.getElementsByClassName('color-buy-bg');
+        if(!bids[i-total]){
+            spans[1].innerHTML =" ";
+            spans[2].innerHTML =" ";
+            spans[3].innerHTML =" ";
+            $(colorBuy).css("width", "0%");
+            continue;
+        }
+
         if(i==total){
             bidpre = 0.0;
         } else{
             bidpre = parseFloat(bids[i-total-1][1]) + parseFloat(bidpre);
         }
-        var spans = d.getElementsByTagName('span');
-        spans[1].innerHTML = (parseFloat( bids[i-total][0])).toString();
-        spans[2].innerHTML = (parseFloat( bids[i-total][1])).toString();
-        spans[3].innerHTML = (parseFloat( bids[i-total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol]);
-        var width =  parseInt((parseFloat( bids[i-total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol])/bidsTotal *100)+"%";
-        var colorBuy =  d.getElementsByClassName('color-buy-bg');
-        $(colorBuy).css("width",width);
+
+
+        spans[1].innerHTML = (parseFloat(bids[i - total][0])).toString();
+        spans[2].innerHTML = (parseFloat(bids[i - total][1])).toString();
+        spans[3].innerHTML = (parseFloat(bids[i - total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol]);
+        var width = parseInt((parseFloat(bids[i - total][1]) + parseFloat(bidpre)).toFixed(numberFixed[symbol]) / bidsTotal * 100) + "%";
+        $(colorBuy).css("width", width);
     }
 }
 
