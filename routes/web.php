@@ -85,7 +85,7 @@ Route::group(['middleware' => 'change_lang'], function () {
 
     //C2C功能
     Route::get('/consumer/index','C2C\ConsumerController@index')->name('consumer');
-    Route::get('/consumer/record','C2C\ConsumerController@record')->name('record');
+    Route::get('/consumer/record','C2C\ConsumerController@record')->name('con_record');
     Route::get('/consumer/business','C2C\ConsumerController@business')->name('business');
     Route::post('/consumer/order','C2C\ConsumerController@order')->name('order');
     Route::post('/consumer/banklist','C2C\ConsumerController@banklist')->name('banklist');
