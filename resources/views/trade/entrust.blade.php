@@ -55,8 +55,34 @@
                 </div>
             </div>
         </div>
+
+        <div id="global-lockScreen" style="display:none;background:rgb(221,230,233);opacity:0.5;width:100%;height:100%;position: fixed;top:0;left:0;z-index:10000000;">
+            <div style="width:100px;height:40px;line-height:40px;color:#fff;font-size:14px;text-align:center;background:rgb(24,27,42);position: absolute;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:5px;">
+                正在请求中...
+            </div>
+        </div>
 @endsection
 
 @section('js')
     <script src="{{ asset('js/markt/entrust_cancel.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script>
+        $(".pagination-wrap li").on("click", function(){
+                var currentPage=getUrl('currentPage');
+                var num = $(this).find('a').html();
+                if(currentPage==num){
+                    $("#global-lockScreen").hide();
+                }else{
+                    $("#global-lockScreen").show();
+                }
+        });
+        function getUrl(para){
+            var paraArr = location.search.substring(1).split('&');
+            for(var i = 0;i < paraArr.length;i++){
+                if(para == paraArr[i].split('=')[0]){
+                    return paraArr[i].split('=')[1];
+                }
+            }
+            return 1;
+        }
+    </script>
 @endsection

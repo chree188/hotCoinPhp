@@ -78,10 +78,10 @@ var trade = {
         }
         //琛ㄧず娌℃湁缁戝畾鎵嬫満
         var isTelephoneBind = $("#isTelephoneBind").val();
-        if (isTelephoneBind == "false") {
-            util.layerAlert("", util.getLan("comm.tips.1"), 2);
-            return;
-        }
+        // if (isTelephoneBind == "false") {
+        //     util.layerAlert("", util.getLan("comm.tips.1"), 2);
+        //     return;
+        // }
         var symbol = $("#symbol").val();
         var sellCoinName = $("#sellShortName").val();
         var buyCoinName = $("#buyShortName").val();
@@ -550,17 +550,27 @@ var trade = {
                 data = data.data;
                 if (data != "") {
                     var buyCoin = data.buyCoin;
-                    var buyCoinSplit = splitNum(Number(buyCoin.total), util.DEF_CNY_SCALE);
+
+                    // var buyCoinSplit = splitNum(Number(buyCoin.total), util.DEF_CNY_SCALE);
+                    var buyCoinSplit = splitNum(Number(buyCoin.total), trade.cnyDigit);
+
                     $("#tradeBuyInt").html(buyCoinSplit[0]);
                     $("#tradeBuyDig").html("." + buyCoinSplit[1]);
-                    $("#tradeBuyCoin").val(util.numFormat(Number(buyCoin.total), util.DEF_CNY_SCALE));
+
+                    // $("#tradeBuyCoin").val(util.numFormat(Number(buyCoin.total), util.DEF_CNY_SCALE));
+                    $("#tradeBuyCoin").val(util.numFormat(Number(buyCoin.total), trade.cnyDigit));
+
                     var sellCoin = data.sellCoin;
-                    var sellCoinSplit = splitNum(Number(sellCoin.total), util.DEF_COIN_SCALE);
+
+                    // var sellCoinSplit = splitNum(Number(sellCoin.total), util.DEF_COIN_SCALE);
+                    var sellCoinSplit = splitNum(Number(sellCoin.total), trade.coinDigit);
+
                     $("#tradeCoinInt").html(sellCoinSplit[0]);
                     // $("#tradeCoinDig").html("." + parseFloat(sellCoinSplit[1]));
                     $("#tradeCoinDig").html("." + sellCoinSplit[1].toString());
 
-                    $("#tradeSellCoin").val(util.numFormat(Number(sellCoin.total), util.DEF_COIN_SCALE));
+                    // $("#tradeSellCoin").val(util.numFormat(Number(sellCoin.total), util.DEF_COIN_SCALE));
+                    $("#tradeSellCoin").val(util.numFormat(Number(sellCoin.total), trade.coinDigit));
                 }
             };
             util.network({url: url, param: param, success: assetsCallback});

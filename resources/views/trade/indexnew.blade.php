@@ -108,6 +108,11 @@
                     <div class="navbar-list-item">
                         <a href="{{route('trade')}}" class="active">{{ __('head.market') }}</a>
                     </div>
+
+                    <div class="navbar-list-item">
+                        <a id="top_consumer" href="{{ route('consumer') }}">{{ __('head.c2c') }}</a>
+                    </div>
+
                     <div class="navbar-list-item">
                         <a href="{{route('coinDeposit')}}">{{ __('head.finance') }}</a>
                     </div>

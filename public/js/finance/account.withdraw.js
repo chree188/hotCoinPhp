@@ -396,13 +396,13 @@ $(function() {
     $("#withdrawBtcButton").on("click", function() {
         withdraw.btc.saveCoinWithdraw(this);
     });
-    $("#withdrawAmount").on("keypress", function(event) {
-        if($("#coinName").val()=="BTK"){
-            return util.goIngKeypress(this, event, 0);
-        }else{
-            return util.goIngKeypress(this, event, util.ENTER_COIN_SCALE);
-        }
-    });
+    // $("#withdrawAmount").on("keypress", function(event) {
+    //     if($("#coinName").val()=="BTK"){
+    //         return util.goIngKeypress(this, event, 0);
+    //     }else{
+    //         return util.goIngKeypress(this, event, util.ENTER_COIN_SCALE);
+    //     }
+    // });
     $(".cancelWithdrawBtc").on("click", function(event) {
         withdraw.btc.cancelCoinWithdraw($(this).data().fid);
     });
@@ -415,11 +415,13 @@ $(function() {
     });
     $("#withdrawBalance").on("keypress", function(event) {
         return util.goIngKeypress(this, event, util.ENTER_CNY_SCALE);
+
     }).on("keyup", function() {
         withdraw.cny.calculateFeesRate();
     });
     $("#withdrawAmount").on("keypress", function(event) {
-        return util.goIngKeypress(this, event, util.ENTER_CNY_SCALE);
+        // return util.goIngKeypress(this, event, util.ENTER_CNY_SCALE);
+        return util.goIngKeypress(this, event, util.ENTER_COIN_SCALE);
     }).on("keyup", function() {
         withdraw.btc.calculateFeesRate();
     });

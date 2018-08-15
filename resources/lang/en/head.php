@@ -24,6 +24,7 @@ return [
     'currencys' => 'Currency trading',
     'personal' => 'Personal',
     'market' => 'Market',
+    'c2c'=>'C2C',
     'banking' => 'Banking',
     'help' => 'Help',
     'login' => 'login',

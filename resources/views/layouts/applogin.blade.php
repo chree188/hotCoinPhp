@@ -38,8 +38,14 @@
             </div>
 
             <div class="navbar-list-item">
+                <a id="top_consumer" href="{{ route('consumer') }}">{{ __('head.c2c') }}</a>
+            </div>
+
+            <div class="navbar-list-item">
                 <a id="top_coinDeposit" href="{{ route('coinDeposit') }}">{{ __('head.finance') }}</a>
             </div>
+
+
 
             @if (!empty(USERNAME))
                 <div class="navbar-list-item">

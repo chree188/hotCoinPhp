@@ -1,0 +1,496 @@
+/*
+ * c2c sheetStyle
+ * @autor WTO
+ */
+
+.c2c_top_wrap{
+  height:60px;
+  background-color: #F2F5FA;
+  position:relative;
+}
+
+.c2c_top_ele{
+  text-align:center;
+  height:60px;
+  line-height:60px;
+  width:120px;
+  color:#fff;
+  background-color:#EA5B25;
+  font-size:16px
+}
+
+.c2c_top_bank{
+  position:absolute;
+  right:10px;
+  top:23px;
+  font-size:14px;
+  color:#EA5B25;
+  font-weight:bold;
+}
+
+.manage_bank_card:hover{
+  cursor: pointer;
+}
+
+.add_bank_card:hover{
+  cursor: pointer;
+}
+
+.buy_table thead tr,.sell_table thead tr{
+  height:50px;
+  line-height:50px;
+  text-align:left;
+  background-color:#F2F5FA;
+}
+.buy_table tbody tr,.sell_table tbody tr{
+  height:60px;
+  line-height:60px;
+  color:#444444;
+  font-size:14px;
+  text-align:left;
+  border-color:#D8D8D8;
+  border: 1px solid #EDF0F5;
+}
+.buy_table thead th,.sell_table thead th{
+  padding-left:20px;
+  text-align:center;
+
+}
+.buy_table tbody td,.sell_table tbody td{
+  padding-left:20px;
+}
+
+.buy_sell_button{
+  display:block;
+  color:#fff;
+  width:80px;
+  height:30px;
+  line-height:30px;
+  border:1px solid #fff;
+  border-radius:5px;
+}
+.buy_button{
+  background-color:#0CA703;
+}
+.sell_button{
+  background-color:#EA5B25;
+}
+
+.c2c_notice_title {
+  font-size: 16px;
+  color: #EA5B25;
+}
+.c2c_notice{
+  margin-top:52px;
+  padding-left:20px;
+  height:240px;
+  border-bottom:1px solid #EDF0F5;
+}
+
+.c2c_notice_title img{
+  width:20px;
+  height:20px;
+}
+
+.c2c_notice p{
+  margin-top:14px;
+  height:14px;
+  line-height:18px;
+  font-size:14px;
+  color:#717171;
+}
+
+.c2c_record{
+  margin-top:50px;
+  background-color:#F2F5FA;
+  height:60px;
+}
+.c2_record_title_left{
+  float:left;
+  width:120px;
+  height:60px;
+  line-height:60px;
+  font-weight: bold;
+}
+
+.c2_record_title_right{
+  float:right;
+  width:700px;
+  height:60px;
+  line-height:60px;
+}
+
+.right_wrap{
+  margin-top:10px;
+  width:700px;
+  height:40px;
+  line-height:40px;
+  color:#717171;
+}
+
+.right_wrap_one input[type="text"]{
+  margin-top:5px;
+  width:100px;
+  height:30px;
+  /*padding:4px 12px 4px 12px;*/
+  padding-left:12px;
+  font-size:12px;
+  border: 1px solid #E6E6E6;
+  color:#444;
+}
+
+.right_wrap_two select,.right_wrap_three select{
+  width:85px;
+  height:30px;
+  /*padding:4px 12px 4px 12px;*/
+  border: 1px solid #E6E6E6;
+  color:#444;
+  font-size:12px;
+}
+
+.right_wrap_two,.right_wrap_three {
+  margin-left:30px;
+}
+
+
+.layui-table-header{
+  background-color: #fff !important;
+}
+
+.layui-table thead tr{
+  background-color: #fff !important;
+}
+
+.layui-table-view{
+  margin:0px 0px 50px 0px !important;
+}
+
+.order_buy_table{
+  margin-top:10px;
+}
+
+.order_buy_table{
+  width:520px;
+  border:1px solid #e6e6e6
+}
+
+.order_buy_table tr{
+  width:520px;
+  height:42px;
+  line-height:42px;
+}
+
+.order_buy_table tr td{
+  border:1px solid #e6e6e6;
+  padding-left:33px;
+}
+
+.order_buy_detail {
+  height:30px;
+  line-height:30px;
+  font-size:16px;
+}
+
+.order_buy_detail_left {
+  height:30px;
+  line-height:30px;
+  font-size:16px;
+  float: left;
+  font-weight:Bold;
+  color:#444
+}
+
+.order_buy_detail_right {
+  height:30px;
+  line-height:30px;
+  font-size:16px;
+}
+
+.order_buy_explain{
+  margin-top:40px;
+  font-size:14px;
+  color:#717171;
+}
+
+.order_buy_explain p{
+  font-size:14px;
+  line-height:18px;
+  margin-top:10px;
+}
+
+.order_buy_button_area{
+  margin-top:50px;
+  height:46px;
+}
+
+.order_buy_button_left{
+  float:left;
+  background-color:#0CA703;
+  color:#fff;
+}
+
+.order_buy_button_right{
+  float:right;
+  background-color:#E6E6E6;
+  color:#444;
+}
+
+.order_buy_button_all{
+  width:220px;
+  height:46px;
+  line-height:46px;
+  text-align:center;
+  border-radius:5px;
+}
+
+.order_buy_title{
+  background-color:#EDF0F5;
+  width:680px;
+  height:70px;
+  line-height:70px;
+  opacity:0.8;
+  text-align: center;
+  color:#0CA703;
+  font-size: 24px
+}
+
+
+.order_buy_wrap{
+  background-color:#fff;
+  width:520px;
+  margin:50px auto
+}
+
+.order_sell_title{
+  background-color:#EDF0F5;
+  width:680px;
+  height:70px;
+  line-height:70px;
+  opacity:0.8;
+  text-align: center;
+  font-size: 24px;
+  color:#EA5B25;
+}
+
+.order_buy_num{
+  color:#E6E6E6;
+  width:380px;
+  border:1px solid #E6E6E6;
+  height:50px;
+  padding-left:20px !important;
+}
+
+.order_sell_num{
+  color:#E6E6E6;
+  width:380px;
+  border:1px solid #E6E6E6;
+  height:50px;
+  padding-left:20px !important;
+}
+
+.order_buy_div{
+  margin-top:20px;
+}
+.order_sell_div{
+
+}
+
+.order_buy_title_gset{
+  background-color:#EDF0F5;
+  height:70px;
+  line-height:70px;
+  opacity:0.8;
+  text-align: center;
+  color:#0CA703;
+  font-size: 24px
+}
+.order_sell_title_gset{
+  background-color:#EDF0F5;
+  height:70px;
+  line-height:70px;
+  opacity:0.8;
+  text-align: center;
+  color:#EA5B25;
+  font-size: 24px
+}
+
+.order_buy_wrap_gset{
+  background-color:#fff;
+  width:380px;
+  margin:50px auto
+}
+
+.order_buy_total{
+  height:16px;
+  font-size:14px;
+  color:rgba(68,68,68,1);
+  line-height:18px;
+  margin-top:10px;
+}
+
+.order_buy_button{
+  width:380px;
+  margin-top:20px;
+  height:46px;
+  line-height:46px;
+  background-color:#0CA703;
+  border-radius:5px;
+  text-align:center;
+  color:#fff;
+  font-size:16px;
+}
+.order_sell_button{
+  margin-top:10px;
+  width:380px;
+  height:46px;
+  line-height:46px;
+  background-color:#EA5B25;
+  border-radius:5px;
+  text-align:center;
+  color:#fff;
+  font-size:16px;
+}
+
+.available_num{
+  margin-top:20px;
+  height:36px;
+  line-height:36px;
+  padding-left:20px;
+  background-color:#E6E6E6;
+  font-size:14px;
+  color:#444;
+}
+.order_sell_total{
+  margin-top:40px;
+}
+
+.c2c_elastic_title{
+  background-color:#EDF0F5;
+  height:70px;
+  line-height:70px;
+  opacity:0.8;
+  text-align: center;
+  font-size: 24px
+}
+.elastic_add_bankcard{
+  color:#1A1A1A;
+}
+
+.c2c_elastic_wrap{
+  background-color:#fff;
+  width:410px;
+  margin:50px auto;
+}
+
+.c2c_elastic_item{
+  text-align:left;
+  margin-top:20px;
+}
+
+.c2c_elastic_item input,.c2c_elastic_item select{
+  height:40px;
+  line-height:40px;
+  width:300px;
+  border:1px solid #E6E6E6;
+  margin-bottom: 0px !important;
+}
+.c2c_elastic_item input{
+  padding-left:20px !important;
+}
+
+.c2c_elastic_item label{
+  float:left;
+  height:40px;
+  width:100px;
+  line-height:40px;
+}
+.c2c_elastic_item .c2c_elastic_item_input{
+  float:right;
+}
+.elastic_tips{
+  margin-top:7px;
+  color:#EA5B25;
+  font-size:12px;
+}
+.c2c_elastic_item button{
+  width:300px;
+  height:45px;
+  font-size:16px;
+  color:#fff;
+  background-color:#EA5B25 ;
+  border-radius: 5px;
+  border:1px solid #EA5B25;
+}
+
+.manage_card{
+  position:relative;
+  width:465px;
+  height:150px;
+  border:1px solid #E6E6E6;
+  border-radius: 5px;
+}
+
+.manage_card:nth-child(2){
+  margin-top:30px;
+}
+
+.manage_card:nth-child(3){
+  margin-top:30px;
+}
+
+
+.manage_card_item{
+  margin-top:25px;
+  height:40px;
+  line-height:40px;
+  padding-left:30px;
+}
+
+.manage_card_item_left{
+  float:left;
+  color:#1A1A1A;
+  font-size:18px;
+}
+.manage_card_item_left img{
+  width:35px;
+  height:35px;
+}
+
+.manage_card_item_right{
+  float:right;
+  color:#717171;
+  width:80px;
+  height:30px;
+  line-height:30px;
+  background:#F1F3F7;
+  text-align:center;
+  border-radius:15px 0 0 15px ;
+}
+
+.elastic_bank_name{
+  margin-left:10px;
+}
+
+.bank_number_detail{
+  font-size:26px;
+  color:#444;
+}
+
+.default_active{
+  background-color:#EA5B25;
+  color:#fff;
+}
+
+
+.layui-layer-lan .layui-layer-title{
+  background-color:#EA5B25 !important;
+}
+
+.layui-laypage .layui-laypage-curr .layui-laypage-em{
+  background-color:#EA5B25 !important;
+}
+
+
+
+
+

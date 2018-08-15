@@ -9,9 +9,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Redis;
 
-//header('Access-Controller-Allow-Origin:*');
-//
-//header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
 
 class Controller extends BaseController
 {
@@ -20,9 +17,9 @@ class Controller extends BaseController
 
 //    public $host = '127.0.0.1:8080';
 //    public $host = '192.168.0.193:8090';
-    public $host = '192.168.0.122:8090';
+//    public $host = '192.168.0.141:8090';
+    public $host = '192.168.3.29:8123';
 //    public $host = '161.117.5.26:8080';
-
 //    public $host = 'https://www.hotcoin.top';
 
 
@@ -208,9 +205,9 @@ class Controller extends BaseController
      */
     public function parseResponse($response){
         if($response == false){
-//            echo "<script>window.location='/error'</script>";
-//            exit;
-            dd('服务升级中.....');
+            echo "<script>window.location='/error'</script>";
+            exit;
+//            dd('服务升级中.....');
         }
         $response = json_decode($response,true);
 //        dd($response);

@@ -69,7 +69,7 @@
                                     <tbody class="financial-table-body">
                                         @forelse($list['data'] as $log)
                                         <tr class="financial-table-item">
-                                            <td>{{date('Y-m-d H:i:s',intval(substr($log['fupdatetime'],0,10)))}}2017-12-13 16:54:20</td>
+                                            <td>{{date('Y-m-d H:i:s',intval(substr($log['fupdatetime'],0,10)))}}</td>
                                             <td>{{$log['ftype_s']}}</td>
                                             <td>{{sprintf('%.3f',$log['famount'])}}</td>
                                             <td>{{sprintf('%.3f',$log['ffees'])}}</td>

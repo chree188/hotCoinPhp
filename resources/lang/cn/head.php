@@ -24,6 +24,7 @@ return [
     'currencys' => '财务中心',
     'personal' => '个人中心',
     'market' => '币币交易',
+    'c2c'=>'C2C 交易',
     'banking' => '金融',
     'help' => '帮助中心',
     'login' => '登录',

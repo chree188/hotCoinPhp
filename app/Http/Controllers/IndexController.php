@@ -80,8 +80,8 @@ class IndexController extends Controller
         $notice = array();
         $noticeUrl = $this->host . $this->noticeUrl;
         $noticeUrl .= '?' . http_build_query(array('id'=>2,'currentPage'=>1));
-
         $response = $this->httpGet($noticeUrl);
+
         if($response !=false){
             $response = json_decode($response,true);
             if($response && $response['code']=='200'){
@@ -98,7 +98,7 @@ class IndexController extends Controller
             $banner[$i]["bannerUrl"] = json_decode($itemUrl)->extObject;
         }
 
-//        var_dump(Redis::keys('*'));die;
+
         $qrcode["AndroidDownloadUrl"] = json_decode(redis::get("ARGS_AndroidDownloadUrl"))->extObject;
         $qrcode["IosDownloadUrl"] = json_decode(redis::get("ARGS_IosDownloadUrl"))->extObject;
         $response = $this->httpGet($url);
@@ -107,6 +107,7 @@ class IndexController extends Controller
         $data['notice'] = $notice;
         $data['banner'] = $banner;
         $data['qrcode'] = $qrcode;
+
         return view('main',$data);
     }
 

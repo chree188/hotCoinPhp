@@ -83,6 +83,18 @@ Route::group(['middleware' => 'change_lang'], function () {
     //轮播详情
     Route::get('/broadcast/index','BroadcastController@index')->name('broadcast');
 
+    //C2C功能
+    Route::get('/consumer/index','C2C\ConsumerController@index')->name('consumer');
+    Route::get('/consumer/record','C2C\ConsumerController@record')->name('record');
+    Route::get('/consumer/business','C2C\ConsumerController@business')->name('business');
+    Route::post('/consumer/order','C2C\ConsumerController@order')->name('order');
+    Route::post('/consumer/banklist','C2C\ConsumerController@banklist')->name('banklist');
+    Route::post('/consumer/orderdetail','C2C\ConsumerController@orderdetail')->name('orderdetail');
+    Route::post('/consumer/savebankinfo','C2C\ConsumerController@savebankinfo')->name('savebankinfo');
+    Route::post('/consumer/setting','C2C\ConsumerController@setting')->name('setting');
+    Route::post('/consumer/default_bankinfo','C2C\ConsumerController@default_bankinfo')->name('default_bankinfo');
+    Route::post('/consumer/del_bankinfo','C2C\ConsumerController@del_bankinfo')->name('del_bankinfo');
+//    Route::post('/consumer/set_passwrod_confirm','C2C\ConsumerController@set_passwrod_confirm')->name('set_passwrod_confirm');
 
 
 });
@@ -170,5 +182,10 @@ Route::group(['middleware' => 'change_lang'], function () {
     Route::post('/online_help/help_submit.html','HelpController@saveQuestion'); //提交问题反馈
     Route::post('/online_help/help_delete.html','HelpController@delQuestion'); //删除问题反馈
 
-    //
+    //服务端端进行维护要跳到的页面
     Route::get('/error','IndexController@error')->name('error');
+    Route::post('/consumer/getuserinfo','C2C\ConsumerController@userinfo')->name('userinfo');
+    //c2c
+
+
+

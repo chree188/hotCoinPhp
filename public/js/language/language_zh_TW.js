@@ -132,4 +132,39 @@ var language = {
     "user.tips.40": "修改成功，请重新登录!",
     "copy.succeed":"複製成功！",
     "head.tips.1" : "联系客服",
+
+    "consumer.index.1": "订单编号",
+    "consumer.index.2": "时间",
+    "consumer.index.3": "订单备注",
+    "consumer.index.4": "交易类型",
+    "consumer.index.5": "交易金额(￥)",
+    "consumer.index.6": "交易数量",
+    "consumer.index.7": "交易状态",
+    "consumer.index.8": "操作",
+    "consumer.index.9": "查看",
+
+    "consumer.content.1":"分钟",
+    "consumer.content.2":"买入",
+    "consumer.content.3":"卖出",
+    "consumer.content.4":"卖出总价不能小于最小卖出金额",
+    "consumer.content.5":"可用GSET不足",
+    "consumer.content.6":"买入总价不能低于最小买入金额",
+    "consumer.content.7":"请先登录",
+    "consumer.content.8":"您的身份信息正在后台审核中",
+
+    "consumer.type.1":"买入",
+    "consumer.type.2":"卖出",
+    "consumer.type.3":"处理中",
+    "consumer.type.4":"已完成",
+    "consumer.type.5":"已撤销",
+    "consumer.type.6":"已关闭",
+
+    "consumer.notice.1":"数据加载失败",
+    "consumer.notice.2":"您还没有添加银行卡",
+    "consumer.notice.3":"密码不能为空",
+    "consumer.notice.4":"输入的谷歌验证码不能为空",
+    "consumer.notice.5":"输入谷歌验证码的格式不正确",
+    "consumer.notice.6":"两次输入的密码不一致",
+
+
 }
