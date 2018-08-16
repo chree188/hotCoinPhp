@@ -18,7 +18,8 @@ class Controller extends BaseController
 //    public $host = '127.0.0.1:8080';
 //    public $host = '192.168.0.193:8090';
 //    public $host = '192.168.0.141:8090';
-    public $host = '192.168.3.29:8123';
+//    public $host = '192.168.3.29:8123';
+    public $host = '192.168.3.33:8123';
 //    public $host = '161.117.5.26:8080';
 //    public $host = 'https://www.hotcoin.top';
 

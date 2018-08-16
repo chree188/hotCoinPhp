@@ -418,17 +418,16 @@
     <!--弹出层  开始1-->
 
 
-    {{--<div  style="width:540px;display:none" id="confirm_notice">--}}
-        {{--<div class=" c2c_elastic_title elastic_add_bankcard">温馨提示</div>--}}
-        {{--<div class="c2c_elastic_wrap " style="width:465px">--}}
-            {{--<div style="color:#444;font-size:16px">为避免恶意的下单撤单行为，影响商户接单，用户当天的可取消订单限额为3笔；当超过3笔时，将会限制用户的C2C买入卖出功能；第二天可恢复，所以请忽随意操作取消订单，如有不便请谅解！</div>--}}
-            {{--<div class="c2c_elastic_item" style="text-align:center">--}}
-
-                {{--<button>确认提交</button>--}}
-
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
+    <div  style="width:680px;display:none" id="confirm_notice">
+        <div class=" c2c_elastic_title elastic_add_bankcard">温馨提示</div>
+        <div class="c2c_elastic_wrap " style="width:500px">
+            <div style="color:#444;font-size:16px;font-weight:bold;text-align: center;">您的卖出订单已下单成功，等待商家线下打款中......</div>
+            <div style="color:#717171;font-size:16px;margin-top:32px;text-align: center;">（商家处理时间7*24小时，一般接单后24小时内会完成打款;）</div>
+            <div class="c2c_elastic_item" style="text-align:center;margin-top:70px;">
+                <button class="j_confirm_notice_submit">确认</button>
+            </div>
+        </div>
+    </div>
     {{--<div  style="width:540px;display:none" id="exchange_confirm">--}}
         {{--<div class=" c2c_elastic_title elastic_add_bankcard">温馨提示</div>--}}
         {{--<div class="c2c_elastic_wrap " style="width:400px">--}}
@@ -465,6 +464,7 @@
                     <label>{{ __('c2c.google_code') }}:</label>
                     <div class="c2c_elastic_item_input">
                         <input type="text"  id="set_google_code"  name="user_name"  class="add_bank_user_name" placeholder="{{ __('c2c.google_code') }}">
+                        <p class="elastic_tips" style="color:#444">如果没有绑定谷歌验证，点击<a href="/user/security.html" style="color:#EA5B25;text-decoration: underline">个人中心</a>设置</p>
                     </div>
                 </div>
                 <div class="c2c_elastic_item" style="text-align:center">
@@ -629,10 +629,10 @@
                                 <p>{{ __('c2c.notice5') }}</p>
                                 <p>{{ __('c2c.notice6') }}</p>
                             </div>
-                        {{--<div class="order_buy_button_area">--}}
-                                {{--<div class="order_buy_button_left order_buy_button_all j_order_buy_button_all" >我已付款</div>--}}
+                        <div class="order_buy_button_area">
+                                <div class="order_buy_button_left order_buy_button_all j_order_buy_button_all">我已付款</div>
                                 {{--<div class="order_buy_button_right order_buy_button_all j_order_buy_button_all">稍后付款</div>--}}
-                        {{--</div>--}}
+                        </div>
                 </div>
     </div>
 
@@ -765,33 +765,6 @@
 
     <!--弹出层  结束-->
 
-
-<!--    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    </button>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        模态框（Modal）标题
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    在这里添加一些文本
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="button" class="btn btn-primary">
-                        提交更改
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>-->
     <script src="{{ asset('js/layui/layui.all.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('js/layui/layui.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="{{ asset('js/leftTime.min.js') }}" type="text/javascript" charset="utf-8"></script>
@@ -801,12 +774,7 @@
     <script src="{{ asset('js/finance/jquery.cityselect.js') }}" type="text/javascript" charset="utf-8"></script>
 
     <script src="{{ asset('js/C2C/index.js') }}" type="text/javascript" charset="utf-8"></script>
-<!--    <script type="text/html" id="barDemo">
 
-        <a class="layui-btn layui-btn-xs" lay-event="edit">确认打款</a>
-        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">撤销</a>
-    </script> -->
 
 @endsection
 

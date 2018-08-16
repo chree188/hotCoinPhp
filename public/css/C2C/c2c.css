@@ -224,9 +224,10 @@
 }
 
 .order_buy_button_left{
-  float:left;
+  /*float:left;*/
   background-color:#0CA703;
   color:#fff;
+  margin:0 auto;
 }
 
 .order_buy_button_right{
@@ -236,7 +237,7 @@
 }
 
 .order_buy_button_all{
-  width:220px;
+  width:380px;
   height:46px;
   line-height:46px;
   text-align:center;

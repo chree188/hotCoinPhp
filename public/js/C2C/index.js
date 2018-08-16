@@ -37,7 +37,7 @@ layui.use(['table','jquery'], function(){
             {field: 'createTime', title: util.getLan('consumer.index.2'),width:'16%',templet:function(row){
                 return timetrans(row.createTime);
             }},
-            {field: 'remark', title: util.getLan('consumer.index.3'), sort: true},
+            {field: 'remark', title: util.getLan('consumer.index.3')},
             {field: 'type', title: util.getLan('consumer.index.4'),templet:function(row){
                     var str='-';
                     if(row.type==1){
@@ -49,9 +49,10 @@ layui.use(['table','jquery'], function(){
                     }
                     return str;
                 } },
-            {field: 'money', title: util.getLan('consumer.index.5')},
             {field: 'amount', title:util.getLan('consumer.index.6'), sort: true},
-            {field: 'status', title: util.getLan('consumer.index.7'),  sort: true,templet:function(row){
+            {field: 'money', title: util.getLan('consumer.index.5'), sort: true},
+
+            {field: 'status', title: util.getLan('consumer.index.7'),templet:function(row){
                 var str='-';
                 if(row.status==1){
                     if(row.type == 1){
@@ -330,8 +331,8 @@ layui.use('jquery',function () {
                 layer.close(index);
                 if(msg.code==200){
                     layer.closeAll();
-                    data_user_detail(msg.data,2);
-                    order.sell_detail();
+                    // data_user_detail(msg.data,2);
+                    order.confirm_notice();
                     tableReload();
                     getUserdGset();
                 }else if(msg.code ==401){
@@ -515,15 +516,6 @@ userfunc.exchange_notice= function(){
     })
 }
 
-userfunc.confirm_notice = function(){
-    layer.open({
-        type: 1,
-        area:['540px'],
-        title:false,
-        content:$('#confirm_notice'),
-    })
-}
-
 userfunc.exchange_confirm= function(){
     layer.open({
         type: 1,
@@ -573,7 +565,14 @@ bank.manage_bank_card = function(){
     });
 };
 
-
+order.confirm_notice = function(){
+    layer.open({
+        type: 1,
+        area:['680px'],
+        title:false,
+        content:$('#confirm_notice'),
+    })
+}
 
 order.buy_detail = function(){
 
@@ -824,6 +823,10 @@ $('.j_authentication_submit').on('click',function(){
         }
     })
 });
+
+$('.j_confirm_notice_submit').on('click',function(){
+    layer.closeAll();
+})
 
 $('.j_set_password_confirm').on('click',function(){
     var data = {};

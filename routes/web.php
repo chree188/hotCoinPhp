@@ -87,10 +87,10 @@ Route::group(['middleware' => 'change_lang'], function () {
     Route::get('/consumer/index','C2C\ConsumerController@index')->name('consumer');
     Route::get('/consumer/record','C2C\ConsumerController@record')->name('con_record');
     Route::get('/consumer/business','C2C\ConsumerController@business')->name('business');
-    Route::post('/consumer/order','C2C\ConsumerController@order')->name('order');
+    Route::post('/consumer/order','C2C\ConsumerController@order')->name('con_order');
     Route::post('/consumer/banklist','C2C\ConsumerController@banklist')->name('banklist');
     Route::post('/consumer/orderdetail','C2C\ConsumerController@orderdetail')->name('orderdetail');
-    Route::post('/consumer/savebankinfo','C2C\ConsumerController@savebankinfo')->name('savebankinfo');
+    Route::post('/consumer/savebankinfo','C2C\ConsumerController@savebankinfo')->name('con_savebankinfo');
     Route::post('/consumer/setting','C2C\ConsumerController@setting')->name('setting');
     Route::post('/consumer/default_bankinfo','C2C\ConsumerController@default_bankinfo')->name('default_bankinfo');
     Route::post('/consumer/del_bankinfo','C2C\ConsumerController@del_bankinfo')->name('del_bankinfo');
