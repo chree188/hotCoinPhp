@@ -10,6 +10,7 @@ var topicRealTime = topicRealTimePrefix+symbol_exchange+'/';
 
 
 function MQTTconnect() {
+
     mqtt = new Paho.MQTT.Client(
         host,//MQTT 域名
         port,//WebSocket 端口，如果使用 HTTPS 加密则配置为443,否则配置80
@@ -281,8 +282,12 @@ function showData(xData,buyData,sellData){
                 axisLine:{
                     show:true,
                     lineStyle:{
-                        color:"#fff"
+                        color:"#fff",
+                        fontSize:'12'
                     }
+                },
+                nameTextStyle:{
+                    fontSize:'12'
                 },
                 splitLine:{
                     show:false,
@@ -296,8 +301,12 @@ function showData(xData,buyData,sellData){
                 axisLine:{
                     show:true,
                     lineStyle:{
-                        color:"#fff"
+                        color:"#fff",
+                        fontSize:'12'
                     }
+                },
+                nameTextStyle:{
+                    fontSize:'12'
                 },
                 splitLine:{
                     show:false,

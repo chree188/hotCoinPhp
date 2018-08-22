@@ -20,6 +20,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('css/reset.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{asset('css/custom.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{asset('css/custom-new.css') }}" />
+        {{--<link rel="stylesheet" type="text/css" href="{{ asset('js/layui/css/layui.css') }}" media="all"/>--}}
 
         <script src="{{asset('js/jquery-2.2.3.min.js')}}" type="text/javascript" charset="utf-8"></script>
         <script src="{{asset('iconfont/iconfont.js')}}" type="text/javascript" charset="utf-8"></script>
@@ -27,6 +28,8 @@
         <script src="{{asset('js/plugin/pako.min.js')}}" type="text/javascript" charset="utf-8"></script>
         <script src="{{asset('js/slide.js')}}" type="text/javascript" charset="utf-8"></script>
         <script src="{{asset('js/jquery-ui-slider-pips.js')}}" type="text/javascript" charset="utf-8"></script>
+        {{--<script src="{{ asset('js/layui/layui.all.js') }}" type="text/javascript" charset="utf-8"></script>--}}
+        {{--<script src="{{ asset('js/layui/layui.js') }}" type="text/javascript" charset="utf-8"></script>--}}
         <style>
             .hot-coin-is-login a:first-child{
                 display:inline-block;
@@ -89,6 +92,26 @@
             .hot-coin-copyright{
                 margin-top:30px;
                 color:#7E86A0;
+            }
+            .coin-list::-webkit-scrollbar {/*滚动条整体样式*/
+                width: 2px;     /*高宽分别对应横竖滚动条的尺寸*/
+                height: 2px;
+                background-color: #1D2133;
+            }
+            .quotes-deal-list-wrap::-webkit-scrollbar {/*滚动条整体样式*/
+                width: 2px;     /*高宽分别对应横竖滚动条的尺寸*/
+                height: 2px;
+                background-color: #1D2133;
+            }
+            .coin-introduce::-webkit-scrollbar {/*滚动条整体样式*/
+                width: 2px;     /*高宽分别对应横竖滚动条的尺寸*/
+                height: 2px;
+                background-color: #1D2133;
+            }
+            #table_style_div::-webkit-scrollbar {/*滚动条整体样式*/
+                width: 2px;     /*高宽分别对应横竖滚动条的尺寸*/
+                height: 2px;
+                background-color: #1D2133;
             }
 
 
@@ -244,24 +267,55 @@
                 <div class="col-xs-12 quotes">
  <!-------------------------------- 左悬浮窗 ------------------------>
                         <div class="quotes-window">
-                            <div class="coin-list">
-                                <div class="quotes-window-header">
-                                    @if(!$login)
-                                  <!--------- 未登录 ------->
-                                    <p class="clearfix">
-                                        <a href="{{route('login')}}">{{__('market.login')}}</a>
-                                        {{__('market.or')}}
-                                        <a href="{{route('register')}}">{{__('market.reg')}}</a>
-                                        {{__('market.begin')}}
-                                    </p>
-                                  @else
-                                   <!--------- 已登录 -------->
-                                    <dl class="clearfix">
+                            <div class="" style="height:100px;background-color:#181B2A">
+                                <div class="quotes-window-header" style="margin-left:20px;">
+                                    <div class="clearfix" >
+                                        <div class="" style="height:40px;font-size:16px;color:#fff;line-height:20px">
+                                            <div class="left">
+                                                <span>{{__('market.asset')}}:</span>
+                                                <span id="net_assets">0.00</span>￥
+                                            </div>
+                                            <div class="right" style="margin-right:10px">
+                                                <img src="img/imgNew/hide_asset.png" id="hide_asset" style="margin-top:5px;">
+                                                <img src="img/imgNew/show_asset.png" id="show_asset" style="display:none;margin-top:3px;" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                @if(!$login)
+                                    <!--------- 未登录 ------->
+                                        <p class="clearfix" style="margin-top:10px;color:#fff">
+                                            <a href="{{route('login')}}">{{__('market.login')}}</a>
+                                            {{__('market.or')}}
+                                            <a href="{{route('register')}}">{{__('market.reg')}}</a>
+                                            {{__('market.begin')}}
+                                        </p>
+                                @else
+                                    <!--------- 已登录 -------->
+                                        <dl class="clearfix">
+                                            {{--<dt>{{__('market.asset')}}:</dt>--}}
+                                            {{--<dd>0.03193889 BTC <span>≈ 3999.70 CNY</span></dd>--}}
+                                        </dl>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="coin-list" style="height:520px;margin-top:10px;">
+                                {{--<div class="quotes-window-header">--}}
+                                    {{--@if(!$login)--}}
+                                  {{--<!--------- 未登录 ------->--}}
+                                    {{--<p class="clearfix">--}}
+                                        {{--<a href="{{route('login')}}">{{__('market.login')}}</a>--}}
+                                        {{--{{__('market.or')}}--}}
+                                        {{--<a href="{{route('register')}}">{{__('market.reg')}}</a>--}}
+                                        {{--{{__('market.begin')}}--}}
+                                    {{--</p>--}}
+                                  {{--@else--}}
+                                   {{--<!--------- 已登录 -------->--}}
+                                    {{--<dl class="clearfix">--}}
                                         {{--<dt>{{__('market.asset')}}:</dt>--}}
                                         {{--<dd>0.03193889 BTC <span>≈ 3999.70 CNY</span></dd>--}}
-                                    </dl>
-                                     @endif
-                                </div>
+                                    {{--</dl>--}}
+                                     {{--@endif--}}
+                                {{--</div>--}}
                                 <div class="quotes-window-search-wrap clearfix" >
                                     <p class="quotes-search-tetil">{{__('market.market')}}</p>
                                     <div class="quotes-search-text" style="display:none">
@@ -275,7 +329,6 @@
                                 </div>
                                 <div class="quotes-window-nav-wrap">
                                     <ul class="quotes-window-nav clearfix coin-tab">
-                                    <ul class="quotes-window-nav clearfix coin-tab">
                                         @foreach($typeMap as $key=>$value)
                                         <li class="quotes-window-navbar">
                                             <button @if($value == $tradeType['buyShortName']) class="active" @endif>{{$value}}</button>
@@ -286,7 +339,7 @@
     <!--------------------------------- 悬浮窗列表 ---------------------->
 
                                 <div class="quotes-window-list-wrap">
-                                    <div class="quotes-list-header-wrap clearfix" style="background-color:#1D2133;">
+                                    <div class="quotes-list-header-wrap clearfix" style="background-color:#181B2A;">
                                         <div class="quotes-list-header">
                                             <span>{{__('market.coin')}}</span>
                                             <i>
@@ -309,34 +362,39 @@
                                             </i>
                                         </div>
                                     </div>
+                                    <div class="clearfix"></div>
                                 <!----------- 主区列表 ----------->
 
                                     @foreach($tradeTypeListMap as $index=>$trdeTypeList)
                                     <div class="quotes-tabel-wrap coin-list-item"  @if($index != $tradeType['type']) style="display:none;" @endif>
-                                        <table border="" cellspacing="" cellpadding="" class="quotes-tabel coin-list">
-                                           <thead>
-                                               <th colspan="3" style="text-align: left;display:none;" class="quotes-window-tabel-header">{{__('market.main')}}</th>
-                                           </thead>
+                                        <div id="table_style_div" style="height:377px;overflow-y:scroll;">
+                                            <table border="" cellspacing="" cellpadding="" class="quotes-tabel coin-list">
+                                                <thead>
+                                                <th colspan="3" style="text-align: left;display:none;" class="quotes-window-tabel-header">{{__('market.main')}}</th>
+                                                </thead>
+                                                <tbody>
                                                 @foreach($trdeTypeList as $trade)
-                                               <tr data-symbol="{{$trade['sellShortName']}}_{{$trade['buyShortName']}}" data-symbol-id="{{$trade['id']}}" type="{{$trade['type']}}" symbol="{{$trade['id']}}" class="{{$trade['sellShortName']}}_{{$trade['buyShortName']}} {{$trade['sellShortName']}}{{$trade['buyShortName']}}" data-status="{{$trade['isShare']}}">
-                                                   <td class="quotes-item-box-wrap">
+                                                <tr data-symbol="{{$trade['sellShortName']}}_{{$trade['buyShortName']}}" data-symbol-id="{{$trade['id']}}" type="{{$trade['type']}}" symbol="{{$trade['id']}}" class="{{$trade['sellShortName']}}_{{$trade['buyShortName']}} {{$trade['sellShortName']}}{{$trade['buyShortName']}}" data-status="{{$trade['isShare']}}">
+                                                    <td class="quotes-item-box-wrap">
                                                        <span class="trade-symbol">
                                                        {{strtoupper($trade['sellShortName']) }}
                                                        </span>
-                                                       {{--<div class="quotes-item-box">--}}
-                                                           {{--<h2>以太坊</h2>--}}
-                                                           {{--<p>以太坊（Ethereum）是下一代密码学账本，可以支持众多的高级功能，包括用户发行货币，智能协议，去中心化的交易等。</p>--}}
-                                                           {{--<div class="quotes-item-box-btn">--}}
-                                                               {{--<a href="assets_list.html">了解更多</a>--}}
-                                                           {{--</div>--}}
-                                                       {{--</div>--}}
-                                                   </td>
-                                                   <td class="trade-price">000.00</td>
-                                                   <td class="trade-rate success">+0.00%</td>
-                                               </tr>
-                                                    @endforeach
+                                                        {{--<div class="quotes-item-box">--}}
+                                                            {{--<h2>以太坊</h2>--}}
+                                                            {{--<p>以太坊（Ethereum）是下一代密码学账本，可以支持众多的高级功能，包括用户发行货币，智能协议，去中心化的交易等。</p>--}}
+                                                            {{--<div class="quotes-item-box-btn">--}}
+                                                                {{--<a href="assets_list.html">了解更多</a>--}}
+                                                                {{--</div>--}}
+                                                            {{--</div>--}}
+                                                    </td>
+                                                    <td class="trade-price">000.00</td>
+                                                    <td class="trade-rate success">+0.00%</td>
+                                                </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
 
-                                        </table>
 
                          <!------------------ 创新区 ----------------->
 
@@ -366,7 +424,7 @@
 
                                 </div>
                             </div>
-                            <div class="coin-introduce" style="margin-top: 10px;color: white;">
+                            <div class="coin-introduce" style="margin-top: 10px;color: white;height:554px;overflow-y: scroll">
                                 <div class="introduce-window-header white">币种资料</div>
                                 <h2 class="introduce-coin-name white">{{isset($coinInfo['nameZh']) ? $coinInfo['nameZh']:'-'}}</h2>
                                 <p class="introduce-coin-detail dark">
@@ -410,20 +468,11 @@
                                         </span>
                                     </div>
 
-                                    {{--<div class="introduce-item">--}}
-                                    {{--<span class="introduce-item-name">--}}
-                                    {{--白皮书--}}
-                                    {{--</span>--}}
-                                    {{--<span class="introduce-item-value">--}}
-                                    {{--<a href="{{isset($coinInfo['linkWebsite']) ? $coinInfo['linkWebsite']:'javascript:void(0)'}}">{{isset($coinInfo['linkWebsite']) ? $coinInfo['linkWebsite']:'-'}}</a>--}}
-                                    {{--</span>--}}
-                                    {{--</div>--}}
-
                                     <div class="introduce-item">
                                         <span class="introduce-item-name">
                                             区块查询
                                         </span>
-                                        <span class="introduce-item-value">
+                                        <span class="introduce-item-value" style="overflow: hidden">
                                             <a href="{{isset($coinInfo['linkBlock']) ? $coinInfo['linkBlock']:'javascript:void(0)'}}">{{isset($coinInfo['linkBlock']) ? $coinInfo['linkBlock']:'-'}}</a>
                                         </span>
                                     </div>
@@ -432,9 +481,22 @@
                                         <span class="introduce-item-name">
                                             官网地址
                                         </span>
-                                        <span class="introduce-item-value">
+                                        <span class="introduce-item-value" style="overflow: hidden">
                                             <a href="{{isset($coinInfo['linkWebsite']) ? $coinInfo['linkWebsite']:'javascript:void(0)'}}">{{isset($coinInfo['linkWebsite']) ? $coinInfo['linkWebsite']:'-'}}</a>
                                         </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!---------------- 深度图 -------------------->
+                            <div class="quotes-sgraph">
+                                <div class="clearfix  quotes-header quotes-sgraph-header">
+<!--                                    <button class="iconfont icon-xia1 left"></button>-->
+                                    <h2 class="left quotes-header-tetil quotes-sgraph-tetil">{{__('market.deepth')}}</h2>
+                                </div>
+                                <div class="quotes-sgraph-box" >
+                                    <div id="depth-chart" style="width: 100%;height: 210px;background-color:#181B2A">
+
                                     </div>
                                 </div>
                             </div>
@@ -443,9 +505,10 @@
 <!---------------------------------- 主体内容 ------------------------>
 
                         <div class="quotes-data">
-                            <div class="quotes-data-kgraph-wrap">
-                                <div class="clearfix quotes-kgraph-header quotes-header">
-                                    <button class="iconfont icon-xia1 left"></button>
+                            <div class="clearfix">
+                                <div class="quotes-data-kgraph-wrap" style="float:left;width:70%;height:550px">
+                                <div class="clearfix quotes-kgraph-header quotes-header" style="">
+<!--                                    <button class="iconfont icon-xia1 left"></button>-->
                                     <h2 class="left quotes-header-tetil">
                                         <span id="tip-sell-buy">{{strtoupper($tradeType['sellShortName'])}}/{{strtoupper($tradeType['buyShortName'])}}</span>
                                         <span id="tip-price"></span>
@@ -463,8 +526,197 @@
                          <!------------- k线图 ------------------->
 
                                 <div class="quotes-data-kgraph" >
-                                    <div style="height: 720px;background-color: #181B2A">
+                                    <div style="height: 502px;background-color: #181B2A">
                                         <div id="div-tradeview-chart" class="kline">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="left quotes-transaction-tabel-wrap" style="width:30%;">
+                                    <div class="quotes-transaction-tabel">
+                                        <div class="quotes-tabel-header">
+                                            <h2 id="header-text"></h2>
+                                        </div>
+
+                                        <!------------  卖出的列表  ----------------->
+
+                                        <div class="quotes-transaction-tabel-data">
+                                            <dl class="quotes-transaction-tabel-body">
+                                                <dt class="quotes-transaction-tabel-tetil">
+                                                    <span class="tetil"></span>
+                                                    <span class="price" id="inner-price">{{__('market.price')}}({{$tradeType['buyShortName']}})</span>
+                                                    <span class="amount" id="inner-amount">{{__('market.number')}}({{$tradeType['sellShortName']}})</span>
+                                                    <span id="inner-sum">{{__('market.accu')}}({{$tradeType['sellShortName']}})</span>
+                                                </dt>
+                                                <dd class="quotes-transaction-tabel-item cell">
+                                                    <div class="inner">
+                                                        <span class="color-sell">{{__('market.sells')}} 7</span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <b class="color-sell-bg" style="width: 30%;"></b>
+                                                    </div>
+                                                </dd>
+                                                <dd class="quotes-transaction-tabel-item cell">
+                                                    <div class="inner">
+                                                        <span class="color-sell">{{__('market.sells')}} 6</span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <b class="color-sell-bg" style="width: 40%;"></b>
+                                                    </div>
+                                                </dd>
+                                                <dd class="quotes-transaction-tabel-item cell">
+                                                    <div class="inner">
+                                                        <span class="color-sell">{{__('market.sells')}} 5</span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <b class="color-sell-bg" style="width: 25%;"></b>
+                                                    </div>
+                                                </dd>
+                                                <dd class="quotes-transaction-tabel-item cell">
+                                                    <div class="inner">
+                                                        <span class="color-sell">{{__('market.sells')}} 4</span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <b class="color-sell-bg" style="width: 10%;"></b>
+                                                    </div>
+                                                </dd>
+                                                <dd class="quotes-transaction-tabel-item cell">
+                                                    <div class="inner">
+                                                        <span class="color-sell">{{__('market.sells')}} 3</span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <b class="color-sell-bg" style="width: 5%;"></b>
+                                                    </div>
+                                                </dd>
+                                                <dd class="quotes-transaction-tabel-item cell">
+                                                    <div class="inner">
+                                                        <span class="color-sell">{{__('market.sells')}} 2</span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <b class="color-sell-bg" style="width: 90%;"></b>
+                                                    </div>
+                                                </dd>
+                                                <dd class="quotes-transaction-tabel-item cell">
+                                                    <div class="inner">
+                                                        <span class="color-sell">{{__('market.sells')}} 1</span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <span></span>
+                                                        <b class="color-sell-bg" style="width: 30%;"></b>
+                                                    </div>
+                                                </dd>
+                                            </dl>
+
+                                            <!------------- 买入的列表 ------------->
+
+                                            <div class="quotes-transaction-tabel-box">
+                                                <dl class="quotes-transaction-tabel-body">
+                                                    <dd class="quotes-transaction-tabel-item cell">
+                                                        <div class="inner">
+                                                            <span class="color-buy">{{__('market.buys')}} 1</span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <b class="color-buy-bg" style="width: 30%;"></b>
+                                                        </div>
+                                                    </dd>
+                                                    <dd class="quotes-transaction-tabel-item cell">
+                                                        <div class="inner">
+                                                            <span class="color-buy">{{__('market.buys')}} 2</span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <b class="color-buy-bg" style="width: 30%;"></b>
+                                                        </div>
+                                                    </dd>
+                                                    <dd class="quotes-transaction-tabel-item cell">
+                                                        <div class="inner">
+                                                            <span class="color-buy">{{__('market.buys')}} 3</span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <b class="color-buy-bg" style="width: 30%;"></b>
+                                                        </div>
+                                                    </dd>
+                                                    <dd class="quotes-transaction-tabel-item cell">
+                                                        <div class="inner">
+                                                            <span class="color-buy">{{__('market.buys')}} 4</span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <b class="color-buy-bg" style="width: 30%;"></b>
+                                                        </div>
+                                                    </dd>
+                                                    <dd class="quotes-transaction-tabel-item cell">
+                                                        <div class="inner">
+                                                            <span class="color-buy">{{__('market.buys')}} 5</span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <b class="color-buy-bg" style="width: 30%;"></b>
+                                                        </div>
+                                                    </dd>
+                                                    <dd class="quotes-transaction-tabel-item cell">
+                                                        <div class="inner">
+                                                            <span class="color-buy">{{__('market.buys')}} 6</span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <b class="color-buy-bg" style="width: 30%;"></b>
+                                                        </div>
+                                                    </dd>
+                                                    <dd class="quotes-transaction-tabel-item cell">
+                                                        <div class="inner">
+                                                            <span class="color-buy">{{__('market.buys')}} 7</span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <span></span>
+                                                            <b class="color-buy-bg" style="width: 30%;"></b>
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+
+                                                <!--------------- 表格尾部 ------------->
+
+                                                {{--<div class="clearfix quotes-transaction-footer">--}}
+                                                {{--<div class="quotes-transaction-nav">--}}
+                                                {{--<p class="quotes-transaction-nav-text">--}}
+                                                {{--深度--}}
+                                                {{--<span>0.000001</span>--}}
+                                                {{--<i class="iconfont icon-xia"></i>--}}
+                                                {{--</p>--}}
+                                                {{--<ul class="quotes-transaction-nav-box">--}}
+                                                {{--<li class="quotes-transaction-navbar">0.000001</li>--}}
+                                                {{--<li class="quotes-transaction-navbar">0.00001</li>--}}
+                                                {{--<li class="quotes-transaction-navbar">0.0001</li>--}}
+                                                {{--</ul>--}}
+                                                {{--</div>--}}
+                                                {{--<a href="order.html" class="quotes-transaction-footer-btn">更多</a>--}}
+                                                {{--</div>--}}
+                                            </div>
+
+                                            <div class="clearfix quotes-transaction-footer">
+                                                <div class="quotes-transaction-nav">
+                                                    {{--<p class="quotes-transaction-nav-text" s">--}}
+                                                    {{--深度--}}
+                                                    {{--<span>0.000001</span>--}}
+                                                    {{--<i class="iconfont icon-xia"></i>--}}
+                                                    {{--</p>--}}
+                                                    {{--<ul class="quotes-transaction-nav-box">--}}
+                                                    {{--<li class="quotes-transaction-navbar">0.000001</li>--}}
+                                                    {{--<li class="quotes-transaction-navbar">0.00001</li>--}}
+                                                    {{--<li class="quotes-transaction-navbar">0.0001</li>--}}
+                                                    {{--</ul>--}}
+                                                </div>
+                                                <a href="{{route('order',['sb'=>$sb,'type'=>$type,'symbol'=>$symbol,'plat'=>$isPlatformStatus])}}" class="quotes-transaction-footer-btn">更多</a>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -544,7 +796,7 @@
                                             <div class="sell-trade">
                                                 <div class="sell-tetil">
                                                     <h2 style="color:#fff;font-size:.14rem;">可用
-                                                        <span id="tradeCoinInt"">0</span>
+                                                        <span id="tradeCoinInt">0</span>
                                                         <span id="tradeCoinDig">.0000</span>
                                                         <span style="color:#fff;">{{$tradeType['sellShortName']}}</span>
 
@@ -599,193 +851,27 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="left quotes-transaction-tabel-wrap">
-                                    <div class="quotes-transaction-tabel">
-                                        <div class="quotes-tabel-header">
-                                            <h2 id="header-text"></h2>
+                                <!-------------- 实时成交表 ----------------------->
+
+                                <div class="left quotes-deal-wrap" style="height:510px">
+                                    <div class="quotes-deal">
+                                        <div class="clearfix  quotes-header quotes-deal-header">
+                                            {{--<button class="iconfont icon-xia1 left"></button>--}}
+                                            <h2 class="left quotes-header-tetil quotes-sgraph-tetil" style="margin-left:20px;">{{__('market.intime')}}</h2>
+                                        </div>
+                                        <div class="quotes-deal-list-wrap">
+                                            <table class="quotes-deal-list" id="realTimeTrade">
+                                                <tr class="quotes-deal-item">
+                                                    <td>{{__('market.time')}}</td>
+                                                    <td>{{__('market.turn')}}</td>
+                                                    <td class="real-trade-price">{{__('market.price')}}({{$tradeType['buyShortName']}})</td>
+                                                    <td class="real-trade-mount">{{__('market.number')}}({{$tradeType['sellShortName']}})</td>
+                                                </tr>
+                                            </table>
                                         </div>
 
-                                <!------------  卖出的列表  ----------------->
-
-                                        <div class="quotes-transaction-tabel-data">
-                                            <dl class="quotes-transaction-tabel-body">
-                                            	   <dt class="quotes-transaction-tabel-tetil">
-                                            	       <span class="tetil"></span>
-                                            	       <span class="price" id="inner-price">{{__('market.price')}}({{$tradeType['buyShortName']}})</span>
-                                            	       <span class="amount" id="inner-amount">{{__('market.number')}}({{$tradeType['sellShortName']}})</span>
-                                            	       <span id="inner-sum">{{__('market.accu')}}({{$tradeType['sellShortName']}})</span>
-                                            	   </dt>
-                                            	   <dd class="quotes-transaction-tabel-item cell">
-                                            	       <div class="inner">
-                                            	           <span class="color-sell">{{__('market.sells')}} 7</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                            	           <b class="color-sell-bg" style="width: 30%;"></b>
-                                            	       </div>
-                                            	   </dd>
-                                            	   <dd class="quotes-transaction-tabel-item cell">
-                                            	       <div class="inner">
-                                            	           <span class="color-sell">{{__('market.sells')}} 6</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                            	           <b class="color-sell-bg" style="width: 40%;"></b>
-                                            	       </div>
-                                            	   </dd>
-                                            	   <dd class="quotes-transaction-tabel-item cell">
-                                            	       <div class="inner">
-                                            	           <span class="color-sell">{{__('market.sells')}} 5</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                            	           <b class="color-sell-bg" style="width: 25%;"></b>
-                                            	       </div>
-                                            	   </dd>
-                                            	   <dd class="quotes-transaction-tabel-item cell">
-                                            	       <div class="inner">
-                                            	           <span class="color-sell">{{__('market.sells')}} 4</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                            	           <b class="color-sell-bg" style="width: 10%;"></b>
-                                            	       </div>
-                                            	   </dd>
-                                            	   <dd class="quotes-transaction-tabel-item cell">
-                                            	       <div class="inner">
-                                            	           <span class="color-sell">{{__('market.sells')}} 3</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                            	           <b class="color-sell-bg" style="width: 5%;"></b>
-                                            	       </div>
-                                            	   </dd>
-                                            	   <dd class="quotes-transaction-tabel-item cell">
-                                            	       <div class="inner">
-                                            	           <span class="color-sell">{{__('market.sells')}} 2</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                            	           <b class="color-sell-bg" style="width: 90%;"></b>
-                                            	       </div>
-                                            	   </dd>
-                                            	   <dd class="quotes-transaction-tabel-item cell">
-                                            	       <div class="inner">
-                                            	           <span class="color-sell">{{__('market.sells')}} 1</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                            	           <b class="color-sell-bg" style="width: 30%;"></b>
-                                            	       </div>
-                                            	   </dd>
-                                            </dl>
-
-                                   <!------------- 买入的列表 ------------->
-
-                                            <div class="quotes-transaction-tabel-box">
-                                                <dl class="quotes-transaction-tabel-body">
-                                                	   <dd class="quotes-transaction-tabel-item cell">
-                                                       <div class="inner">
-                                                           <span class="color-buy">{{__('market.buys')}} 1</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
-                                                       </div>
-                                                   </dd>
-                                                	   <dd class="quotes-transaction-tabel-item cell">
-                                                       <div class="inner">
-                                                           <span class="color-buy">{{__('market.buys')}} 2</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
-                                                       </div>
-                                                   </dd>
-                                                	   <dd class="quotes-transaction-tabel-item cell">
-                                                       <div class="inner">
-                                                           <span class="color-buy">{{__('market.buys')}} 3</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
-                                                       </div>
-                                                   </dd>
-                                                	   <dd class="quotes-transaction-tabel-item cell">
-                                                       <div class="inner">
-                                                           <span class="color-buy">{{__('market.buys')}} 4</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
-                                                       </div>
-                                                   </dd>
-                                                	   <dd class="quotes-transaction-tabel-item cell">
-                                                       <div class="inner">
-                                                           <span class="color-buy">{{__('market.buys')}} 5</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
-                                                       </div>
-                                                   </dd>
-                                                	   <dd class="quotes-transaction-tabel-item cell">
-                                                       <div class="inner">
-                                                           <span class="color-buy">{{__('market.buys')}} 6</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
-                                                       </div>
-                                                   </dd>
-                                                	   <dd class="quotes-transaction-tabel-item cell">
-                                                       <div class="inner">
-                                                           <span class="color-buy">{{__('market.buys')}} 7</span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <span></span>
-                                                           <b class="color-buy-bg" style="width: 30%;"></b>
-                                                       </div>
-                                                   </dd>
-                                                </dl>
-
-                                     <!--------------- 表格尾部 ------------->
-
-                                                {{--<div class="clearfix quotes-transaction-footer">--}}
-                                                    {{--<div class="quotes-transaction-nav">--}}
-                                                        {{--<p class="quotes-transaction-nav-text">--}}
-                                                            {{--深度--}}
-                                                            {{--<span>0.000001</span>--}}
-                                                            {{--<i class="iconfont icon-xia"></i>--}}
-                                                        {{--</p>--}}
-                                                        {{--<ul class="quotes-transaction-nav-box">--}}
-                                                            {{--<li class="quotes-transaction-navbar">0.000001</li>--}}
-                                                            {{--<li class="quotes-transaction-navbar">0.00001</li>--}}
-                                                            {{--<li class="quotes-transaction-navbar">0.0001</li>--}}
-                                                        {{--</ul>--}}
-                                                    {{--</div>--}}
-                                                    {{--<a href="order.html" class="quotes-transaction-footer-btn">更多</a>--}}
-                                                {{--</div>--}}
-                                            </div>
-
-                                            <div class="clearfix quotes-transaction-footer">
-                                                <div class="quotes-transaction-nav">
-                                                    {{--<p class="quotes-transaction-nav-text" s">--}}
-                                                        {{--深度--}}
-                                                        {{--<span>0.000001</span>--}}
-                                                        {{--<i class="iconfont icon-xia"></i>--}}
-                                                    {{--</p>--}}
-                                                    {{--<ul class="quotes-transaction-nav-box">--}}
-                                                        {{--<li class="quotes-transaction-navbar">0.000001</li>--}}
-                                                        {{--<li class="quotes-transaction-navbar">0.00001</li>--}}
-                                                        {{--<li class="quotes-transaction-navbar">0.0001</li>--}}
-                                                    {{--</ul>--}}
-                                                </div>
-                                                <a href="{{route('order',['sb'=>$sb,'type'=>$type,'symbol'=>$symbol,'plat'=>$isPlatformStatus])}}" class="quotes-transaction-footer-btn">更多</a>
-                                            </div>
-
-                                        </div>
                                     </div>
+
                                 </div>
                             </div>
 
@@ -797,25 +883,32 @@
 
                             <div class="clearfix quotes-transaction" id="ensureButton" style="margin-top: 6px;">
                                 <div class="clearfix  quotes-header quotes-intrust-header">
-                                    <button class="iconfont icon-xia1 left"></button>
-                                    <h2 class="left quotes-header-tetil quotes-sgraph-tetil">{{__('market.entrust')}}</h2>
+                                    {{--<button class="iconfont icon-xia1 left"></button>--}}
+                                    <div class="j-entrust-title-wrap">
+                                        <h2 class="left quotes-header-tetil quotes-sgraph-tetil j-entrust-title active" data-id="ensure" >{{__('market.entrust')}}</h2>
+                                        <h2 class="left quotes-header-tetil quotes-sgraph-tetil j-entrust-title " data-id="enhis"  style="margin-left:52px">{{__('market.enHis')}}</h2>
+                                    </div>
                                     <div class="quotes-header-nav-wrap">
+                                        @if($login)
+                                        <div style="margin-right:50px;margin-top:10px;">
+                                            <button style="width:80px;height:30px;color:#7E86A0;font-size:12px;border:1px solid #525A77;border-radius:5px;" class="j_entrust_cancel">批量撤销</button>
+                                        </div>
+                                        @endif
                                         <ul class="quotes-header-nav">
-                                            <li class="quotes-header-navbar active encur-tab" data-id="ensure-buy">
+                                            <li class="quotes-header-navbar active encur-tab" data-id="buy" style="font-size:14px;">
                                                 <button>{{__('market.buy')}}</button>
                                             </li>
-                                            <li class="quotes-header-navbar encur-tab" data-id="ensure-sell">
+                                            <li class="quotes-header-navbar encur-tab" data-id="sell">
                                                 <button>{{__('market.sell')}}</button>
                                             </li>
-                                            <li class="quotes-header-navbar encur-tab" data-id="ensure-all">
+                                            <li class="quotes-header-navbar encur-tab" data-id="all">
                                                 <button>{{__('market.all')}}</button>
                                             </li>
                                         </ul>
                                     </div>
                                  </div>
-                                 <div class="quotes-intrust-wrap">
-                                     <div class="quotes-intrust">
-
+                                 <div class="quotes-intrust-wrap" style="height:380px">
+                                     <div class="quotes-intrust1">
                                          <table class="quotes-intrust-list ensure-table" id="ensure-buy">
                                              <thead>
                                                  <tr class="quotes-intrust-list-header">
@@ -832,7 +925,64 @@
                                              </thead>
                                          	<tbody id="ensure-buy-data">
                                          	   <!----------- 无记录 ------------>
-
+                                               <tr class="quotes-intrust-item">
+                                                   <td>32</td>
+                                                   <td>43</td>
+                                                   <td>55</td>
+                                                   <td>66</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                               </tr>
+                                               <tr class="quotes-intrust-item">
+                                                   <td>32</td>
+                                                   <td>43</td>
+                                                   <td>55</td>
+                                                   <td>66</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                               </tr>
+                                               <tr class="quotes-intrust-item">
+                                                   <td>32</td>
+                                                   <td>43</td>
+                                                   <td>55</td>
+                                                   <td>66</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                               </tr>
+                                               <tr class="quotes-intrust-item">
+                                                   <td>32</td>
+                                                   <td>43</td>
+                                                   <td>55</td>
+                                                   <td>66</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                               </tr>
+                                               <tr class="quotes-intrust-item">
+                                                   <td>32</td>
+                                                   <td>43</td>
+                                                   <td>55</td>
+                                                   <td>66</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                                   <td>77</td>
+                                               </tr>
+                                               <tr class="quotes-intrust-item" style="height:40px;line-height:40px;border-bottom:1px solid #181B2A">
+                                                   <td colspan="9" style="text-align: center;"><a href="/trade/cny_entrust.html?status=0&symbol='+symbol+'" style="font-size:16px;color:#5B90E4">查看更多</a></td>
+                                               </tr>
                                          	</tbody>
                                          </table>
 
@@ -875,51 +1025,25 @@
 
                                              </tbody>
                                          </table>
-                                     </div>
-                                 </div>
-                            </div>
 
-
-                        <!------------------------ 委托记录 ------------------>
-
-                            <div class="clearfix quotes-transaction js-action-enhis">
-                                <div class="clearfix  quotes-header quotes-intrust-header">
-                                    <button class="iconfont icon-xia1 left"></button>
-                                    <h2 class="left quotes-header-tetil ">{{__('market.enHis')}}</h2>
-                                    <div class="quotes-header-nav-wrap">
-                                        <ul class="quotes-header-nav">
-                                            <li class="quotes-header-navbar active enhis-tab" data-id="enhis-buy">
-                                                <button>{{__('market.buy')}}</button>
-                                            </li>
-                                            <li class="quotes-header-navbar enhis-tab" data-id="enhis-sell">
-                                                <button>{{__('market.sell')}}</button>
-                                            </li>
-                                            <li class="quotes-header-navbar enhis-tab" data-id="enhis-all">
-                                                <button>{{__('market.all')}}</button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                 </div>
-                                 <div class="quotes-intrust-wrap">
-                                     <div class="quotes-intrust">
-                                         <table class="quotes-intrust-list enhis-table" id="enhis-buy">
+                                         <table class="quotes-intrust-list enhis-table" id="enhis-buy" style="display:none">
                                              <thead>
-                                                <tr class="quotes-intrust-list-header">
-                                                    <th>{{__('market.time')}}</th>
-                                                    <th>{{__('market.trade')}}</th>
-                                                    <th>{{__('market.turn')}}</th>
-                                                    <th>{{__('market.price')}}（{{$tradeType['buyShortName']}}）</th>
-                                                    <th>{{__('market.number')}}（{{$tradeType['sellShortName']}}）</th>
-                                                    <th>{{__('market.enTotal')}}({{$tradeType['buyShortName']}})</th>
-                                                    <th>{{__('market.turnover')}}</th>
-                                                    <th>{{__('market.over')}}</th>
-                                                    <th>{{__('market.opera')}}</th>
+                                             <tr class="quotes-intrust-list-header">
+                                                 <th>{{__('market.time')}}</th>
+                                                 <th>{{__('market.trade')}}</th>
+                                                 <th>{{__('market.turn')}}</th>
+                                                 <th>{{__('market.price')}}（{{$tradeType['buyShortName']}}）</th>
+                                                 <th>{{__('market.number')}}（{{$tradeType['sellShortName']}}）</th>
+                                                 <th>{{__('market.enTotal')}}({{$tradeType['buyShortName']}})</th>
+                                                 <th>{{__('market.turnover')}}</th>
+                                                 <th>{{__('market.over')}}</th>
+                                                 <th>{{__('market.opera')}}</th>
                                              </tr>
                                              </thead>
-                                            <tbody id="enhis-buy-data">
-                                               <!----------- 无记录 ------------>
+                                             <tbody id="enhis-buy-data">
+                                             <!----------- 无记录 ------------>
 
-                                            </tbody>
+                                             </tbody>
                                          </table>
 
                                          <table class="quotes-intrust-list enhis-table" id="enhis-sell" style="display: none;">
@@ -966,48 +1090,148 @@
                             </div>
 
 
+                        <!------------------------ 委托记录 ------------------>
 
-                        <!----------------------- 深度图及实时成交  ----------------->
+                            {{--<div class="clearfix quotes-transaction js-action-enhis">--}}
+                                {{--<div class="clearfix  quotes-header quotes-intrust-header">--}}
+                                    {{--<button class="iconfont icon-xia1 left"></button>--}}
+                                    {{--<h2 class="left quotes-header-tetil ">{{__('market.enHis')}}</h2>--}}
+                                    {{--<div class="quotes-header-nav-wrap">--}}
+                                        {{--<ul class="quotes-header-nav">--}}
+                                            {{--<li class="quotes-header-navbar active enhis-tab" data-id="enhis-buy">--}}
+                                                {{--<button>{{__('market.buy')}}</button>--}}
+                                            {{--</li>--}}
+                                            {{--<li class="quotes-header-navbar enhis-tab" data-id="enhis-sell">--}}
+                                                {{--<button>{{__('market.sell')}}</button>--}}
+                                            {{--</li>--}}
+                                            {{--<li class="quotes-header-navbar enhis-tab" data-id="enhis-all">--}}
+                                                {{--<button>{{__('market.all')}}</button>--}}
+                                            {{--</li>--}}
+                                        {{--</ul>--}}
+                                    {{--</div>--}}
+                                 {{--</div>--}}
+                                 {{--<div class="quotes-intrust-wrap">--}}
+                                     {{--<div class="quotes-intrust">--}}
+                                         {{--<table class="quotes-intrust-list enhis-table" id="enhis-buy">--}}
+                                             {{--<thead>--}}
+                                                {{--<tr class="quotes-intrust-list-header">--}}
+                                                    {{--<th>{{__('market.time')}}</th>--}}
+                                                    {{--<th>{{__('market.trade')}}</th>--}}
+                                                    {{--<th>{{__('market.turn')}}</th>--}}
+                                                    {{--<th>{{__('market.price')}}（{{$tradeType['buyShortName']}}）</th>--}}
+                                                    {{--<th>{{__('market.number')}}（{{$tradeType['sellShortName']}}）</th>--}}
+                                                    {{--<th>{{__('market.enTotal')}}({{$tradeType['buyShortName']}})</th>--}}
+                                                    {{--<th>{{__('market.turnover')}}</th>--}}
+                                                    {{--<th>{{__('market.over')}}</th>--}}
+                                                    {{--<th>{{__('market.opera')}}</th>--}}
+                                             {{--</tr>--}}
+                                             {{--</thead>--}}
+                                            {{--<tbody id="enhis-buy-data">--}}
+                                               {{--<!----------- 无记录 ------------>--}}
 
-                            <div class="clearfix quotes-transaction">
+                                            {{--</tbody>--}}
+                                         {{--</table>--}}
 
-                                <!---------------- 深度图 -------------------->
-                                <div class="left quotes-sgraph">
-                                    <div class="clearfix  quotes-header quotes-sgraph-header">
-                                        <button class="iconfont icon-xia1 left"></button>
-                                        <h2 class="left quotes-header-tetil quotes-sgraph-tetil">{{__('market.deepth')}}</h2>
-                                    </div>
-                                    <div class="quotes-sgraph-box" >
-                                        <div id="depth-chart" style="width: 100%;height: 485px;background-color:#181B2A">
+                                         {{--<table class="quotes-intrust-list enhis-table" id="enhis-sell" style="display: none;">--}}
+                                             {{--<thead>--}}
+                                             {{--<tr class="quotes-intrust-list-header">--}}
+                                                 {{--<th>{{__('market.time')}}</th>--}}
+                                                 {{--<th>{{__('market.trade')}}</th>--}}
+                                                 {{--<th>{{__('market.turn')}}</th>--}}
+                                                 {{--<th>{{__('market.price')}}（{{$tradeType['buyShortName']}}）</th>--}}
+                                                 {{--<th>{{__('market.number')}}（{{$tradeType['sellShortName']}}）</th>--}}
+                                                 {{--<th>{{__('market.enTotal')}}({{$tradeType['buyShortName']}})</th>--}}
+                                                 {{--<th>{{__('market.turnover')}}</th>--}}
+                                                 {{--<th>{{__('market.over')}}</th>--}}
+                                                 {{--<th>{{__('market.opera')}}</th>--}}
+                                             {{--</tr>--}}
+                                             {{--</thead>--}}
+                                             {{--<tbody id="enhis-sell-data">--}}
+                                             {{--<!----------- 无记录 ------------>--}}
 
-                                        </div>
-                                    </div>
-                                </div>
+                                             {{--</tbody>--}}
+                                         {{--</table >--}}
 
-                               <!-------------- 实时成交表 ----------------------->
+                                         {{--<table class="quotes-intrust-list enhis-table" id="enhis-all" style="display: none;">--}}
+                                             {{--<thead>--}}
+                                             {{--<tr class="quotes-intrust-list-header">--}}
+                                                 {{--<th>{{__('market.time')}}</th>--}}
+                                                 {{--<th>{{__('market.trade')}}</th>--}}
+                                                 {{--<th>{{__('market.turn')}}</th>--}}
+                                                 {{--<th>{{__('market.price')}}</th>--}}
+                                                 {{--<th>{{__('market.number')}}</th>--}}
+                                                 {{--<th>{{__('market.enTotal')}}</th>--}}
+                                                 {{--<th>{{__('market.turnover')}}</th>--}}
+                                                 {{--<th>{{__('market.over')}}</th>--}}
+                                                 {{--<th>{{__('market.opera')}}</th>--}}
+                                             {{--</tr>--}}
+                                             {{--</thead>--}}
+                                             {{--<tbody id="enhis-all-data">--}}
+                                             {{--<!----------- 无记录 ------------>--}}
 
-                               <div class="left quotes-deal-wrap">
-                                   <div class="quotes-deal">
-                                       <div class="clearfix  quotes-header quotes-deal-header">
-                                            <button class="iconfont icon-xia1 left"></button>
-                                            <h2 class="left quotes-header-tetil quotes-sgraph-tetil">{{__('market.intime')}}</h2>
-                                        </div>
-                                        <div class="quotes-deal-list-wrap">
-                                            <table class="quotes-deal-list" id="realTimeTrade">
-                                               <tr class="quotes-deal-item">
-                                                   <td>{{__('market.time')}}</td>
-                                                   <td>{{__('market.turn')}}</td>
-                                                   <td class="real-trade-price">{{__('market.price')}}({{$tradeType['buyShortName']}})</td>
-                                                   <td class="real-trade-mount">{{__('market.number')}}({{$tradeType['sellShortName']}})</td>
-                                               </tr>
-                                           </table>
-                                        </div>
+                                             {{--</tbody>--}}
+                                         {{--</table>--}}
+                                     {{--</div>--}}
+                                 {{--</div>--}}
+                            {{--</div>--}}
 
-                                   </div>
+                            {{--<div class="clearfix quotes-transaction js-action-enhis">--}}
+                                {{--<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">--}}
+                                    {{--<ul class="layui-tab-title">--}}
+                                        {{--<li class="layui-this">当前委托</li>--}}
+                                        {{--<li>委托历史</li>--}}
+                                    {{--</ul>--}}
+                                    {{--<div class="layui-tab-content" style="height: 100px;">--}}
+                                        {{--<div class="layui-tab-item layui-show">--}}
+                                            {{--<table class="quotes-intrust-list enhis-table" id="enhis-buy">--}}
+                                                {{--<thead>--}}
+                                                {{--<tr class="quotes-intrust-list-header">--}}
+                                                    {{--<th>{{__('market.time')}}</th>--}}
+                                                    {{--<th>{{__('market.trade')}}</th>--}}
+                                                    {{--<th>{{__('market.turn')}}</th>--}}
+                                                    {{--<th>{{__('market.price')}}（{{$tradeType['buyShortName']}}）</th>--}}
+                                                    {{--<th>{{__('market.number')}}（{{$tradeType['sellShortName']}}）</th>--}}
+                                                    {{--<th>{{__('market.enTotal')}}({{$tradeType['buyShortName']}})</th>--}}
+                                                    {{--<th>{{__('market.turnover')}}</th>--}}
+                                                    {{--<th>{{__('market.over')}}</th>--}}
+                                                    {{--<th>{{__('market.opera')}}</th>--}}
+                                                {{--</tr>--}}
+                                                {{--</thead>--}}
+                                                {{--<tbody id="enhis-buy-data">--}}
+                                                {{--<!----------- 无记录 ------------>--}}
 
-                               </div>
+                                                {{--</tbody>--}}
+                                            {{--</table>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="layui-tab-item">--}}
+                                            {{--<table class="quotes-intrust-list enhis-table" id="enhis-buy">--}}
+                                                {{--<thead>--}}
+                                                {{--<tr class="quotes-intrust-list-header">--}}
+                                                    {{--<th>{{__('market.time')}}</th>--}}
+                                                    {{--<th>{{__('market.trade')}}</th>--}}
+                                                    {{--<th>{{__('market.turn')}}</th>--}}
+                                                    {{--<th>{{__('market.price')}}（{{$tradeType['buyShortName']}}）</th>--}}
+                                                    {{--<th>{{__('market.number')}}（{{$tradeType['sellShortName']}}）</th>--}}
+                                                    {{--<th>{{__('market.enTotal')}}({{$tradeType['buyShortName']}})</th>--}}
+                                                    {{--<th>{{__('market.turnover')}}</th>--}}
+                                                    {{--<th>{{__('market.over')}}</th>--}}
+                                                    {{--<th>{{__('market.opera')}}</th>--}}
+                                                {{--</tr>--}}
+                                                {{--</thead>--}}
+                                                {{--<tbody id="enhis-buy-data">--}}
+                                                {{--<!----------- 无记录 ------------>--}}
 
-                            </div>
+                                                {{--</tbody>--}}
+                                            {{--</table>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="layui-tab-item">内容3</div>--}}
+                                        {{--<div class="layui-tab-item">内容4</div>--}}
+                                        {{--<div class="layui-tab-item">内容5</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+
+
 
                         </div>
                 </div>
@@ -1239,20 +1463,43 @@
 
 
         </script>
+
         <script type="text/javascript">
+            // $(".slider").slider({
+            //         min: 0,
+            //         max: 100,
+            //         step: 5,
+            //         classes:{
+            //             "ui-slider":"ui-info",
+            //             "ui-slider-handle":"ui-info-handle",
+            //             "ui-slider-pip": "ui-info-range"
+            //         },
+            //         orientation: "horizontal",
+            //         range: "min",
+            //         change: _slider_data,
+            //     }).slider("pips");
+            var per=['0','20','40','60','80','100'];
             $(".slider").slider({
-                    min: 0,
-                    max: 100,
-                    step: 20,
-                    classes:{
-                        "ui-slider":"ui-info",
-                        "ui-slider-handle":"ui-info-handle",
-                        "ui-slider-pip": "ui-info-range"
-                    },
-                    orientation: "horizontal",
-                    range: "min",
-                    change: _slider_data
-                }).slider("pips");
+                min: 0,
+                max: 100,
+                // step: 5,
+                classes:{
+                    "ui-slider":"ui-info",
+                    "ui-slider-handle":"ui-info-handle",
+                    "ui-slider-pip": "ui-info-range"
+                },
+                orientation: "horizontal",
+                range: "min",
+                change: _slider_data,
+                //
+                // slide: function( event, ui ) {
+                //     // console.log($(this).slider("value"));
+                //     console.log(event);
+                //     console.log(ui);
+                //     // console.log("$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ]);
+                //     // $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                // }
+            }).slider("pips",{rest:"label",step:"20"}).slider('float');
 
             function _slider_data(){
                 var _left = $(this).slider("value");

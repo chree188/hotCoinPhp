@@ -10,6 +10,8 @@ class TradeviewController extends Controller
     private $indexUrl = '/trademarket_json.html';
     private $fullPeriodUrl = '/kline/fullperiod.html';
     private $lastperiod = '/kline/lastperiod.html';
+    private $getTotalAsset = '/v1/user/balance.html';
+    private $batchCnyCancel = '/trade/batch_cny_cancel.html';
 
 
     /**
@@ -92,6 +94,19 @@ class TradeviewController extends Controller
             $arr["massage"] = "失败";
         }
         return json_encode($arr);
+    }
+
+    public function getTotalAsset(Request $request){
+        $url = $this->host . $this->getTotalAsset;
+        $response = $this->httpGet($url);
+        return $response;
+    }
+
+    public function batchCnyCancel(Request $request){
+        $param = $request->only(['tradeId','type']);
+        $url = $this->host . $this->batchCnyCancel;
+        $response = $this->httpGet($url,$param);
+        return $response;
     }
 
 }

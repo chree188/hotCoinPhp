@@ -186,7 +186,7 @@ var trade = {
         var callback = function (data) {
 
             $('.slider').slider("value","0");
-
+            is_show(2);
             btn.html(btntext);
             $('#'+errorele).css('color','green');
             util.showerrortips(errorele, util.getLan(data.msg));
@@ -589,9 +589,9 @@ var trade = {
                     var entrutsCurstr = "";
                     var noneStr  = '<tr class="quotes-intrust-norecord"> <td colspan="9">'+util.getLan("trade.tips.6")+'</td></tr>';
                     var symbol = $('#symbol').val();
-                    var moreStr  = '<tr class="quotes-intrust-item"> <td colspan="9" style="text-align: center;"><a href="/trade/cny_entrust.html?status=0&symbol='+symbol+'">'+util.getLan("trade.tips.28")+'</a></td></tr>';
+                    var moreStr  = '<tr class="quotes-intrust-item" style="height:40px;line-height:40px;border-bottom:1px solid #181B2A"> <td colspan="9" style="text-align: center;"><a href="/trade/cny_entrust.html?status=0&symbol='+symbol+'" style="font-size:16px;color:#5B90E4">'+util.getLan("trade.tips.28")+'</a></td></tr>';
 
-                    var moreStr1  = '<tr class="quotes-intrust-item"> <td colspan="9" style="text-align: center;"><a href="/trade/cny_entrust.html?status=1&symbol='+symbol+'">'+util.getLan("trade.tips.28")+'</a> </td></tr>';
+                    var moreStr1  = '<tr class="quotes-intrust-item" style="height:40px;line-height:40px;border-bottom:1px solid #181B2A"> <td colspan="9" style="text-align: center;"><a href="/trade/cny_entrust.html?status=1&symbol='+symbol+'" style="font-size:16px;color:#5B90E4">'+util.getLan("trade.tips.28")+'</a> </td></tr>';
                     //濮旀墭鍗�
                     var jiaoyidui  = $('#sellShortName').val() + '/'+ $('#buyShortName').val();
                     $.each(result.data.entrutsCur, function (key, value) {
@@ -934,26 +934,46 @@ function tradepassShow(){
     util.callbackEnter(trade.submitTradePwd);
 }
 
+$('.j-entrust-title-wrap').on('click','.j-entrust-title',function(){
+        $('.j-entrust-title').removeClass('active');
+
+    $(this).addClass('active');
+
+    $('.ensure-table').hide();
+    $('.enhis-table').hide();
+    var title =  $(this).data('id');
+    if(title=="ensure"){
+        $('.j_entrust_cancel').css('display','block');
+    }else{
+        $('.j_entrust_cancel').css('display','none');
+    }
+    var type=$('.quotes-header-nav').find('.active').attr('data-id');
+    $('#'+title+'-'+type).show();
+});
+
 //鍒囨崲濮旀墭
 $(".encur-tab").on({
     click:function(){
         $(this).siblings(".encur-tab").removeClass("active");
         $('.ensure-table').hide();
-        var id =  $(this).data('id');
-        $('#' + id).show();
+        $('.enhis-table').hide();
+        var title =$('.j-entrust-title-wrap').find('.active').data('id');
+        var type =  $(this).data('id');
+        console.log('#'+title+'-'+type);
+        $('#'+title+'-'+type).show();
         $(this).addClass("active");
     }
 })
 
-$(".enhis-tab").on({
-    click:function(){
-        $(this).siblings(".enhis-tab").removeClass("active");
-        $('.enhis-table').hide();
-        var id =  $(this).data('id');
-        $('#' + id).show();
-        $(this).addClass("active");
-    }
-})
+// $(".enhis-tab").on({
+//     click:function(){
+//         $(this).siblings(".enhis-tab").removeClass("active");
+//         $('.enhis-table').hide();
+//         var id =  $(this).data('id');
+//         $('#' + id).show();
+//         $(this).addClass("active");
+//     }
+// })
 
 function calculateCNY(value,symbol) {
     var result = 0;
@@ -970,13 +990,89 @@ function calculateCNY(value,symbol) {
     return result;
 }
 
+$('#hide_asset').click(function(){
+    is_show(1);
+})
+$('#show_asset').click(function(){
+    is_show(2);
+})
+$('.j_entrust_cancel').click(function(){
+    var url='/trade/batch_cny_cancel.html';
+    var data={};
+    var type=$('.quotes-header-nav').find('.active').attr('data-id');
+    data.tradeId = $('#symbol').val();
+    if(type=='buy'){
+        data.type=1;
+    }else if(type=='sell'){
+        data.type=2
+    }else{
+        data.type=0;
+    }
+
+    $.ajax({
+        type:"get",
+        url: url,
+        data: data,
+        async:false,
+        dataType:"json",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(msg){
+            util.layerAlert("", '撤单成功', 1);
+        }
+    });
+})
+
+function getTotalAsset(){
+    var url='/v1/user/balance.html';
+    $.ajax({
+        type:"get",
+        url: url,
+        data: {},
+        async:false,
+        dataType:"json",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function(msg){
+            if(msg.code == 200){
+                $('#net_assets').html(msg.data.netassets);
+            }else{
+                $('#net_assets').html('0.00');
+            }
+
+        }
+    });
+}
+is_show(2);
+function is_show(type){
+    if(type==1){
+        $('#show_asset').css('display','block');
+        $('#hide_asset').css('display','none');
+        $('#net_assets').html('--');
+    }else{
+        getTotalAsset();
+        $('#show_asset').css('display','none');
+        $('#hide_asset').css('display','block');
+    }
+}
+
+
 //鎾ゅ崟鎸夐挳
 $("#ensureButton").on("click",'.cancelEntrustBtc', function () {
     var id = $(this).data().fid;
     trade.cancelEntrustBtc(this, id);
 });
 //鍘嗗彶濮旀墭鍗�
-$('.js-action-enhis').on('click','.enhis-btn-detial',function(){
+// $('.js-action-enhis').on('click','.enhis-btn-detial',function(){
+//     var id = $(this).data().fid;
+//     trade.entrustLog(id);
+//     console.log(id)
+// });
+
+$('#ensureButton').on('click','.enhis-btn-detial',function(){
     var id = $(this).data().fid;
     trade.entrustLog(id);
 });
+

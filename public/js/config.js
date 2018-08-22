@@ -2,7 +2,7 @@ host = 'post-cn-4590o3eqj0v.mqtt.aliyuncs.com';// 设置当前用户的接入点
 topic = 'HOTCOIN_WEB_GSET_TRADE';//需要操作的 Topic
 
 
-if(window.document.location.host =='www.hotcoin.top'){
+if(window.document.location.host =='www.hotcoin.top' || window.document.location.host =='hk.hotcoin.top'){
     accessKey= 'LTAI5YIotdwRXoNP';
     secretKey =  'nn6QURHbDVtCLnooPFfU9qetNbq5OP';
     topic = 'HOTCOIN_WEB_GSET_TRADE';

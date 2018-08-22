@@ -3,6 +3,7 @@ var mqtt;
 var reconnectTimeout = 2000;
 var username =accessKey;
 var password=CryptoJS.HmacSHA1(groupId,secretKey).toString(CryptoJS.enc.Base64);
+var count_time=0;
 function MQTTconnect() {
     mqtt = new Paho.MQTT.Client(
         host,//MQTT 域名
@@ -10,11 +11,20 @@ function MQTTconnect() {
         path,
         clientId //客户端 ClientId
     );
+
     var options = {
         timeout: 3,
         onSuccess: onConnect,
         onFailure: function (message) {
             setTimeout(MQTTconnect, reconnectTimeout);
+            // if(count_time<6){
+            //     count_time++;
+            //     setTimeout(MQTTconnect, reconnectTimeout);
+            // }else{
+            //     mqtt.close();
+            //     fetchRealTimePriceFirst()
+            // }
+
         }
     };
 
@@ -447,7 +457,6 @@ function fetchRealTimePrice(data) {
 
 }
 
-
 /**
  * 获取平台k线
  */
@@ -515,6 +524,11 @@ function fetchRealTimePriceFirst() {
     };
     util.network({url: url, param: param, success: callback});
 }
+// function polling(){
+//     fetchRealTimePriceFirst();
+// }
+
+
 
 $(function () {
     $("#indexLoginPwd").on("focus", function () {

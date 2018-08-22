@@ -141,7 +141,7 @@
                         <div class="col-xs-12 area-table-wrap">
                             <table class="area-table" id="marketType{{$index}}">
                                 <tr style="background: rgba(237,240,245,1);height: 52px;">
-                                    <th>{{ __('head.currency') }} </th>
+                                    <th style="width:178px;">{{ __('head.currency') }} </th>
                                     <th>{{ __('head.last') }}(<span style="font-size:13px">{{$SymbolMap[$index]}}</span>)</th>
                                     <th>{{ __('head.change_today') }}</th>
                                     <th>24H{{ __('head.high1')}}(<span style="font-size:13px">{{$SymbolMap[$index]}}</span>)</th>
@@ -159,7 +159,7 @@
                         <div class="col-xs-12 area-table-wrap">
                             <table class="area-table" id="marketType{{$index}}">
                                 <tr style="background: rgba(237,240,245,1);height: 52px;">
-                                    <th>{{ __('head.currency') }} </th>
+                                    <th style="width:178px;">{{ __('head.currency') }} </th>
                                     <th>{{ __('head.last') }}(<span style="font-size:13px">{{$SymbolMap[$index]}}</span>)</th>
                                     <th>{{ __('head.change_today') }}</th>
                                     <th>24H{{ __('head.high1') }}(<span style="font-size:13px">{{$SymbolMap[$index]}}</span>) </th>

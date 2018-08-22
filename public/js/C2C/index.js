@@ -91,9 +91,11 @@ layui.use(['table','jquery'], function(){
                     if(row.type ==1 && row.status ==1){
                         str += '<button class="list_show_detail j_list_show_buy_detail"  data-id="'+row.id+'"  style="margin-left:5px;border-radius:5px;font-size:14px;color:#444;background-color:#fff;width:60px;80px;border:1px solid #E6E6E6">'+util.getLan('consumer.index.9')+'</button>'
 
-                    }else if(row.type ==2 && row.status ==1){
-                        str += '<button class="list_show_detail j_list_show_sell_detail" data-id="'+row.id+'"  style="margin-left:5px;border-radius:5px;font-size:14px;color:#444;background-color:#fff;width:60px;80px;border:1px solid #E6E6E6">'+util.getLan('consumer.index.9')+'</button>'
-                    } else{
+                    }
+                    // else if(row.type ==2 && row.status ==1){
+                    //     str += '<button class="list_show_detail j_list_show_sell_detail" data-id="'+row.id+'"  style="margin-left:5px;border-radius:5px;font-size:14px;color:#444;background-color:#fff;width:60px;80px;border:1px solid #E6E6E6">'+util.getLan('consumer.index.9')+'</button>'
+                    // }
+                    else{
                         str +='--';
              //           str +='<button class="list_confirm" style="background-color:#0CA703;border-radius:5px;font-size:14px;color:#fff;width:80px;border:1px solid #fff">确认打款</button>'
              //            str +='<button class="list_show_detail"  style="margin-left:5px;border-radius:5px;font-size:14px;color:#444;background-color:#fff;width:60px;80px;border:1px solid #E6E6E6">查看</button>'
@@ -315,7 +317,7 @@ layui.use('jquery',function () {
             layer.msg(util.getLan('consumer.content.4'));
             return;
         }
-        if(parseInt(total_price)>parseInt(available)){
+        if(parseInt(data.amount)>parseInt(available)){
             // layer.msg("可用GSET不足");
             layer.msg(util.getLan('consumer.content.5'));
             return;

@@ -2078,7 +2078,7 @@ textarea::-webkit-input-placeholder {
 /*币交易修改*/
 /*coin-introduce*/
 .quotes-window {
-  width:20%;
+  width:19%;
   float: left;
 }
 @media only screen and (max-width: 1920px) and (min-width: 1400px) {
@@ -2100,7 +2100,7 @@ textarea::-webkit-input-placeholder {
 
 .quotes-window  .coin-introduce{
   background: #181B2A;
-  padding: 0 4px 34px 22px;
+  padding: 0 4px 20px 22px;
 }
 
 .introduce-window-header {
@@ -2186,7 +2186,7 @@ textarea::-webkit-input-placeholder {
 
 .quotes-window-header {
   padding: 18px 9px 14px 9px;
-  border-bottom: 1px solid #474A59;
+  /*border-bottom: 1px solid #474A59;*/
   color: #555;
   font-weight: 500;
 }
@@ -2425,7 +2425,7 @@ textarea::-webkit-input-placeholder {
   }
 }
 .quotes-data {
-  width:80%;
+  width:81%;
   float:left;
   padding-left: 10px;
 }
@@ -2471,7 +2471,7 @@ textarea::-webkit-input-placeholder {
 }
 .quotes-data-kgraph .kline {
   width: 100%;
-  height: 690px;
+  height: 502px;
 
 }
 .quotes-transaction {
@@ -2508,11 +2508,12 @@ textarea::-webkit-input-placeholder {
 }
 .quotes-transaction-tabel {
   background: #181B2A;
+  height:550px;
 }
 .quotes-tabel-header {
   background: #1D2133;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.24);
-  padding: 16px 24px;
+  padding: 18px 24px;
 }
 .quotes-tabel-header h2 {
   font-size: .12rem;
@@ -2599,7 +2600,7 @@ textarea::-webkit-input-placeholder {
 
 
 .quotes-transaction-tabel-item {
-  padding: 0 6px;
+  padding: 1px 6px;
   margin-top: 5px;
 }
 .quotes-transaction-tabel-item .inner {
@@ -2709,7 +2710,8 @@ textarea::-webkit-input-placeholder {
   margin-left: 5px;
 }
 .quotes-sgraph {
-  width: 60%;
+  /*width: 60%;*/
+  margin-top:10px;
   background: #282A36;
   border-radius: 2px;
 }
@@ -2730,7 +2732,7 @@ textarea::-webkit-input-placeholder {
   border-radius: 2px;
 }
 .quotes-deal-list-wrap {
-  height: 525px;
+  height: 457px;
   overflow-y: auto;
   padding: 5px 0;
 }
@@ -2739,7 +2741,7 @@ textarea::-webkit-input-placeholder {
 }
 .quotes-deal-item td {
   text-align: center;
-  padding: 7px 0;
+  padding: 8px 0;
   color: #fff;
   font-size: .12rem;
 }
@@ -2764,16 +2766,29 @@ textarea::-webkit-input-placeholder {
 .quotes-header-nav .quotes-header-navbar button {
   padding: 18px 0 17px 0;
   font-size: .12rem;
-  color: #fff;
+  color:#7E86A0;
   border-bottom: 1px solid transparent;
 }
 .quotes-header-nav .active button {
   color: #EA5B25;
   border-color: #EA5B25;
 }
+.j-entrust-title-wrap{
+  height: 50px;
+  line-height: 50px;
+}
+
+.j-entrust-title-wrap h2{
+  cursor: pointer;
+}
+
+.j-entrust-title-wrap .active {
+  color: #EA5B25;
+  border-bottom: 1px solid #EA5B25;
+}
 .quotes-intrust-wrap {
   background: #181B2A;
-  padding: 0 30px 30px 30px;
+  /*padding: 0 30px 30px 30px;*/
   max-height: 500px;
   overflow-y: auto ;
 }
@@ -2785,15 +2800,15 @@ textarea::-webkit-input-placeholder {
   width: 100%;
 }
 .quotes-intrust-list-header th {
-  color: #ccc;
+  color: #7E86A0;
   font-size: .12rem;
   padding: 18px 0;
-  text-align: right;
+  text-align: center;
 }
-.quotes-intrust-list-header th:first-child,
-.quotes-intrust-list-header th:nth-child(2) {
-  text-align: left;
-}
+/*.quotes-intrust-list-header th:first-child,*/
+/*.quotes-intrust-list-header th:nth-child(2) {*/
+  /*text-align: left;*/
+/*}*/
 .quotes-intrust-norecord td {
   color: #ccc;
   font-size: .12rem;
@@ -2807,8 +2822,8 @@ textarea::-webkit-input-placeholder {
 .quotes-intrust-item td {
   font-size: .12rem;
   color: #fff;
-  padding: 14px 0;
-  text-align: right;
+  padding: 18px 0;
+  text-align: center;
 }
 .quotes-intrust-item .success {
   color: #0DA702;
@@ -2816,10 +2831,10 @@ textarea::-webkit-input-placeholder {
 .quotes-intrust-item .danger {
   color: #E64021;
 }
-.quotes-intrust-item td:first-child,
-.quotes-intrust-item td:nth-child(2) {
-  text-align: left;
-}
+/*.quotes-intrust-item td:first-child,*/
+/*.quotes-intrust-item td:nth-child(2) {*/
+  /*text-align: left;*/
+/*}*/
 .quotes-intrust-item .quotes-intrust-item-btn {
   color: #EA5B25;
 }
@@ -2860,7 +2875,7 @@ textarea::-webkit-input-placeholder {
 }
 .quotes-intrust-header .quotes-header-tetil {
   font-size: .16rem;
-  margin-left: 5px;
+  margin-left: 20px;
 }
 .rate {
   margin-top: 30px;

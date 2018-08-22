@@ -171,6 +171,9 @@ Route::group(['middleware' => 'change_lang'], function () {
     Route::get('/tradeviewdata','TradeviewController@tradeviewData')->name('tradeviewdata');
     Route::get('/incrementdata','TradeviewController@incrementData')->name('incrementdata');
 
+    Route::get('/v1/user/balance.html','TradeviewController@getTotalAsset')->name('getTotalAsset');
+    Route::get('/trade/batch_cny_cancel.html','TradeviewController@batchCnyCancel')->name('batchCnyCancel');
+
     Route::post('/trade/cny_buy.html','TradeController@cnyBuy'); //交易中心买币
     Route::post('/trade/cny_sell.html','TradeController@cnySell'); //交易中心买币
     Route::post('/trade/cny_cancel.html','TradeController@cnyCancel'); //撤单
