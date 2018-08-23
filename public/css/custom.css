@@ -2256,7 +2256,7 @@ textarea::-webkit-input-placeholder {
 }
 .quotes-window-navbar {
   float: left;
-  padding: 0 20px;
+  padding: 0 12px;
 }
 .quotes-window-navbar button {
   border-width: 0 0 1px 0;
@@ -2273,7 +2273,7 @@ textarea::-webkit-input-placeholder {
 }
 @media only screen and (max-width: 1400px) {
   .quotes-window-navbar {
-    padding: 0 10px;
+    padding: 0 8px;
   }
 }
 .quotes-window-navbar:first-child {

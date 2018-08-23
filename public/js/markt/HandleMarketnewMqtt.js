@@ -7,7 +7,7 @@ var password=CryptoJS.HmacSHA1(groupId,secretKey).toString(CryptoJS.enc.Base64);
 var symbol_exchange = $("#symbol").val();
 var topicDepth =topicDepthPrefix+symbol_exchange+'/';
 var topicRealTime = topicRealTimePrefix+symbol_exchange+'/';
-
+var count_time=0;
 
 function MQTTconnect() {
 
@@ -21,7 +21,15 @@ function MQTTconnect() {
         timeout: 3,
         onSuccess: onConnect,
         onFailure: function (message) {
-            setTimeout(MQTTconnect, reconnectTimeout);
+            count_time++;
+            if(count_time<4){
+                setTimeout(MQTTconnect, reconnectTimeout);
+            }else{
+                polling_price();
+                polling_trade();
+                polling_depth();
+            }
+
         }
     };
 
@@ -690,7 +698,7 @@ function fetchRealTimePrice(data) {
 }
 
 
-function fetchRealTimePriceFirst(data) {
+function fetchRealTimePriceFirst(type) {
     var symbols = [];
     $(".coin-list-item tr").each(function(index,item){
         if($(item).data().status == true){
@@ -741,12 +749,26 @@ function fetchRealTimePriceFirst(data) {
         }
     };
     util.network({url: url, param: param, success: callback});
+    if(type==1){
+        polling_price();
+    }
 }
+
+function polling_price(){
+    setTimeout(function(){fetchRealTimePriceFirst(1);},3000);
+}
+function polling_trade(){
+    setTimeout(function(){fetchRealTimeTradeFirst(1);},3000);
+}
+function polling_depth(){
+    setTimeout(function(){fetchRealTimeDepthFirst(1);},3000);
+}
+
 /**
  * 平台
  * 获取实时成交
  */
-function fetchRealTimeTradeFirst(){
+function fetchRealTimeTradeFirst(type){
     var url = "/real/market.html";
     var symbol = $("#symbol").val();
     var param = {
@@ -787,6 +809,9 @@ function fetchRealTimeTradeFirst(){
         }
     };
     util.network({url: url, param: param, success: callback});
+    if(type==1){
+        polling_trade();
+    }
 }
 
 
@@ -928,7 +953,7 @@ function fetchRealTimeDepth(data) {
 }
 
 
-function fetchRealTimeDepthFirst() {
+function fetchRealTimeDepthFirst(type) {
     var url = "/kline/fulldepth.html";
     var symbol = $("#symbol").val();
     var param = {
@@ -1014,6 +1039,10 @@ function fetchRealTimeDepthFirst() {
         }
     };
     util.network({url: url, param: param, success: callback});
+    if(type==1){
+        polling_depth();
+    }
+
 }
 
 

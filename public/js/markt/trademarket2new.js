@@ -638,11 +638,14 @@ var trade = {
                         $("#ensure-sell-data").html(noneStr);
                         $("#ensure-all-data").html(noneStr);
                         $("#entrutsCurFot").hide();
+
+                        polling_is_show(1);
+
                     } else {
                         $("#ensure-buy-data").html(entrutsCurbuy + moreStr);
                         $("#ensure-sell-data").html(entrutsCursell + moreStr);
                         $("#ensure-all-data").html(entrutsCur + moreStr);
-
+                        polling_is_show(2);
                     }
                     //濮旀墭鍘嗗彶
                     var entrutsHis = "";
@@ -1002,11 +1005,11 @@ $('.j_entrust_cancel').click(function(){
     var type=$('.quotes-header-nav').find('.active').attr('data-id');
     data.tradeId = $('#symbol').val();
     if(type=='buy'){
-        data.type=1;
-    }else if(type=='sell'){
-        data.type=2
-    }else{
         data.type=0;
+    }else if(type=='sell'){
+        data.type=1
+    }else{
+        data.type=3;
     }
 
     $.ajax({
@@ -1019,7 +1022,22 @@ $('.j_entrust_cancel').click(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function(msg){
-            util.layerAlert("", '撤单成功', 1);
+            if(msg.code==200){
+                layer.alert('撤单成功',options = {
+                    icon : 1,
+                    maxWidth : 1000,
+                    title : util.getLan("comm.tips.18"),
+                    btn: [util.getLan("comm.tips.19")]
+                })
+            }else{
+                layer.alert(msg.msg,options = {
+                    icon : 2,
+                    maxWidth : 1000,
+                    title : util.getLan("comm.tips.18"),
+                    btn: [util.getLan("comm.tips.19")]
+                })
+            }
+
         }
     });
 })
@@ -1058,6 +1076,19 @@ function is_show(type){
     }
 }
 
+function polling_is_show(type){
+    var title =$('.j-entrust-title-wrap').find('.active').data('id');
+
+    if(title=='ensure'){
+        if(type==1){
+            $('.j_entrust_cancel').css('display','none');
+        }else{
+            $('.j_entrust_cancel').css('display','block');
+        }
+    }else{
+        $('.j_entrust_cancel').css('display','none');
+    }
+}
 
 //鎾ゅ崟鎸夐挳
 $("#ensureButton").on("click",'.cancelEntrustBtc', function () {
@@ -1074,5 +1105,15 @@ $("#ensureButton").on("click",'.cancelEntrustBtc', function () {
 $('#ensureButton').on('click','.enhis-btn-detial',function(){
     var id = $(this).data().fid;
     trade.entrustLog(id);
+});
+
+
+$('.j_inner_buy').on('click',function(){
+    var price = $(this).find('span').eq(1).html();
+    $('#tradebuyprice').val(price);
+});
+$('.j_inner_sell').on('click',function(){
+    var price = $(this).find('span').eq(1).html();
+    $('#tradesellprice').val(price);
 });
 

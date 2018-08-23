@@ -17,13 +17,12 @@ function MQTTconnect() {
         onSuccess: onConnect,
         onFailure: function (message) {
             setTimeout(MQTTconnect, reconnectTimeout);
-            // if(count_time<6){
-            //     count_time++;
-            //     setTimeout(MQTTconnect, reconnectTimeout);
-            // }else{
-            //     mqtt.close();
-            //     fetchRealTimePriceFirst()
-            // }
+            if(count_time<4){
+                count_time++;
+                setTimeout(MQTTconnect, reconnectTimeout);
+            }else{
+                polling();
+            }
 
         }
     };
@@ -489,7 +488,7 @@ function fetchRealTimePrice(data) {
 //     }
 // }
 
-function fetchRealTimePriceFirst() {
+function fetchRealTimePriceFirst(type) {
     var symbols = [];
     $(".child-market").each(function(index,item){
         if($(item).data().status == 1){
@@ -523,10 +522,15 @@ function fetchRealTimePriceFirst() {
         }
     };
     util.network({url: url, param: param, success: callback});
+    if(type==1){
+        polling();
+    }
 }
-// function polling(){
-//     fetchRealTimePriceFirst();
-// }
+
+
+function polling(){
+    setTimeout(function(){fetchRealTimePriceFirst();},3000);
+}
 
 
 

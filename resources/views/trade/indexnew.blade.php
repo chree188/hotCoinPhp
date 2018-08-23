@@ -113,7 +113,12 @@
                 height: 2px;
                 background-color: #1D2133;
             }
-
+            .j_inner_buy:hover{
+                cursor:pointer;
+            }
+            .j_inner_sell:hover{
+                cursor:pointer;
+            }
 
         </style>
 	</head>
@@ -276,8 +281,8 @@
                                                 <span id="net_assets">0.00</span>￥
                                             </div>
                                             <div class="right" style="margin-right:10px">
-                                                <img src="img/imgNew/hide_asset.png" id="hide_asset" style="margin-top:5px;">
-                                                <img src="img/imgNew/show_asset.png" id="show_asset" style="display:none;margin-top:3px;" >
+                                                <img src="{{asset('img/imgNew/hide_asset.png')}}" id="hide_asset" style="margin-top:5px;">
+                                                <img src="{{asset('img/imgNew/show_asset.png')}}" id="show_asset" style="display:none;margin-top:3px;" >
                                             </div>
                                         </div>
                                     </div>
@@ -436,8 +441,7 @@
                                             发行时间
                                         </span>
                                         <span class="introduce-item-value">
-                                            {{--{{isset($coinInfo['gmtRelease']) ? $coinInfo['gmtRelease']:'-'}}--}}
-                                            -
+                                            {{isset($coinInfo['gmtRelease']) ? $coinInfo['gmtRelease']:'-'}}
                                         </span>
                                     </div>
 
@@ -550,66 +554,66 @@
                                                     <span id="inner-sum">{{__('market.accu')}}({{$tradeType['sellShortName']}})</span>
                                                 </dt>
                                                 <dd class="quotes-transaction-tabel-item cell">
-                                                    <div class="inner">
+                                                    <div class="inner j_inner_sell">
                                                         <span class="color-sell">{{__('market.sells')}} 7</span>
                                                         <span></span>
                                                         <span></span>
                                                         <span></span>
-                                                        <b class="color-sell-bg" style="width: 30%;"></b>
+                                                        <b class="color-sell-bg" style="width: 0%;"></b>
                                                     </div>
                                                 </dd>
                                                 <dd class="quotes-transaction-tabel-item cell">
-                                                    <div class="inner">
+                                                    <div class="inner j_inner_sell">
                                                         <span class="color-sell">{{__('market.sells')}} 6</span>
                                                         <span></span>
                                                         <span></span>
                                                         <span></span>
-                                                        <b class="color-sell-bg" style="width: 40%;"></b>
+                                                        <b class="color-sell-bg" style="width: 0%;"></b>
                                                     </div>
                                                 </dd>
                                                 <dd class="quotes-transaction-tabel-item cell">
-                                                    <div class="inner">
+                                                    <div class="inner j_inner_sell">
                                                         <span class="color-sell">{{__('market.sells')}} 5</span>
                                                         <span></span>
                                                         <span></span>
                                                         <span></span>
-                                                        <b class="color-sell-bg" style="width: 25%;"></b>
+                                                        <b class="color-sell-bg" style="width: 0%;"></b>
                                                     </div>
                                                 </dd>
                                                 <dd class="quotes-transaction-tabel-item cell">
-                                                    <div class="inner">
+                                                    <div class="inner j_inner_sell">
                                                         <span class="color-sell">{{__('market.sells')}} 4</span>
                                                         <span></span>
                                                         <span></span>
                                                         <span></span>
-                                                        <b class="color-sell-bg" style="width: 10%;"></b>
+                                                        <b class="color-sell-bg" style="width: 0%;"></b>
                                                     </div>
                                                 </dd>
                                                 <dd class="quotes-transaction-tabel-item cell">
-                                                    <div class="inner">
+                                                    <div class="inner j_inner_sell">
                                                         <span class="color-sell">{{__('market.sells')}} 3</span>
                                                         <span></span>
                                                         <span></span>
                                                         <span></span>
-                                                        <b class="color-sell-bg" style="width: 5%;"></b>
+                                                        <b class="color-sell-bg" style="width: 0%;"></b>
                                                     </div>
                                                 </dd>
                                                 <dd class="quotes-transaction-tabel-item cell">
-                                                    <div class="inner">
+                                                    <div class="inner j_inner_sell">
                                                         <span class="color-sell">{{__('market.sells')}} 2</span>
                                                         <span></span>
                                                         <span></span>
                                                         <span></span>
-                                                        <b class="color-sell-bg" style="width: 90%;"></b>
+                                                        <b class="color-sell-bg" style="width: 0%;"></b>
                                                     </div>
                                                 </dd>
                                                 <dd class="quotes-transaction-tabel-item cell">
-                                                    <div class="inner">
+                                                    <div class="inner j_inner_sell">
                                                         <span class="color-sell">{{__('market.sells')}} 1</span>
                                                         <span></span>
                                                         <span></span>
                                                         <span></span>
-                                                        <b class="color-sell-bg" style="width: 30%;"></b>
+                                                        <b class="color-sell-bg" style="width: 0%;"></b>
                                                     </div>
                                                 </dd>
                                             </dl>
@@ -619,43 +623,43 @@
                                             <div class="quotes-transaction-tabel-box">
                                                 <dl class="quotes-transaction-tabel-body">
                                                     <dd class="quotes-transaction-tabel-item cell">
-                                                        <div class="inner">
+                                                        <div class="inner j_inner_buy">
                                                             <span class="color-buy">{{__('market.buys')}} 1</span>
                                                             <span></span>
                                                             <span></span>
                                                             <span></span>
-                                                            <b class="color-buy-bg" style="width: 30%;"></b>
+                                                            <b class="color-buy-bg" style="width: 0%;"></b>
                                                         </div>
                                                     </dd>
                                                     <dd class="quotes-transaction-tabel-item cell">
-                                                        <div class="inner">
+                                                        <div class="inner j_inner_buy">
                                                             <span class="color-buy">{{__('market.buys')}} 2</span>
                                                             <span></span>
                                                             <span></span>
                                                             <span></span>
-                                                            <b class="color-buy-bg" style="width: 30%;"></b>
+                                                            <b class="color-buy-bg" style="width: 0%;"></b>
                                                         </div>
                                                     </dd>
                                                     <dd class="quotes-transaction-tabel-item cell">
-                                                        <div class="inner">
+                                                        <div class="inner j_inner_buy">
                                                             <span class="color-buy">{{__('market.buys')}} 3</span>
                                                             <span></span>
                                                             <span></span>
                                                             <span></span>
-                                                            <b class="color-buy-bg" style="width: 30%;"></b>
+                                                            <b class="color-buy-bg" style="width: 0%;"></b>
                                                         </div>
                                                     </dd>
                                                     <dd class="quotes-transaction-tabel-item cell">
-                                                        <div class="inner">
+                                                        <div class="inner j_inner_buy">
                                                             <span class="color-buy">{{__('market.buys')}} 4</span>
                                                             <span></span>
                                                             <span></span>
                                                             <span></span>
-                                                            <b class="color-buy-bg" style="width: 30%;"></b>
+                                                            <b class="color-buy-bg" style="width: 0%;"></b>
                                                         </div>
                                                     </dd>
                                                     <dd class="quotes-transaction-tabel-item cell">
-                                                        <div class="inner">
+                                                        <div class="inner j_inner_buy">
                                                             <span class="color-buy">{{__('market.buys')}} 5</span>
                                                             <span></span>
                                                             <span></span>
@@ -664,21 +668,21 @@
                                                         </div>
                                                     </dd>
                                                     <dd class="quotes-transaction-tabel-item cell">
-                                                        <div class="inner">
+                                                        <div class="inner j_inner_buy">
                                                             <span class="color-buy">{{__('market.buys')}} 6</span>
                                                             <span></span>
                                                             <span></span>
                                                             <span></span>
-                                                            <b class="color-buy-bg" style="width: 30%;"></b>
+                                                            <b class="color-buy-bg" style="width: 0%;"></b>
                                                         </div>
                                                     </dd>
                                                     <dd class="quotes-transaction-tabel-item cell">
-                                                        <div class="inner">
+                                                        <div class="inner j_inner_buy">
                                                             <span class="color-buy">{{__('market.buys')}} 7</span>
                                                             <span></span>
                                                             <span></span>
                                                             <span></span>
-                                                            <b class="color-buy-bg" style="width: 30%;"></b>
+                                                            <b class="color-buy-bg" style="width: 0%;"></b>
                                                         </div>
                                                     </dd>
                                                 </dl>
@@ -925,64 +929,7 @@
                                              </thead>
                                          	<tbody id="ensure-buy-data">
                                          	   <!----------- 无记录 ------------>
-                                               <tr class="quotes-intrust-item">
-                                                   <td>32</td>
-                                                   <td>43</td>
-                                                   <td>55</td>
-                                                   <td>66</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                               </tr>
-                                               <tr class="quotes-intrust-item">
-                                                   <td>32</td>
-                                                   <td>43</td>
-                                                   <td>55</td>
-                                                   <td>66</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                               </tr>
-                                               <tr class="quotes-intrust-item">
-                                                   <td>32</td>
-                                                   <td>43</td>
-                                                   <td>55</td>
-                                                   <td>66</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                               </tr>
-                                               <tr class="quotes-intrust-item">
-                                                   <td>32</td>
-                                                   <td>43</td>
-                                                   <td>55</td>
-                                                   <td>66</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                               </tr>
-                                               <tr class="quotes-intrust-item">
-                                                   <td>32</td>
-                                                   <td>43</td>
-                                                   <td>55</td>
-                                                   <td>66</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                                   <td>77</td>
-                                               </tr>
-                                               <tr class="quotes-intrust-item" style="height:40px;line-height:40px;border-bottom:1px solid #181B2A">
-                                                   <td colspan="9" style="text-align: center;"><a href="/trade/cny_entrust.html?status=0&symbol='+symbol+'" style="font-size:16px;color:#5B90E4">查看更多</a></td>
-                                               </tr>
+                                               <tr class="quotes-intrust-norecord"> <td colspan="9">无记录</td></tr>
                                          	</tbody>
                                          </table>
 
@@ -1002,7 +949,7 @@
                                              </thead>
                                              <tbody id="ensure-sell-data">
                                              <!----------- 无记录 ------------>
-
+                                                <tr class="quotes-intrust-norecord"> <td colspan="9">无记录</td></tr>
                                              </tbody>
                                          </table>
 
@@ -1022,7 +969,7 @@
                                              </thead>
                                              <tbody id="ensure-all-data">
                                              <!----------- 无记录 ------------>
-
+                                                <tr class="quotes-intrust-norecord"> <td colspan="9">无记录</td></tr>
                                              </tbody>
                                          </table>
 
@@ -1042,7 +989,7 @@
                                              </thead>
                                              <tbody id="enhis-buy-data">
                                              <!----------- 无记录 ------------>
-
+                                                <tr class="quotes-intrust-norecord"> <td colspan="9">无记录</td></tr>
                                              </tbody>
                                          </table>
 
@@ -1062,7 +1009,7 @@
                                              </thead>
                                              <tbody id="enhis-sell-data">
                                              <!----------- 无记录 ------------>
-
+                                                <tr class="quotes-intrust-norecord"> <td colspan="9">无记录</td></tr>
                                              </tbody>
                                          </table >
 
@@ -1082,7 +1029,7 @@
                                              </thead>
                                              <tbody id="enhis-all-data">
                                              <!----------- 无记录 ------------>
-
+                                                <tr class="quotes-intrust-norecord"> <td colspan="9">无记录</td></tr>
                                              </tbody>
                                          </table>
                                      </div>
